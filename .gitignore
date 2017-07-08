@@ -1,0 +1,12 @@
+node_modules
+dist
+.tmp
+.sass-cache
+bower_components
+.idea
+.bowerrc
+app/app.js
+bower.json
+firebase.json
+package.json
+test/

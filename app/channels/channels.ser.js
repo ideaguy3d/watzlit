@@ -7,10 +7,9 @@
     angular.module('app').factory('jChannels', ['$firebaseArray',
         function ($firebaseArray) {
             var ref = firebase.database().ref('channels');
-
             return $firebaseArray(ref);
         }
-    ]).factory('jChannelMessages', ['$firebaseArray', function ($firebaseArray) {
+    ]).factory('jMessages', ['$firebaseArray', function ($firebaseArray) {
         var channelMessagesRef = firebase.database().ref('channelMessages');
         return {
             forChannel: function (channelId) {

@@ -7,19 +7,21 @@
 
     angular.module('app').factory('jUsers', function ($firebaseArray, $firebaseObject) {
         var usersRef = firebase.database().ref('users'),
-            users = $firebaseArray(usersRef);
+            users = $firebaseArray(usersRef),
+            count = 0;
 
         return {
-            getProfile: function(uid){
+            getProfile: function (uid) {
                 return $firebaseObject(usersRef.child(uid));
             },
-            getDisplayName: function(uid) {
+            getDisplayName: function (uid) {
                 var rec = users.$getRecord(uid);
+                console.log(++count+" - getDisplayName rec:");
                 console.log(rec);
                 return rec.displayName;
             },
             all: users,
-            getGravatar: function(uid) {
+            getGravatar: function (uid) {
                 return '//www.gravatar.com/avatar/' + users.$getRecord(uid).emailHash;
             }
         };

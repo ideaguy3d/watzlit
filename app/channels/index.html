@@ -8,7 +8,8 @@
 			<div class="list-head">Channels</div>
 			<!-- iterating over channels here: -->
 			<div class="channel" ng-repeat="channel in channelsCtrl.channels">
-				<a href="">#{{ channel.name }}</a>
+				<a ui-sref="channels.messages({channelId: channel.$id})"
+				   ui-sref-active="selected">#{{ channel.name }}</a>
 			</div>
 			<div class="channel create">
 				<a href="" ui-sref="channels.create">+ createChannel</a>
@@ -34,7 +35,6 @@
 	
 	<!-- IMPORTANT: a "Child View" begins here -->
 	<div class="message-pane">
-		<h1>Message Pane:</h1>
 		<ui-view></ui-view>
 	</div>
 </div>

@@ -25,14 +25,13 @@
             };
             
             channelsCtrl.createChannel = function(){
-                channelsCtrl.channels.$add(channelsCtrl.newChannel).then(function(res){
-                    console.log("createChannel response:");
-                    console.log(res);
+                channelsCtrl.channels.$add(channelsCtrl.newChannel).then(function(ref){
                     channelsCtrl.newChannel = {
                         name: '',
                         queryCode1: '?ja=julius-alvarado&randomInt='+Math.floor((Math.random() * 1000) + 1000)
                     };
-                })
+                    $state.go('channels.messages', {channelId: ref.key});
+                });
             };
         }
     ]);

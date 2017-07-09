@@ -12,16 +12,27 @@
 				   ui-sref-active="selected">#{{ channel.name }}</a>
 			</div>
 			<div class="channel create">
-				<a href="" ui-sref="channels.create">+ createChannel</a>
+				<a ui-sref="channels.create">+ createChannel</a>
+			</div>
+			
+			<!-- Direct Messages area -->
+			<div class="list-head">Direct Messages</div>
+			<div class="channel" ng-repeat="user in channelsCtrl.users">
+				<a ng-if="user.$id !== channelsCtrl.profile.$id" ui-sref="channels.direct({uid: user.$id})"
+				   ui-sref-active="selected">
+					<span class="presence" ng-class="{online: user.online}"></span>
+					{{ user.displayName }}
+				</a>
 			</div>
 		</div>
 		
+		<!-- the user info at the bottom of the side menu -->
 		<div class="my-info">
-			<img alt="user-img" class="user-pic"
-			     ng-src="{{ channelsCtrl.getGravatar(channelsCtrl.profile.$id) }}">
+			<img alt="user-img" class="user-pic" ng-src="{{ channelsCtrl.getGravatar(channelsCtrl.profile.$id) }}">
 			
 			<div class="user-info">
 				<div class="user-name">
+					<span class="presence" ng-class="{online: channelsCtrl.profile.online}"></span>
 					{{ channelsCtrl.profile.displayName }}
 				</div>
 				

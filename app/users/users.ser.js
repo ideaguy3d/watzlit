@@ -8,7 +8,7 @@
     angular.module('app').factory('jUsers', function ($firebaseArray, $firebaseObject) {
         var usersRef = firebase.database().ref('users'),
             users = $firebaseArray(usersRef),
-            count = 0;
+            connectedRef = firebase.database().ref('.info/connected');
 
         return {
             getProfile: function (uid) {
@@ -16,13 +16,22 @@
             },
             getDisplayName: function (uid) {
                 var rec = users.$getRecord(uid);
-                console.log(++count+" - getDisplayName rec:");
-                console.log(rec);
                 return rec.displayName;
             },
             all: users,
             getGravatar: function (uid) {
                 return '//www.gravatar.com/avatar/' + users.$getRecord(uid).emailHash;
+            },
+            setOnline: function (uid) {
+                var connected = $firebaseObject(connectedRef);
+                var online = $firebaseArray(usersRef.child(uid + '/online'));
+                connected.$watch(function () {
+                    if (connected.$value === true) {
+                        online.$add(true).then(function (connectedRef) {
+                          connectedRef.onDisconnect().remove();
+                        });
+                    }
+                });
             }
         };
     });

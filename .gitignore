@@ -10,3 +10,6 @@ bower.json
 firebase.json
 package.json
 test/
+app-orig
+app/images
+vendor

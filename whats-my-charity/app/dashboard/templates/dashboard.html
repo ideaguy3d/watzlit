@@ -1,0 +1,26 @@
+<div class="row alerts-container" data-ng-controller="AlertsCtrl" data-ng-show="alerts.length">
+    <div class="col-xs-12">
+        <alert data-ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+    </div>
+</div>
+
+<div class="row charities-container" ng-controller="CharitiesCtrl">
+    <div class="row title-bar col-xs-12 clearfix">
+        <h2 class="title-nar-title pull-left">Favorite Charities</h2>
+        <div class="title-bar-search pull-right">
+            <input type="text" placeholder="Search" class="form-control input-med">
+        </div>
+    </div>
+    <div ng-repeat="charity in charities" class="charity col-xs-12">
+        <rd-widget>
+            <rd-widget-body>
+                <div class="charity-icon widget-icon {{charity.color}}">
+                    <i class="fa fa-star"></i>
+                </div>
+                <div class="charity-name title">{{charity.name}}</div>
+            </rd-widget-body>
+        </rd-widget>
+    </div>
+</div>
+
+<ng-include src="'dashboard/templates/following-list.html'"></ng-include>

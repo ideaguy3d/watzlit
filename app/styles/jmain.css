@@ -426,9 +426,18 @@ section.jcube3d-container .plane2 {
     translateX(400px);
 }
 
-#content-admin {
+#content-contacts {
     padding-left: 24px;
 }
+
+.share {
+    float: right;
+}
+
+md-bottom-sheet md-list-item.j-inline {
+    display: inline-block;
+}
+
 /**
  #anim-link:hover + #viewport > #cube {
     animation: Rotate 5s 1;
@@ -449,15 +458,4 @@ section.jcube3d-container .plane2 {
     }
 }
 **/
-
-
-
-
-
-
-
-
-
-
-
 

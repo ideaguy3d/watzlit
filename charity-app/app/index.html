@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="bower_components/font-awesome/css/font-awesome.min.css">
+
     <link rel="stylesheet" href="css/rdash.css">
     <link rel="stylesheet" href="css/app.css">
     <link rel="stylesheet" href="css/animations.css">
@@ -28,6 +29,7 @@
     <script src="global/directives/widget-body.js"></script>
     <script src="global/directives/widget-footer.js"></script>
     <script src="global/directives/widget-header.js"></script>
+    <script src="global/directives/alert.js"></script>
 
     <!-- Areas -->
     <script src="dashboard/dashboard.js"></script>
@@ -42,7 +44,6 @@
 </head>
 <body ng-controller="MainCtrl">
 <div id="page-wrapper" ng-class="{'open': toggle}" ng-cloak>
-
     <!-- Sidebar -->
     <div id="sidebar-wrapper">
         <ul class="sidebar">
@@ -73,11 +74,11 @@
             <div class="row header">
                 <div class="col-xs-12">
                     <div class="user pull-right">
-                        <div class="item dropdown">
-                            <a href="#" class="dropdown-toggle">
+                        <div class="item">
+                            <a class="dropdown-toggle" ng-click="showUserDropdown = !showUserDropdown">
                                 <img src="images/avatar.jpg">
                             </a>
-                            <ul class="dropdown-menu dropdown-menu-right">
+                            <ul class="dropdown-menu dropdown-menu-right" ng-show="showUserDropdown">
                                 <li class="dropdown-header">
                                     Kevin Weeks
                                 </li>
@@ -101,10 +102,10 @@
                             </ul>
                         </div>
                         <div class="item dropdown">
-                            <a href="#" class="dropdown-toggle">
+                            <a class="dropdown-toggle" ng-click="showNotificationDropdown = !showNotificationDropdown">
                                 <i class="fa fa-bell-o"></i>
                             </a>
-                            <ul class="dropdown-menu dropdown-menu-right">
+                            <ul class="dropdown-menu dropdown-menu-right" ng-show="showNotificationDropdown">
                                 <li class="dropdown-header">
                                     Notifications
                                 </li>
@@ -120,7 +121,7 @@
                             Dashboard
                         </div>
                         <div class="breadcrumb-links">
-                            Home / Dashboard
+                            Home / {{page}}
                         </div>
                     </div>
                 </div>
@@ -128,7 +129,7 @@
             <!-- End Header Bar -->
 
             <!-- Main Content -->
-            <div ng-view></div>
+            <div ng-view ng-animate-children></div>
 
         </div><!-- End Page Content -->
     </div><!-- End Content Wrapper -->

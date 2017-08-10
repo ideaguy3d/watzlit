@@ -2,7 +2,8 @@ angular.module('app.dashboard')
   .controller('AlertsCtrl', ['$scope', function($scope) {
     $scope.alerts = [{
       type: 'success',
-      msg: 'Welcome to your Dashboard! Below you will find your recommended charities and more!'
+      msg: 'Welcome to your Dashboard! Below you will find your recommended charities and more!',
+      showAlert: true
     }];
 
     $scope.addAlert = function() {
@@ -12,6 +13,6 @@ angular.module('app.dashboard')
     };
 
     $scope.closeAlert = function(index) {
-      $scope.alerts.splice(index, 1);
+      $scope.alerts[index].showAlert = false;
     };
   }]);

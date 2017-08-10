@@ -1,5 +1,8 @@
 angular.module('app.dashboard')
   .controller('CharitiesCtrl', ['$scope', function($scope) {
+
+    $scope.predicate = 'name';
+
     $scope.charities = [
       {
         name: 'Against Malaria Foundation',
@@ -26,4 +29,9 @@ angular.module('app.dashboard')
         color: 'orange'
       }
     ];
+
+    $scope.changeOrder = function() {
+      $scope.predicate = $scope.predicate === 'name' ? '-name' : 'name';
+    }
+
   }]);

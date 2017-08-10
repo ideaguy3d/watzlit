@@ -28,6 +28,14 @@ angular.module('app.dashboard')
       {
         firstName: 'Tiffany',
         lastName: 'Garcia'
+      },
+      {
+        firstName: 'Max',
+        lastName: 'Levine'
+      },
+      {
+        firstName: 'Stephanie',
+        lastName: 'Roday'
       }
     ];
   }]);

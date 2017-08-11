@@ -4,6 +4,7 @@
 angular.module('app', [
     'ngRoute',
     'ngAnimate',
+    'ngMessages',
     'ui.bootstrap',
     'app.global',
     'app.dashboard'

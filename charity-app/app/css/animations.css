@@ -34,6 +34,111 @@
     transition: opacity 1s, transform 1s;
 }
 
+/***********************************/
+.form-control.ng-invalid-add,
+.form-control.ng-invalid-remove {
+    transition: border-color 350ms;
+}
+
+/* for ng-show & ng-hide */
+.dropdown-menu.ng-hide-add,
+.dropdown-menu.ng-hide-remove {
+    transition: opacity 850ms;
+}
+
+.dropdown-menu.ng-hide-add-active,
+.dropdown-menu.ng-hide-remove {
+    opacity: 0;
+}
+
+.dropdown-menu.ng-hide-remove-active {
+    opacity: 1;
+}
+
+.charity.ng-move {
+    opacity: 0;
+    transition: opacity 1.2s;
+}
+
+.charity.ng-move-active {
+    opacity: 1;
+}
+
+@keyframes j-slide-in {
+    0% {
+        transform: translate3d(-100%, 0, 0);
+        margin-bottom: -97px;
+    }
+
+    60% {
+        transform: translate3d(3%, 0, 0);
+    }
+
+    83% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    100% {
+        transform: translate3d(0, 0, 0);
+        margin-bottom: 15px;
+    }
+}
+
+@keyframes j-slide-out {
+    0% {
+        transform: translate3d(0, 0, 0);
+        margin-bottom: 15px;
+    }
+
+    23% {
+        transform: translate3d(3%, 0, 0);
+    }
+
+    83% {
+        transform: translate3d(-100%, 0, 0);
+    }
+
+    100% {
+        transform: translate3d(-100%, 0, 0);
+        margin-bottom: -97px;
+    }
+}
+
+.charity.ng-enter,
+.charity.ng-leave {
+    -webkit-animation-duration: 900ms;
+    -moz-animation-duration: 900ms;
+    -o-animation-duration: 900ms;
+    animation-duration: 900ms;
+}
+
+.charity.ng-enter {
+    -webkit-animation-name: j-slide-in;
+    -moz-animation-name: j-slide-in;
+    -o-animation-name: j-slide-in;
+    animation-name: j-slide-in;
+}
+
+.charity.ng-leave {
+    -webkit-animation-name: j-slide-out;
+    -moz-animation-name: j-slide-out;
+    -o-animation-name: j-slide-out;
+    animation-name: j-slide-out;
+}
+
+.charity.ng-enter-stagger,
+.charity.ng-leave-stagger {
+    -webkit-animation-delay: 150ms;
+    -moz-animation-delay: 150ms;
+    -o-animation-delay: 150ms;
+    animation-delay: 150ms;
+
+    -webkit-animation-duration: 0s;
+    -moz-animation-duration: 0s;
+    -o-animation-duration: 0s;
+    animation-duration: 0s;
+}
+
 .alert-container.ng-leave-active {
     opacity: 0;
     transform: scale(0, 0);
@@ -53,26 +158,36 @@
     opacity: 1;
 }
 
+/**
+---------------------------------------------------
+-- Using transition to animate ng-repeated elems --
+---------------------------------------------------
+
 .charity.ng-leave,
 .charity.ng-enter {
- transition: transform 0.4s,
-    margin 900ms;
+    transition: transform 0.4s, margin 900ms;
 }
 
 .charity.ng-enter,
 .charity.ng-leave-active {
-    /**position element all the way to the left **/
-    transform: translate3d(-100%, 0, 0);
-    margin-bottom: -97px; /*height of elem*/
+/** position element all the way to the left **
+transform: translate3d(-100%, 0, 0);
+margin-bottom: -97px; /** height of elem **
 }
 
 .charity.ng-enter-active {
-    transform: translate3d(0,0,0);
+    transform: translate3d(0, 0, 0);
     margin-bottom: 15px;
 }
 
 .ng-enter-stagger,
 .ng-leave-stagger {
-    transition-delay: 300ms;
-    transition-duration: 0;
+    transition-delay: 150ms;
+    transition-duration: 0s;
 }
+**/
+
+
+/**
+end of file
+**/

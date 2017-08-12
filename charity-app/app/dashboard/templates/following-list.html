@@ -3,7 +3,8 @@
         <h2 class="title-nar-title">Following</h2>
     </div>
     <div class="following">
-        <div class="j-animate-fade-in-out following-user col-xs-4 col-md-3" ng-repeat="user in following" ng-if="!user.inactive">
+	    <!-- .j-animate-fade-in-out -->
+	    <div class="following-user col-xs-4 col-md-3" ng-repeat="user in following" ng-if="!user.inactive">
             <rd-widget>
                 <rd-widget-body>
                     <div ng-click="user.inactive = !user.inactive" class="following-user-close glyphicon glyphicon-remove"></div>

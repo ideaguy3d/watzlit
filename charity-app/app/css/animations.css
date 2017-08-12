@@ -31,11 +31,11 @@
 }
 
 /**/
-.following-user.ng-leave {
+section.following-user.ng-leave {
     transition: margin 0.5s;
 }
 
-.following-user.ng-leave-active {
+section.following-user.ng-leave-active {
     -webkit-animation-name: zoomOutLeft;
     -moz-animation-name: zoomOutLeft;
     -o-animation-name: zoomOutLeft;

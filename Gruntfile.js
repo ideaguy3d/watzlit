@@ -385,7 +385,7 @@ module.exports = function (grunt) {
                 singleRun: true
             }
         }
-    });
+    });  //-- END OF: grunt.initConfig(); LINES 25-390ish
 
 
     grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {

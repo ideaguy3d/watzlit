@@ -35,17 +35,33 @@
 	upgrade your browser</ato improve your experience.</p>
 <![endif]-->
 
-<div layout="row">
-	<!-- sidenav -->
-	<div ng-include="'layout/sidenav/in.sidenav.html'"></div>
-	
-	<div layout="column">
-		<!-- application entry point -->
-		<ui-view></ui-view>
-	</div>
-</div>
+<md-nav-bar md-selected-nav-item="currentNavItem"
+            nav-bar-aria-label="navigation links">
+	<md-nav-item md-nav-sref="landing" name="home">
+		Home
+	</md-nav-item>
+	<!--You can also add options for the <code>ui-sref-opts</code> attribute.-->
+	<md-nav-item md-nav-sref="post" sref-opts="{reload:true, notify:true}">
+		Post a Job
+	</md-nav-item>
+	<md-nav-item md-nav-sref="signup" name="about">
+		Signup
+	</md-nav-item>
+	<!--You can also add options for the <code>ui-sref-opts</code> attribute.-->
+	<md-nav-item md-nav-sref="login" sref-opts="{reload:true, notify:true}">
+		Login
+	</md-nav-item>
+</md-nav-bar>
+
+<!-- application entry point -->
+<ui-view></ui-view>
+
+
+<!-- footer -->
 <br>
 <h1 class="text-center">Footer {{ 4+4 }}</h1>
+
+
 <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
 <script>
     !function (A, n, g, u, l, a, r) {

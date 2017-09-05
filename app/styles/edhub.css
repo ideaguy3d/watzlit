@@ -459,3 +459,23 @@ md-bottom-sheet md-list-item.j-inline {
 }
 **/
 
+/**
+    -- edhub initial ui code --
+**/
+
+md-content.edhub-landing-hero {
+    background: #fff url(img/school-filtered.png) no-repeat fixed center;
+    color: #f1f1f1;
+    height: 40vh;
+    background-size: cover;
+}
+
+@media screen and (max-width: 412px) {
+    md-content.edhub-landing-hero {
+        background-size: 400px;
+        background-position: top;
+    }
+}
+
+
+

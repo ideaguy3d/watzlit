@@ -168,4 +168,10 @@ angular
         };
 
         firebase.initializeApp(config);
+
+        var jd = {
+            des: "build stuff",
+            loc: "san jose",
+            skills: "hacking"
+        };
     });

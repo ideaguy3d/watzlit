@@ -9,15 +9,16 @@
 	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 	
+	<!--<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />-->
+	
 	<!-- build:css(.) styles/vendor.css -->
 	<!-- bower:css -->
-	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
-	<link rel="stylesheet" href="bower_components/angular-material/angular-material.css"/>
+	<link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
 	<!-- endbower -->
 	<!-- endbuild -->
 	
 	<!-- build:css(.tmp) styles/main.css -->
-	<link rel="stylesheet" href="styles/jmain.css">
+	<link rel="stylesheet" href="styles/edhub.css">
 	<!-- endbuild -->
 	
 	<!-- ng-cloak -->
@@ -38,13 +39,13 @@
 <md-nav-bar md-selected-nav-item="currentNavItem"
             nav-bar-aria-label="navigation links">
 	<md-nav-item md-nav-sref="landing" name="home">
-		Home
+		EdHub
 	</md-nav-item>
 	<!--You can also add options for the <code>ui-sref-opts</code> attribute.-->
 	<md-nav-item md-nav-sref="post" sref-opts="{reload:true, notify:true}">
 		Post a Job
 	</md-nav-item>
-	<md-nav-item md-nav-sref="signup" name="about">
+	<md-nav-item md-nav-sref="signup" name="signup">
 		Signup
 	</md-nav-item>
 	<!--You can also add options for the <code>ui-sref-opts</code> attribute.-->
@@ -75,6 +76,7 @@
     ga('send', 'pageview');
 </script>
 
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
 <!-- build:js(.) scripts/vendor.js -->
 <!-- bower:js -->
 <script src="bower_components/angular/angular.js"></script>

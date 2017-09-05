@@ -29,7 +29,7 @@
 	</style>
 </head>
 
-<body ng-app="app" ng-cloak>
+<body ng-app="edhubJobsApp" ng-cloak>
 
 <!--[if lt IE 7]>
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">
@@ -39,7 +39,7 @@
 <md-nav-bar md-selected-nav-item="currentNavItem"
             nav-bar-aria-label="navigation links">
 	<md-nav-item md-nav-sref="landing" name="home">
-		EdHub
+		EdHub.co
 	</md-nav-item>
 	<!--You can also add options for the <code>ui-sref-opts</code> attribute.-->
 	<md-nav-item md-nav-sref="post" sref-opts="{reload:true, notify:true}">
@@ -95,6 +95,7 @@
 
 <!-- build:js({.tmp,app}) scripts/scripts.js -->
 <script src="app.js"></script>
+<script src="states/landing/ctrl.landing.js"></script>
 <!-- endbuild -->
 
 </body>

@@ -14,6 +14,7 @@
 
             vm.userSignup = function(){
                 console.log("user has signed up ^_^");
+                console.log(vm.email+", "+vm.pw);
             }
         }
     ]);

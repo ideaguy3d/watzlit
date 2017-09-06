@@ -30,21 +30,25 @@ md-content.edhub-landing-hero .edhub-landing-hero-text p {
     font-size: 30px;
 }
 
+.edhub-text-center {
+    text-align: center;
+}
+
 @media screen and (max-width: 416px) {
     md-content.edhub-landing-hero {
-        background-size: 416px;
+        background-size: 602px;
         background-position: top;
     }
 
     md-content.edhub-landing-hero .edhub-landing-hero-text {
         text-align: center;
-        margin-top: 4%;
+        margin-top: 8%;
     }
 
     md-content.edhub-landing-hero .edhub-landing-hero-text h1 {
         font-size: 40px;
         margin: 8px;
-    }
+}
 
     md-content.edhub-landing-hero .edhub-landing-hero-text h1 > img {
         vertical-align: bottom;

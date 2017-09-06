@@ -21,7 +21,7 @@
 	</md-content>
 	-->
 	
-	<!-- Hero Landing -->
+	<!-- START:  Hero Landing -->
 	<md-content layout-padding class="edhub-landing-hero">
 		<div class="edhub-landing-hero-text">
 			<h1><img src="styles/img/elephant-suit.png" alt="logo">EdHub.co</h1>
@@ -32,15 +32,17 @@
 			</md-button>
 		</div>
 	</md-content>
+	<!-- END OF: Hero Landing -->
 	
-	image
-	<img src="styles/img/elephant-suit.png" alt="logo">
+	<md-toolbar class="md-padding edhub-text-center">
+		<h2>Recent Job Posting</h2>
+	</md-toolbar>
 	
-	<!-- md-card templates 2 -->
+	<!-- START: md-card templates 1 -->
 	<md-content class="md-padding" layout-xs="column" layout="row">
 		<div flex-xs flex-gt-xs="50" layout="column">
 			<md-card>
-				<img ng-src="{{imagePath}}" class="md-card-image" alt="Washed Out">
+				<img ng-src="{{landing.blackboardImg}}" class="md-card-image" alt="Washed Out">
 				<md-card-title>
 					<md-card-title-text>
 						<span class="md-headline">Action buttons</span>
@@ -66,7 +68,7 @@
 				</md-card-actions>
 			</md-card>
 			<md-card>
-				<img ng-src="{{imagePath}}" class="md-card-image" alt="Washed Out">
+				<img ng-src="{{landing.blackboardImg}}" class="md-card-image" alt="Washed Out">
 				<md-card-title>
 					<md-card-title-text>
 						<span class="md-headline">Vertical action buttons</span>
@@ -86,7 +88,7 @@
 		</div>
 		<div flex-xs flex-gt-xs="50" layout="column">
 			<md-card>
-				<img ng-src="{{imagePath}}" class="md-card-image" alt="Washed Out">
+				<img ng-src="{{landing.blackboardImg}}" class="md-card-image" alt="Washed Out">
 				<md-card-title>
 					<md-card-title-text>
 						<span class="md-headline">Icon action buttons</span>
@@ -100,27 +102,27 @@
 				</md-card-content>
 				<md-card-actions layout="row" layout-align="end center">
 					<md-button class="md-icon-button" aria-label="Favorite">
-						<md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
+						<ng-md-icon icon="favorite"></ng-md-icon>
 					</md-button>
 					<md-button class="md-icon-button" aria-label="Settings">
-						<md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
+						<ng-md-icon icon="menu"></ng-md-icon>
 					</md-button>
 					<md-button class="md-icon-button" aria-label="Share">
-						<md-icon md-svg-icon="img/icons/share-arrow.svg"></md-icon>
+						<ng-md-icon icon="share"></ng-md-icon>
 					</md-button>
 				</md-card-actions>
 			</md-card>
 			<md-card>
-				<img ng-src="{{imagePath}}" class="md-card-image" alt="Washed Out">
+				<img ng-src="{{landing.blackboardImg}}" class="md-card-image" alt="Washed Out">
 				<md-card-actions layout="row" layout-align="end center">
 					<md-button class="md-icon-button" aria-label="Favorite">
-						<md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
+						<ng-md-icon icon="favorite"></ng-md-icon>
 					</md-button>
 					<md-button class="md-icon-button" aria-label="Settings">
-						<md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
+						<ng-md-icon icon="menu"></ng-md-icon>
 					</md-button>
 					<md-button class="md-icon-button" aria-label="Share">
-						<md-icon md-svg-icon="img/icons/share-arrow.svg"></md-icon>
+						<ng-md-icon icon="share"></ng-md-icon>
 					</md-button>
 				</md-card-actions>
 			</md-card>
@@ -128,14 +130,14 @@
 			<md-card>
 				<md-card-header>
 					<md-card-avatar>
-						<img src="img/logo.svg"/>
+						<img src="styles/img/elephant-suit.png"/>
 					</md-card-avatar>
 					<md-card-header-text>
 						<span class="md-title">AngularJS</span>
 						<span class="md-subhead">Material</span>
 					</md-card-header-text>
 				</md-card-header>
-				<img ng-src="{{imagePath}}" class="md-card-image" alt="Washed Out">
+				<img ng-src="{{landing.blackboardImg}}" class="md-card-image" alt="Washed Out">
 				<md-card-title>
 					<md-card-title-text>
 						<span class="md-headline">Card header</span>
@@ -150,11 +152,13 @@
 			</md-card>
 		</div>
 	</md-content>
-	<!-- md-card templates 1 -->
+	<!-- END OF: md-card templates 1 -->
+	
+	<!-- START:  md-card templates 2 -->
 	<md-content class="md-padding" layout-xs="column" layout="row">
 		<div flex-xs flex-gt-xs="50" layout="column">
 			<md-card>
-				<img ng-src="{{imagePath}}" class="md-card-image" alt="Washed Out">
+				<img ng-src="{{landing.blackboardImg}}" class="md-card-image" alt="Washed Out">
 				<md-card-title>
 					<md-card-title-text>
 						<span class="md-headline">In-card mixed actions</span>
@@ -163,10 +167,10 @@
 				<md-card-actions layout="row" layout-align="start center">
 					<md-card-icon-actions>
 						<md-button class="md-icon-button" aria-label="Favorite">
-							<md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
+							<ng-md-icon icon="favorite"></ng-md-icon>
 						</md-button>
 						<md-button class="md-icon-button" aria-label="Share">
-							<md-icon md-svg-icon="img/icons/share-arrow.svg"></md-icon>
+							<ng-md-icon icon="Share"></ng-md-icon>
 						</md-button>
 					</md-card-icon-actions>
 					<md-button>Action 1</md-button>
@@ -183,14 +187,14 @@
 			<md-card>
 				<md-card-header>
 					<md-card-avatar>
-						<img class="md-user-avatar" src="img/100-2.jpeg"/>
+						<img class="md-user-avatar" src="styles/img/elephant-suit.png"/>
 					</md-card-avatar>
 					<md-card-header-text>
 						<span class="md-title">User</span>
 						<span class="md-subhead">subhead</span>
 					</md-card-header-text>
 				</md-card-header>
-				<img ng-src="{{imagePath}}" class="md-card-image" alt="Washed Out">
+				<img ng-src="{{landing.blackboardImg}}" class="md-card-image" alt="Washed Out">
 				<md-card-title>
 					<md-card-title-text>
 						<span class="md-headline">In-card mixed actions</span>
@@ -202,7 +206,7 @@
 					<md-button>Action 2</md-button>
 					<md-card-icon-actions>
 						<md-button class="md-icon-button" aria-label="toggle">
-							<md-icon md-svg-icon="md-toggle-arrow"></md-icon>
+							<ng-md-icon icon="arrow"></ng-md-icon>
 						</md-button>
 					</md-card-icon-actions>
 				</md-card-actions>
@@ -219,14 +223,14 @@
 			<md-card>
 				<md-card-header>
 					<md-card-avatar>
-						<md-icon class="md-avatar-icon" md-svg-icon="img/icons/menu.svg"></md-icon>
+						<md-icon class="md-avatar-icon" md-svg-icon="styles/img/svg/menu.svg"></md-icon>
 					</md-card-avatar>
 					<md-card-header-text>
 						<span class="md-title">Title</span>
 						<span class="md-subhead">subhead</span>
 					</md-card-header-text>
 				</md-card-header>
-				<img ng-src="{{imagePath}}" class="md-card-image" alt="Washed Out">
+				<img ng-src="{{landing.blackboardImg}}" class="md-card-image" alt="Washed Out">
 				<md-card-title>
 					<md-card-title-text>
 						<span class="md-headline">In-card actions</span>
@@ -247,5 +251,5 @@
 			</md-card>
 		</div>
 	</md-content>
-
+	<!-- END OF: md-card templates 2 -->
 </section>

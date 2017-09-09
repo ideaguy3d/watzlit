@@ -16,7 +16,7 @@ module.exports = function (grunt) {
     require('time-grunt')(grunt);
 
     // Configurable paths for the application
-    var appConfig = {
+    const appConfig = {
         app: require('./bower.json').appPath || 'app',
         dist: 'dist'
     };
@@ -203,9 +203,9 @@ module.exports = function (grunt) {
         filerev: {
             dist: {
                 src: [
-                    '<%= yeoman.dist %>/scripts/{,*/}*.js',
-                    '<%= yeoman.dist %>/styles/{,*/}*.css',
-                    '<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
+                    '<%= yeoman.dist %>/scripts/{,*!/}*.js',
+                    '<%= yeoman.dist %>/styles/{,*!/}*.css',
+                    //'<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
                     '<%= yeoman.dist %>/styles/fonts/*'
                 ]
             }
@@ -339,7 +339,7 @@ module.exports = function (grunt) {
                     dest: '<%= yeoman.dist %>',
                     src: [
                         '*.{ico,png,txt}',
-                        '{,*/}*.html',
+                        '{,*/*/}*.html',
                         'images/{,*/}*.{webp}',
                         'styles/fonts/{,*/}*.*'
                     ]

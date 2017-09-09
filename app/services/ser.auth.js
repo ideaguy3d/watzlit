@@ -6,7 +6,7 @@
 (function(){
     "use strict";
 
-    angular.module('edhubJobsApp').factory('firebaseAuthService', ['$firebaseAuth',
+    angular.module('edhubJobsApp').factory('edhubAuthService', ['$firebaseAuth',
         function($firebaseAuth){
             return $firebaseAuth();
         }

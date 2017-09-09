@@ -6,15 +6,28 @@
 (function () {
     "use strict";
 
-    angular.module('edhubJobsApp').controller('SignupCtrl', ['firebaseAuthService',
-        function (firebaseAuthService) {
+    angular.module('edhubJobsApp').controller('SignupCtrl', ['edhubAuthService',
+        '$state',
+        function (edhubAuthService, $state) {
             const vm = this;
             vm.email = "";
             vm.pw = "";
 
-            vm.userSignup = function(){
-                console.log("user has signed up ^_^");
-                console.log(vm.email+", "+vm.pw);
+            vm.userSignup = function () {
+                edhubAuthService.$createUserWithEmailAndPassword(vm.email, vm.pw)
+                    .then(
+                        // success
+                        function (user) {
+                            console.log("success!");
+                            console.log(user);
+                            $state.go('landing');
+                        },
+                        // error
+                        function (err) {
+                            console.log("error...");
+                            console.log(err);
+                        }
+                    )
             }
         }
     ]);

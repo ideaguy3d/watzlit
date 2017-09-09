@@ -8,8 +8,6 @@
     angular.module('edhubJobsApp').controller('LandingCtrl', [
         function () {
             const vm = this;
-            vm.imagePath = "styles/img";
-            vm.blackboardImg = "styles/img/chalkboard3dArt1.png"
         }
     ])
 }());

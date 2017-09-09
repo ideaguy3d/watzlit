@@ -7,7 +7,7 @@ body {
 **/
 
 md-content.edhub-landing-hero {
-    background: #fff url(img/school-filtered.png) no-repeat fixed center;
+    background: #fff url(../images/school-filtered.png) no-repeat fixed center;
     color: #f1f1f1;
     height: 40vh;
     background-size: cover;

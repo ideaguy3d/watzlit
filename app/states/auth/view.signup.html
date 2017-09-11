@@ -1,7 +1,8 @@
 <div> <!-- I have a div because I'm eventually going to add pretty design stuff -->
 	<form name="userForm" ng-submit="signup.userSignup()">
 		<div layout="column" layout-padding>
-			<h1>Signup State</h1>
+			<h1>Signup</h1>
+			<h2 ng-if="signup.error" class="edhub-general-error"><small>{{ signup.error }}</small></h2>
 			<div layout-gt-sm="row">
 				<md-input-container class="md-block" flex-gt-sm>
 					<label>Email</label>

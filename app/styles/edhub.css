@@ -6,6 +6,10 @@ body {
     -- edhub initial ui code --
 **/
 
+.edhub-w33 {
+    width: 33%;
+}
+
 .edhub-general-error {
     margin-top: 0;
     color: indianred;

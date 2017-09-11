@@ -13,23 +13,16 @@
             vm.error = "";
 
             vm.userSignup = function () {
-                edhubAuthService.userSignup(vm.email, vm.pw)
+                edhubAuthService.$createUserWithEmailAndPassword(vm.email, vm.pw)
                     .then(function (auth) {
-                        edhubAuthService.userLogin(vm.email, vm.pw).then(function () {
-                            console.log("jha - auth = ");
-                            console.log(auth);
-                            $scope.ccSetCurrentUser(auth.email);
-                            $state.go('landing');
-                        }, function (err) {
-                            vm.error = err.message;
-                        });
+                        vm.userLogin();
                     }, function (err) {
                         vm.error = err.message;
                     });
             };
 
             vm.userLogin = function () {
-                edhubAuthService.userLogin(vm.email, vm.pw)
+                edhubAuthService.$signInWithEmailAndPassword(vm.email, vm.pw)
                     .then(function (auth) {
                         $scope.ccSetCurrentUser(auth.email);
                         $state.go("landing");

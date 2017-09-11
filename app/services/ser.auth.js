@@ -16,10 +16,7 @@
             };
 
             // return $firebaseAuth();
-            return {
-                userSignup: userSignup,
-                userLogin: userLogin
-            };
+            return $firebaseAuth();
         }
     ]);
 }());

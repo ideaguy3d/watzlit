@@ -53,7 +53,7 @@
 	<md-nav-item md-nav-sref="login" sref-opts="{reload:true, notify:true}">
 		Login
 	</md-nav-item>
-	{{ ccCurrentUser }}
+	<md-subheader ng-if="ccCurrentUser" layout="column"><ng-md-icon icon="perm_identity"></ng-md-icon>{{ " Welcome " + ccCurrentUser }}</md-subheader>
 </md-nav-bar>
 
 <!-- application entry point -->

@@ -1,13 +1,18 @@
 <div> <!-- I have a div because I'm eventually going to add pretty design stuff -->
 	<form name="loginForm" ng-submit="login.userLogin()">
-		<div layout="colomn" layout-padding>
+		<div layout="column" layout-padding>
 			<h1>Welcome Back</h1>
 			<div layout-gt-sm="row">
 				<md-input-container flex-gt-sm>
 					<label>Email</label>
-					<input type="email">
+					<input type="email" ng-model="login.email" required>
+				</md-input-container>
+				<md-input-container flex-gt-sm>
+					<label>Password</label>
+					<input type="password" ng-model="login.pw" required>
 				</md-input-container>
 			</div>
+			<md-button type="submit" class="md-accent md-raised edhub-w33">Login</md-button>
 		</div>
 	</form>
 </div>

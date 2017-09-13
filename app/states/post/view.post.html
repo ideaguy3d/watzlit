@@ -1,8 +1,21 @@
 <div layout="row">
 	<!-- sidenav -->
-	<div ng-include="'layout/sidenav/in.sidenav.html'"></div>
+	<div ng-include="'layout/sidenav/in.sidenav.html'" layout="vertical"></div>
 	
-	<div layout="column" class="md-padding">
+	<div layout="column" class="flex layout-padding">
 		<h1>Post a job ^_^</h1>
+		<md-content layout-gt-sm="row" class="edhub-overflow-hidden">
+			<md-input-container class="md-icon-float md-block flex-gt-sm">
+				<label>Your Organizations' Name</label>
+				<md-icon md-svg-src="images/svg/user.svg"></md-icon>
+				<input type="text" ng-model="post.organization.name" required>
+			</md-input-container>
+			
+			<md-input-container class="md-icon-float md-block flex-gt-sm">
+				<label>Email</label>
+				<md-icon md-svg-src="images/svg/phone.svg"></md-icon>
+				<input type="text" ng-model="post.organization.email">
+			</md-input-container>
+		</md-content>
 	</div>
 </div>

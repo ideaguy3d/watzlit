@@ -6,6 +6,16 @@ body {
     -- edhub initial ui code --
 **/
 
+md-input-container.md-icon-float > ng-md-icon {
+    top: 8px;
+    left: 2px;
+    right: auto;
+}
+
+.edhub-overflow-hidden {
+    overflow: hidden;
+}
+
 .edhub-w33 {
     width: 33%;
 }

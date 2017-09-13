@@ -46,11 +46,11 @@
 	<md-nav-item md-nav-sref="post" sref-opts="{reload:true, notify:true}">
 		Post a Job
 	</md-nav-item>
-	<md-nav-item md-nav-sref="signup" name="signup">
+	<md-nav-item ng-if="!ccCurrentUser" md-nav-sref="signup" name="signup">
 		Signup
 	</md-nav-item>
 	<!--You can also add options for the <code>ui-sref-opts</code> attribute.-->
-	<md-nav-item md-nav-sref="login" sref-opts="{reload:true, notify:true}">
+	<md-nav-item ng-if="!ccCurrentUser" md-nav-sref="login" sref-opts="{reload:true, notify:true}">
 		Login
 	</md-nav-item>
 	<md-subheader ng-if="ccCurrentUser" layout="column"><ng-md-icon icon="perm_identity"></ng-md-icon>{{ " Welcome " + ccCurrentUser }}</md-subheader>
@@ -62,7 +62,7 @@
 
 <!-- footer -->
 <br>
-<h1 class="text-center">Footer {{ 4-3}}</h1>
+<h1 class="text-center">Built by <a href="http://julius3d.com" target="_blank">Julius Alvarado</a></h1>
 
 
 <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
@@ -101,6 +101,7 @@
 <script src="services/ser.auth.js"></script>
 <script src="states/landing/ctrl.landing.js"></script>
 <script src="states/auth/ctrl.auth.js"></script>
+<script src="states/post/ctrl.post.js"></script>
 <!-- endbuild -->
 
 </body>

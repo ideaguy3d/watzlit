@@ -13,7 +13,7 @@
             vm.error = "";
 
             vm.userSignup = function () {
-                edhubAuthService.$createUserWithEmailAndPassword(vm.email, vm.pw)
+                edhubAuthService.firebase.$createUserWithEmailAndPassword(vm.email, vm.pw)
                     .then(function (auth) {
                         vm.userLogin();
                     }, function (err) {
@@ -22,7 +22,7 @@
             };
 
             vm.userLogin = function () {
-                edhubAuthService.$signInWithEmailAndPassword(vm.email, vm.pw)
+                edhubAuthService.firebase.$signInWithEmailAndPassword(vm.email, vm.pw)
                     .then(function (auth) {
                         $scope.ccSetCurrentUser(auth.email);
                         $state.go("landing");

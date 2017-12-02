@@ -16,7 +16,11 @@
             };
 
             // return $firebaseAuth();
-            return $firebaseAuth();
+            return {
+                firebase: $firebaseAuth(),
+                userSignup: userSignup,
+                userLogin: userLogin
+            };
         }
     ]);
 }());

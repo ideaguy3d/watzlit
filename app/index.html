@@ -53,7 +53,10 @@
 	<md-nav-item ng-if="!ccCurrentUser" md-nav-sref="login" sref-opts="{reload:true, notify:true}">
 		Login
 	</md-nav-item>
-	<md-subheader ng-if="ccCurrentUser" layout="column"><ng-md-icon icon="perm_identity"></ng-md-icon>{{ " Welcome " + ccCurrentUser }}</md-subheader>
+	<md-subheader ng-if="ccCurrentUser" layout="column">
+		<ng-md-icon icon="perm_identity"></ng-md-icon>
+		{{ " Welcome " + ccCurrentUser }}
+	</md-subheader>
 </md-nav-bar>
 
 <!-- application entry point -->
@@ -62,7 +65,26 @@
 
 <!-- footer -->
 <br>
-<h1 class="text-center">Built by <a href="http://julius3d.com" target="_blank">Julius Alvarado</a></h1>
+<h1 class="text-center">
+	Built by <a href="http://julius3d.com" target="_blank">Julius Alvarado</a> | This app is still being developed, I'll be adding more features and functionality | Or <a href="mailto:javascript.uiux@gmail.com">hire me</a> <small>(javascript.uiux@gmail.com)</small> and I'll build your project instead</h1>
+</h1>
+<ol>
+	<li>Code initial UI and basic Authentication, week of 9/10/17
+		<ng-md-icon icon="check"></ng-md-icon>
+	</li>
+	<li>Implement Backend API to CRUD data, week of 9/17/17
+		<ng-md-icon icon="error"></ng-md-icon>
+	</li>
+	<li>Integrate 3rd party API's
+		<ng-md-icon icon="error"></ng-md-icon>
+	</li>
+	<li>Write Unit & e2e tests, <i>near future</i>
+		<ng-md-icon icon="error"></ng-md-icon>
+	</li>
+	<li>Make UI even prettier for awesome UX, <i>near futre</i>
+		<ng-md-icon icon="error"></ng-md-icon>
+	</li>
+</ol>
 
 
 <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
@@ -97,8 +119,11 @@
 
 <!-- build:js({.tmp,app}) scripts/scripts.js -->
 <script src="app.js"></script>
-<script src="core.ctrl.js"></script>
+<!-- services -->
 <script src="services/ser.auth.js"></script>
+<script src="services/ser.job.post.js"></script>
+<!-- controllers -->
+<script src="core.ctrl.js"></script>
 <script src="states/landing/ctrl.landing.js"></script>
 <script src="states/auth/ctrl.auth.js"></script>
 <script src="states/post/ctrl.post.js"></script>

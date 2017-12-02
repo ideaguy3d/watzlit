@@ -1,21 +1,52 @@
 <div layout="row">
 	<!-- sidenav -->
 	<div ng-include="'layout/sidenav/in.sidenav.html'" layout="vertical"></div>
-	
-	<div layout="column" class="flex layout-padding">
-		<h1>Post a job ^_^</h1>
-		<md-content layout-gt-sm="row" class="edhub-overflow-hidden">
-			<md-input-container class="md-icon-float md-block flex-gt-sm">
-				<label>Your Organizations' Name</label>
-				<md-icon md-svg-src="images/svg/user.svg"></md-icon>
-				<input type="text" ng-model="post.organization.name" required>
-			</md-input-container>
+	<form name="jobPostForm" ng-submit="post.postJob()" flex ng-init="post.setFormScope(this)">
+		<div layout="column" class="flex layout-padding">
+			<h1>Post a job ^_^</h1>
+			<md-content class="edhub-overflow-hidden"> <!-- layout-gt-sm="row" -->
+				<md-input-container class="md-icon-float md-block flex-gt-sm">
+					<label>Organizations' Name</label>
+					<md-icon md-svg-src="images/svg/business.svg"></md-icon>
+					<input name="organizationName" ng-model="post.organization.organizationName" required>
+					<div ng-messages="jobPostForm.organizationName.$error">
+						<div ng-message="required">An organization name is required.</div>
+					</div>
+				</md-input-container>
+				
+				<md-input-container class="md-icon-float md-block flex-gt-sm">
+					<label>Your Name</label>
+					<md-icon md-svg-src="images/svg/pencil.svg"></md-icon>
+					<input name="repName" type="text" ng-model="post.organization.repName" required>
+					<div ng-messages="jobPostForm.repName.$error">
+						<div ng-message="required">Your name is required.</div>
+					</div>
+				</md-input-container>
+				
+				<md-input-container class="md-icon-float md-block flex-gt-sm">
+					<label>Your Email</label>
+					<md-icon md-svg-src="images/svg/email.svg"></md-icon>
+					<input name="repEmail" type="text" ng-model="post.organization.email" required>
+					<div ng-messages="jobPostForm.repEmail.$error">
+						<div ng-message="required">Your email is required.</div>
+					</div>
+				</md-input-container>
+				
+				<md-input-container class="md-icon-float md-block flex-gt-sm">
+					<label>Organizations' zip code</label>
+					<md-icon md-svg-src="images/svg/pin.svg"></md-icon>
+					<input name="zipcode" type="number" ng-model="post.organization.zipCode" required>
+					<div ng-messages="jobPostForm.zipcode.$error">
+						<div ng-message="required">The organizations zipcode is required.</div>
+					</div>
+				</md-input-container>
+			</md-content>
 			
-			<md-input-container class="md-icon-float md-block flex-gt-sm">
-				<label>Email</label>
-				<md-icon md-svg-src="images/svg/phone.svg"></md-icon>
-				<input type="text" ng-model="post.organization.email">
-			</md-input-container>
-		</md-content>
-	</div>
+			<!-- buttons beneath the form fields -->
+			<div layout="row">
+				<md-button type="submit" class="md-primary md-raised">Post</md-button>
+				<md-button class="md-primary md-raised">Next</md-button>
+			</div>
+		</div>
+	</form>
 </div>

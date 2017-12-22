@@ -6,6 +6,7 @@
 angular.module('edhubJobsApp').controller('PostJobCtrl', ['edhubJobPostService',
     function (edhubJobPostService) {
         const vm = this;
+        vm.progressMessage = "Your Progress";
         vm.formScope = {};
 
         //-- data models:

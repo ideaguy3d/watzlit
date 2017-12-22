@@ -1,6 +1,8 @@
 <div layout="row">
-	<!-- sidenav -->
+	<!-- Side-nav -->
 	<div ng-include="'layout/sidenav/in.sidenav.html'" layout="vertical"></div>
+	
+	<!-- FORM - Organization Info -->
 	<form name="jobPostForm" ng-submit="post.postJob()" flex ng-init="post.setFormScope(this)">
 		<div layout="column" class="flex layout-padding">
 			<h1>Post a job ^_^</h1>
@@ -24,14 +26,15 @@
 				</md-input-container>
 				
 				<md-input-container class="md-icon-float md-block flex-gt-sm">
-					<label>Your Email</label>
+					<label>Your Email (so the cadidate can contact you)</label>
 					<md-icon md-svg-src="images/svg/email.svg"></md-icon>
 					<input name="repEmail" type="text" ng-model="post.organization.email" required>
 					<div ng-messages="jobPostForm.repEmail.$error">
 						<div ng-message="required">Your email is required.</div>
 					</div>
 				</md-input-container>
-				
+			
+			    <!-- zip code -->
 				<md-input-container class="md-icon-float md-block flex-gt-sm">
 					<label>Organizations' zip code</label>
 					<md-icon md-svg-src="images/svg/pin.svg"></md-icon>
@@ -39,6 +42,12 @@
 					<div ng-messages="jobPostForm.zipcode.$error">
 						<div ng-message="required">The organizations zipcode is required.</div>
 					</div>
+				</md-input-container>
+				
+				<md-input-container class="md-icon-float md-block flex-gt-sm">
+					<label>Tell the candidate about your organization</label>
+					<md-icon md-svg-src="images/svg/sun1.svg"></md-icon>
+					<textarea name="zipcode" ng-model="post.organization.aboutTheOrganization"></textarea>
 				</md-input-container>
 			</md-content>
 			

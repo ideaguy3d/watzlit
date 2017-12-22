@@ -512,6 +512,10 @@ section.jcube3d-container .plane2 {
     float: right;
 }
 
+.p12 {
+    padding: 12px;
+}
+
 md-bottom-sheet md-list-item.j-inline {
     display: inline-block;
 }

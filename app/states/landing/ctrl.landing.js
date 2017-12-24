@@ -10,5 +10,5 @@
             const vm = this;
             vm.jobPostBg = "images/chalkboard3dArt1.png";
         }
-    ])
+    ]);
 }());

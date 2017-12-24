@@ -3,6 +3,45 @@ body {
 }
 
 /**
+    -- edhub anim prac --
+**/
+
+.div-inline {
+    display: inline-block;
+}
+
+.left-150 {
+    position: absolute;
+    left: -160px;
+}
+
+#prac1-wrapper.jbaseclass-add,
+#prac1-wrapper.jbaseclass-remove {
+    transition: padding 200ms linear;
+}
+
+#prac1-wrapper.jbaseclass,
+#prac1-wrapper.jbaseclass-add-active {
+    padding-left: 250px;
+}
+
+#prac1-wrapper.jbaseclass-add #sidediv-wrapper,
+#prac1-wrapper.jbaseclass-remove #sidediv-wrapper,
+#prac1-wrapper.jbaseclass-add .left-150,
+#prac1-wrapper.jbaseclass-remove .left-150 {
+    transition: left 200ms linear;
+}
+
+#prac1-wrapper.jbaseclass-add-active #sidebar-wrapper,
+#prac1-wrapper.jbaseclass #sidebar-wrapper {
+    left: 150px;
+}
+#prac1-wrapper.jbaseclass-add-active .left-150,
+#prac1-wrapper.jbaseclass .left-150 {
+    left: 0;
+}
+
+/**
     -- edhub initial ui code --
 **/
 

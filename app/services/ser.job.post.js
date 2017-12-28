@@ -3,6 +3,7 @@
  */
 
 angular.module('edhubJobsApp').factory('edhubJobPostService', ['$firebaseArray',
+
     function ($firebaseArray) {
         const refJobPostings = firebase.database().ref('jobPostings');
 
@@ -10,4 +11,5 @@ angular.module('edhubJobsApp').factory('edhubJobPostService', ['$firebaseArray',
           jobPostings: $firebaseArray(refJobPostings)
         };
     }
+
 ]);

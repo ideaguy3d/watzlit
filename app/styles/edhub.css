@@ -32,18 +32,19 @@ body {
     transition: left 200ms linear;
 }
 
-#prac1-wrapper.jbaseclass-add-active #sidebar-wrapper,
-#prac1-wrapper.jbaseclass #sidebar-wrapper {
+#prac1-wrapper.jbaseclass-add-active #sidediv-wrapper,
+#prac1-wrapper.jbaseclass #sidediv-wrapper {
     left: 150px;
 }
+
 #prac1-wrapper.jbaseclass-add-active .left-150,
 #prac1-wrapper.jbaseclass .left-150 {
-    left: 0;
+    left: 320px;
 }
 
-/**
+/********************************
     -- edhub initial ui code --
-**/
+**********************************/
 
 md-input-container.md-icon-float > ng-md-icon {
     top: 8px;

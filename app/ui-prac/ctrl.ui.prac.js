@@ -14,5 +14,5 @@
                console.log("jha - sidediv should have toggled...");
             }
         }
-    ])
+    ]);
 }());

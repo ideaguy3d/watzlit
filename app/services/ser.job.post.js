@@ -2,14 +2,20 @@
  * Created by Julius Alvarado on 9/17/2017.
  */
 
-angular.module('edhubJobsApp').factory('edhubJobPostService', ['$firebaseArray',
+(function () {
+    "use strict";
 
-    function ($firebaseArray) {
-        const refJobPostings = firebase.database().ref('jobPostings');
+    angular.module('edhubJobsApp').factory('edhubJobPostService', ['$firebaseArray',
 
-        return {
-          jobPostings: $firebaseArray(refJobPostings)
-        };
-    }
+        function ($firebaseArray) {
+            const refJobPostings = firebase.database().ref('jobPostings');
 
-]);
+            return {
+                jobPostings: $firebaseArray(refJobPostings)
+            };
+        }
+
+    ]);
+}());
+
+

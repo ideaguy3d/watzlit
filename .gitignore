@@ -2,14 +2,4 @@
 dist
 .tmp
 .sass-cache
-bower_components
 .idea
-.bowerrc
-app/app.js
-bower.json
-firebase.json
-package.json
-test/
-app-orig
-app/images
-vendor

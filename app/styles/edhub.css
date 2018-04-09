@@ -46,6 +46,26 @@ body {
     -- edhub initial ui code --
 **********************************/
 
+.L9-text-center {
+    text-align: center;
+}
+
+.L9-text-right {
+    text-align: right;
+}
+
+.L9-text-left {
+    text-align: left;
+}
+
+.L9-w33 {
+    width: 33%;
+}
+
+.L9-Hero-landing {
+    height: 100%;
+}
+
 md-input-container.md-icon-float > ng-md-icon {
     top: 8px;
     left: 2px;

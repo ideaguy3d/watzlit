@@ -5,8 +5,8 @@
 (function () {
     "use strict";
 
-    angular.module('edhubJobsApp').controller('LandingCtrl', [
-        function () {
+    angular.module('edhubJobsApp').controller('LandingCtrl', ['$state',
+        function ($state) {
             const vm = this;
             vm.jobPostBg = "images/chalkboard3dArt1.png";
         }

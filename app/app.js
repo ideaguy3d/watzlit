@@ -6,58 +6,53 @@ angular
     .module('edhubJobsApp', [
         'firebase',
         'angular-md5',
-        'ui.router',
+        'ngRoute',
         'ngMaterial',
         'ngMdIcons'
     ])
-    .config(['$stateProvider', '$urlRouterProvider',
-        function ($stateProvider, $urlRouterProvider) {
-            $stateProvider
-                .state('landing', {
-                    url: '/',
-                    templateUrl: 'states/landing' +
-                    '/view.landing.html',
+    .config(['$routeProvider', '$locationProvider',
+        function ($routeProvider, $locationProvider) {
+            $routeProvider
+                .when('/', {
+                    templateUrl: 'states/landing/view.landing.html',
                     controller: 'Lab916Ctrl',
                     controllerAs: 'lab'
                 })
-                .state('edhub', {
-                    url: '/edhub',
+                .when('/edhub', {
                     templateUrl: 'states/landing/view.landing.html',
                     controller: 'LandingCtrl',
                     controllerAs: 'landing'
                 })
-                .state('signup', {
+                .when('/signup', {
                     url: '/signup',
                     templateUrl: 'states/auth/view.signup.html',
                     controller: 'AuthCtrl',
                     controllerAs: 'signup'
                 })
-                .state('login', {
-                    url: '/login',
+                .when('/login', {
                     templateUrl: 'states/auth/view.login.html',
                     controller: 'AuthCtrl',
                     controllerAs: 'login'
                 })
-                .state('post', {
-                    url: '/post',
+                .when('/post', {
                     templateUrl: 'states/post/view.post.html',
                     controller: 'PostJobCtrl',
                     controllerAs: 'post'
                 })
-                .state('apply', {
-                    url: '/apply',
+                .when('/apply', {
                     templateUrl: 'states/apply/view.apply.html'
                 })
 
                 // practice stuff
-                .state('uit1', {
-                    url: '/uit1',
+                .when('/uit1', {
                     templateUrl: 'ui-prac/uit1.html',
                     controller: 'uiPracCtrl',
                     controllerAs: 'ui'
-                });
+                })
+                // go to base url
+                .otherwise('/');
 
-            $urlRouterProvider.otherwise('/');
+            // $locationProvider.html5Mode(true);
 
             // Initialize Firebase
             const config = {

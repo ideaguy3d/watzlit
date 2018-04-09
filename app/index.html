@@ -1,119 +1,125 @@
 <!DOCTYPE html>
 <html lang="en" class="no-js">
 <head>
-	<meta charset="utf-8">
-	<title>EdHub.co</title>
-	
-	<meta http-equiv="x-ua-compatible" content="IE=edge">
-	<meta name="description" content="The Education Jobs site">
-	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
-	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-	
-	<!--<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />-->
-	
-	<!-- build:css(.) styles/vendor.css -->
-	<!-- bower:css -->
-	<link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
-	<link rel="stylesheet" href="bower_components/angular-material-icons/angular-material-icons.css" />
-	<!-- endbower -->
-	<!-- endbuild -->
-	
-	<!-- build:css(.tmp) styles/main.css -->
-	<link rel="stylesheet" href="styles/edhub.css">
-	<!-- endbuild -->
-	
-	<!-- ng-cloak -->
-	<style type="text/css">
-		[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
-			display: none !important;
-		}
-	</style>
+    <meta charset="utf-8">
+    <title>EdHub.co</title>
+
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <meta name="description" content="The Education Jobs site">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css"/>
+    <link rel="stylesheet" href="bower_components/angular-material-icons/angular-material-icons.css"/>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/edhub.css">
+    <!-- endbuild -->
+
+    <!-- ng-cloak -->
+    <style type="text/css">
+        [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+            display: none !important;
+        }
+    </style>
 </head>
 
-<body ng-app="edhubJobsApp" ng-cloak ng-controller="CoreCtrl">
+<body ng-app="edhubJobsApp" ng-controller="CoreCtrl">
 
 <!--[if lt IE 7]>
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">
-	upgrade your browser</ato improve your experience.</p>
+    upgrade your browser</ato improve your experience.</p>
 <![endif]-->
 
 <!-- Horizontal Navigation -->
-<md-nav-bar ng-show="coreEdhubState" md-selected-nav-item="currentNavItem"
+<md-nav-bar ng-show="coreEdhubHorizontalState" md-selected-nav-item="currentNavItem"
             nav-bar-aria-label="navigation links">
-	<md-nav-item md-nav-sref="landing" name="home">
-		EdHub.co
-	</md-nav-item>
-	<!--You can also add options for the <code>ui-sref-opts</code> attribute.-->
-	<md-nav-item md-nav-sref="post" sref-opts="{reload:true, notify:true}">
-		Post a Job
-	</md-nav-item>
-	<md-nav-item ng-if="!ccCurrentUser" md-nav-sref="signup" name="signup">
-		Signup
-	</md-nav-item>
-	<!--You can also add options for the <code>ui-sref-opts</code> attribute.-->
-	<md-nav-item ng-if="!ccCurrentUser" md-nav-sref="login" sref-opts="{reload:true, notify:true}">
-		Login
-	</md-nav-item>
-	<md-subheader ng-if="ccCurrentUser" layout="column">
-		<ng-md-icon icon="perm_identity"></ng-md-icon>
-		{{ " Welcome " + ccCurrentUser }}
-	</md-subheader>
+    <md-nav-item md-nav-sref="landing" name="home">
+        EdHub.co
+    </md-nav-item>
+    <!--You can also add options for the <code>ui-sref-opts</code> attribute.-->
+    <md-nav-item md-nav-sref="post" sref-opts="{reload:true, notify:true}">
+        Post a Job
+    </md-nav-item>
+    <md-nav-item ng-if="!ccCurrentUser" md-nav-sref="signup" name="signup">
+        Signup
+    </md-nav-item>
+    <!--You can also add options for the <code>ui-sref-opts</code> attribute.-->
+    <md-nav-item ng-if="!ccCurrentUser" md-nav-sref="login" sref-opts="{reload:true, notify:true}">
+        Login
+    </md-nav-item>
+    <md-subheader ng-if="ccCurrentUser" layout="column">
+        <ng-md-icon icon="perm_identity"></ng-md-icon>
+        {{ " Welcome " + ccCurrentUser }}
+    </md-subheader>
 </md-nav-bar>
 
-<!-- application entry point -->
-<ui-view></ui-view>
+<div ng-cloak>
+    <!-- application entry point -->
+    <ng-view></ng-view>
+</div>
+
 
 <br>
 <!-- footer -->
 <div layout="row" layout-xs="column" style="background-color: whitesmoke;">
-	<!-- Left -->
-	<div flex layout-margin layout-padding>
-		<h1 class="text-center">
-			About EdHub.co
-		</h1>
-		<p>Built by <a href="http://julius3d.com" target="_blank">Julius Alvarado</a></p>
-		<p>I'm still developing this app so I'll be adding more features and functionality during my sparetime after
-			my day job.</p>
-		<p>Or <a href="mailto:javascript.uiux@gmail.com">hire me</a> <small>(javascript.uiux@gmail.com)</small> and I'll build your project instead</p>
-	</div>
-	<!-- Middle -->
-	<div flex layout-margin layout-padding>
-		<h1>Edhub.co Progress</h1>
-		<ol>
-			<li>Code initial UI and basic Authentication, week of 9/10/17
-				<ng-md-icon icon="check"></ng-md-icon>
-			</li>
-			<li>Implement Backend API to CRUD data, week of 9/17/17
-				<ng-md-icon icon="error"></ng-md-icon>
-			</li>
-			<li>Integrate 3rd party API's
-				<ng-md-icon icon="error"></ng-md-icon>
-			</li>
-			<li>Write Unit & e2e tests, <i>near future</i>
-				<ng-md-icon icon="error"></ng-md-icon>
-			</li>
-			<li>Make UI even prettier for awesome UX, <i>near future</i>
-				<ng-md-icon icon="error"></ng-md-icon>
-			</li>
-		</ol>
-	</div>
-	<!-- Right -->
-	<div flex layout-margin layout-padding>
-		<h1>Julius3D.com sites</h1>
-		<p><a href="http://site1.julius3d.com" target="_blank">Software Generalist</a></p>
-		<p><a href="http://material.julius3d.com" target="_blank">Material Design Specialist</a></p>
-		<p><a href="https://juliusproto.firebaseapp.com" target="_blank">Ninja Publishers Review</a></p>
-		<p><a href="https://tedfeed.firebaseapp.com" target="_blank">Ted Talks Video Feed</a><small> (still in development)</small></p>
-		<p><a href="http://julius3d.com" target="_blank">Julius3D.com</a></p>
-	</div>
+    <!-- Left -->
+    <div flex layout-margin layout-padding>
+        <h1 class="text-center">
+            About EdHub.co
+        </h1>
+        <p>Built by <a href="http://julius3d.com" target="_blank">Julius Alvarado</a></p>
+        <p>I'm still developing this app so I'll be adding more features and functionality during my sparetime after
+            my day job.</p>
+        <p>Or <a href="mailto:javascript.uiux@gmail.com">hire me</a>
+            <small>(javascript.uiux@gmail.com)</small>
+            and I'll build your project instead
+        </p>
+    </div>
+    <!-- Middle -->
+    <div flex layout-margin layout-padding>
+        <h1>Edhub.co Progress</h1>
+        <ol>
+            <li>Code initial UI and basic Authentication, week of 9/10/17
+                <ng-md-icon icon="check"></ng-md-icon>
+            </li>
+            <li>Implement Backend API to CRUD data, week of 9/17/17
+                <ng-md-icon icon="error"></ng-md-icon>
+            </li>
+            <li>Integrate 3rd party API's
+                <ng-md-icon icon="error"></ng-md-icon>
+            </li>
+            <li>Write Unit & e2e tests, <i>near future</i>
+                <ng-md-icon icon="error"></ng-md-icon>
+            </li>
+            <li>Make UI even prettier for awesome UX, <i>near future</i>
+                <ng-md-icon icon="error"></ng-md-icon>
+            </li>
+        </ol>
+    </div>
+    <!-- Right -->
+    <div flex layout-margin layout-padding>
+        <h1>Julius3D.com sites</h1>
+        <p><a href="http://site1.julius3d.com" target="_blank">Software Generalist</a></p>
+        <p><a href="http://material.julius3d.com" target="_blank">Material Design Specialist</a></p>
+        <p><a href="https://juliusproto.firebaseapp.com" target="_blank">Ninja Publishers Review</a></p>
+        <p><a href="https://tedfeed.firebaseapp.com" target="_blank">Ted Talks Video Feed</a>
+            <small> (still in development)</small>
+        </p>
+        <p><a href="http://julius3d.com" target="_blank">Julius3D.com</a></p>
+    </div>
 </div>
 
 <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
 <script>
     !function (A, n, g, u, l, a, r) {
         A.GoogleAnalyticsObject = l, A[l] = A[l] || function () {
-                (A[l].q = A[l].q || []).push(arguments)
-            }, A[l].l = +new Date, a = n.createElement(g),
+            (A[l].q = A[l].q || []).push(arguments)
+        }, A[l].l = +new Date, a = n.createElement(g),
             r = n.getElementsByTagName(g)[0], a.src = u, r.parentNode.insertBefore(a, r)
     }(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
@@ -128,7 +134,6 @@
 <script src="bower_components/angular/angular.js"></script>
 <script src="bower_components/firebase/firebase.js"></script>
 <script src="bower_components/angularfire/dist/angularfire.js"></script>
-<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 <script src="bower_components/angular-md5/angular-md5.js"></script>
 <script src="bower_components/angular-animate/angular-animate.js"></script>
 <script src="bower_components/angular-aria/angular-aria.js"></script>

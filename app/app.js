@@ -48,6 +48,8 @@ angular
                     url: '/apply',
                     templateUrl: 'states/apply/view.apply.html'
                 })
+
+                // practice stuff
                 .state('uit1', {
                     url: '/uit1',
                     templateUrl: 'ui-prac/uit1.html',

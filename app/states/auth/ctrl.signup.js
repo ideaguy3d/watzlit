@@ -2,12 +2,10 @@
  * Created by Julius Alvarado on 9/5/2017.
  */
 
-
 (function () {
     "use strict";
 
-    angular.module('edhubJobsApp').controller('SignupCtrl', ['edhubAuthService',
-        '$state', '$scope',
+    angular.module('edhubJobsApp').controller('SignupCtrl', ['edhubAuthService', '$scope',
         function (edhubAuthService, $scope) {
             const vm = this;
             vm.email = "";

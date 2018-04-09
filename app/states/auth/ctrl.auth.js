@@ -5,8 +5,8 @@
 (function () {
     "use strict";
 
-    angular.module('edhubJobsApp').controller('AuthCtrl', ['$scope', '$state', 'edhubAuthService',
-        function ($scope, $state, edhubAuthService) {
+    angular.module('edhubJobsApp').controller('AuthCtrl', ['$scope', 'edhubAuthService',
+        function ($scope, edhubAuthService) {
             const vm = this;
             vm.email = "";
             vm.pw = "";
@@ -25,7 +25,6 @@
                 edhubAuthService.firebase.$signInWithEmailAndPassword(vm.email, vm.pw)
                     .then(function (auth) {
                         $scope.ccSetCurrentUser(auth.email);
-                        $state.go("landing");
                     }, function (err) {
                         vm.error = err.message;
                     });

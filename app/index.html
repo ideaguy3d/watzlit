@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
+<html lang="en" class="no-js" ng-app="edhubJobsApp">
 <head>
+    <base href="/">
     <meta charset="utf-8">
     <title>EdHub.co</title>
 
@@ -28,7 +29,7 @@
     </style>
 </head>
 
-<body ng-app="edhubJobsApp" ng-controller="CoreCtrl">
+<body ng-controller="CoreCtrl">
 
 <!--[if lt IE 7]>
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">
@@ -58,11 +59,15 @@
     </md-subheader>
 </md-nav-bar>
 
-<div ng-cloak>
-    <!-- application entry point -->
-    <ng-view></ng-view>
-</div>
+<div ng-cloak layout="row">
+    <!-- Side-nav -->
+    <div ng-include="'layout/sidenav/in.sidenav.html'" layout="vertical"></div>
 
+    <!-- application entry point -->
+    <div>
+        <ng-view></ng-view>
+    </div>
+</div>
 
 <br>
 <!-- footer -->
@@ -126,7 +131,6 @@
     ga('create', 'UA-XXXXX-X');
     ga('send', 'pageview');
 </script>
-
 
 <!-- build:js(.) scripts/vendor.js -->
 <!-- bower:js -->

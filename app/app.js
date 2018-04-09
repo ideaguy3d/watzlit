@@ -52,7 +52,7 @@ angular
                 // go to base url
                 .otherwise('/');
 
-            // $locationProvider.html5Mode(true);
+            $locationProvider.html5Mode(true);
 
             // Initialize Firebase
             const config = {

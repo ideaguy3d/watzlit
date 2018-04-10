@@ -11,7 +11,7 @@ angular
         'ngMdIcons'
     ])
     .config(['$routeProvider', '$locationProvider',
-        function ($routeProvider, $locationProvider) {
+        function ($routeProvider) {
             $routeProvider
                 .when('/', {
                     templateUrl: 'states/landing/view.landing.html',
@@ -42,7 +42,9 @@ angular
                 .when('/apply', {
                     templateUrl: 'states/apply/view.apply.html'
                 })
-
+                .when('/lab916', {
+                    templateUrl: '/states/lab916/view.landing.html'
+                })
                 // practice stuff
                 .when('/uit1', {
                     templateUrl: 'ui-prac/uit1.html',
@@ -51,8 +53,6 @@ angular
                 })
                 // go to base url
                 .otherwise('/');
-
-            $locationProvider.html5Mode(true);
 
             // Initialize Firebase
             const config = {

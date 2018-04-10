@@ -580,6 +580,18 @@ md-bottom-sheet md-list-item.j-inline {
     display: inline-block;
 }
 
+.edhub-no-pad {
+    padding: 0 !important;
+}
+
+.edhub-no-mar {
+    margin: 0 !important;
+}
+
+.w100pct {
+    width: 100%;
+}
+
 /**
  #anim-link:hover + #viewport > #cube {
     animation: Rotate 5s 1;

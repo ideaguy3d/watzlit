@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="no-js" ng-app="edhubJobsApp">
 <head>
-    <base href="/">
     <meta charset="utf-8">
     <title>EdHub.co</title>
 
@@ -64,9 +63,7 @@
     <div ng-include="'layout/sidenav/in.sidenav.html'" layout="vertical"></div>
 
     <!-- application entry point -->
-    <div>
-        <ng-view></ng-view>
-    </div>
+    <ng-view flex></ng-view>
 </div>
 
 <br>

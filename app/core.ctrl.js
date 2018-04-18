@@ -17,7 +17,7 @@
             $scope.coreEdhubToggleSideNav = coreEdhubToggleSideNav('core-sidenav');
 
             function coreEdhubToggleSideNav (componentId) {
-
+                console.log("edhub - coreEdhubToggleSideNav() invoked");
                 return function(){
                     $mdSidenav(componentId).toggle();
                 }

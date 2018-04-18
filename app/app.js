@@ -15,8 +15,8 @@ angular
             $routeProvider
                 .when('/', {
                     templateUrl: 'states/landing/view.landing.html',
-                    controller: 'Lab916Ctrl',
-                    controllerAs: 'lab'
+                    controller: 'LandingCtrl',
+                    controllerAs: 'landingCtrl'
                 })
                 .when('/edhub', {
                     templateUrl: 'states/landing/view.landing.html',

@@ -43,6 +43,16 @@
         <h2>Recent Job Posting</h2>
     </md-toolbar>
 
+    <ul>
+        <li ng-repeat="jobPost in landingCtrl.jobPostings">
+            <p>{{jobPost.name}}</p>
+            <p>{{jobPost.email}}</p>
+            <p>{{jobPost.location}}</p>
+            <p>{{jobPost.aboutTheOrganization}}</p>
+            <p>{{jobPost.organizationName}}</p>
+        </li>
+    </ul>
+
     <!-- START: md-card templates 1 -->
     <md-content class="md-padding" layout-xs="column" layout="row">
         <div flex-xs flex-gt-xs="50" layout="column">

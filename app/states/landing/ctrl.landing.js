@@ -10,14 +10,19 @@
             const vm = this;
             vm.jobPostBg = "images/chalkboard3dArt1.png";
 
-            console.log("edhub - above the async cal data");
-            edhubJobPostService.$loaded().then(function(res){
-                vm.jobPostings = res.data;
-                console.log("edhub - the data");
-                console.log(res.data);
-            }).catch(function(error){
-                console.log('Error: ', error);
-            })
+            activate();
+
+            function activate() {
+                console.log("edhub - above the async cal data");
+                edhubJobPostService.jobPostings.$loaded().then(function(res){
+                    vm.jobPostings = res;
+                    console.log("edhub - res =");
+                    console.log(res);
+                }).catch(function(error){
+                    console.log('Error: ', error);
+                });
+            }
+
         }
     ]);
 }());

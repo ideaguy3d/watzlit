@@ -42,8 +42,13 @@ body {
     left: 320px;
 }
 
+
+#edhub-core-nav-menu-btn {
+    position: fixed;
+}
+
 /********************************
-    -- edhub initial ui code --
+    -- end of edhub initial ui code --
 **********************************/
 
 .L9-text-center {

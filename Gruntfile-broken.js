@@ -34,10 +34,7 @@ module.exports = function (grunt) {
             },
             js: {
                 files: ['<%= yeoman.app %>/{,*/}*.js'],
-                tasks: ['newer:jshint:all'],
-                options: {
-                    livereload: '<%= connect.options.livereload %>'
-                }
+                tasks: ['newer:jshint:all']
             },
             jsTest: {
                 files: ['test/spec/{,*/}*.js'],
@@ -49,16 +46,6 @@ module.exports = function (grunt) {
             },
             gruntfile: {
                 files: ['Gruntfile.js']
-            },
-            livereload: {
-                options: {
-                    livereload: '<%= connect.options.livereload %>'
-                },
-                files: [
-                    '<%= yeoman.app %>/{,*/}*.html',
-                    '.tmp/styles/{,*/}*.css',
-                    '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
-                ]
             }
         },
 
@@ -67,27 +54,7 @@ module.exports = function (grunt) {
             options: {
                 port: 4000,
                 // Change this to '0.0.0.0' to access the server from outside.
-                hostname: '0.0.0.0',
-                livereload: 4002
-            },
-            livereload: {
-                options: {
-                    open: true,
-                    middleware: function (connect) {
-                        return [
-                            connect.static('.tmp'),
-                            connect().use(
-                                '/bower_components',
-                                connect.static('./bower_components')
-                            ),
-                            connect().use(
-                                '/app/styles',
-                                connect.static('./app/styles')
-                            ),
-                            connect.static(appConfig.app)
-                        ];
-                    }
-                }
+                hostname: '0.0.0.0'
             },
             test: {
                 options: {
@@ -392,7 +359,6 @@ module.exports = function (grunt) {
             'wiredep',
             'concurrent:server',
             'autoprefixer:server',
-            'connect:livereload',
             'watch'
         ]);
     });

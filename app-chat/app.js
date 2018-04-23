@@ -99,7 +99,7 @@ angular
                 url: '/channels',
                 controller: 'ChannelsCtrl as channelsCtrl',
                 templateUrl: 'channels/channels.html',
-                resolve: {
+                resolve: { // rslv
                     channels: function (jChannels) {
                         return jChannels.$loaded();
                     },

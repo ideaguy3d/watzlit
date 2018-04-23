@@ -7,10 +7,15 @@ and it should work fine.
 
 4-22-2018:
 Projects / Courses to MASTER for this product:
+
 FREE
 ~ "Slack Clone" thinkster tutorial
+~ Other thinkster AngularJS tutorials
 ~ "Monarch" template design
 ~ "FirebaseDB blog app" glitch.com
+~ Reading the Firebase source docs
+~ Reading the AngularJS source docs
+
 PAID
 ~ "AngularJS Data Driven app" lynda.com course
 ~ "Animating AngularJS app" pluralsight

@@ -7,7 +7,7 @@
 
     angular.module('app').controller('ChannelsCtrl', ['$state', 'jaAuth', 'jUsers', 'profile', 'channels',
         function ($state, jaAuth, jUsers, profile, channels) {
-            var channelsCtrl = this;
+            const channelsCtrl = this;
             jUsers.setOnline(profile.$id);
             channelsCtrl.channels = channels;
             channelsCtrl.profile = profile;

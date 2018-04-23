@@ -1,7 +1,10 @@
-<!-- ctrl=applyToOrganizationCtrl -->
-<br><br>
+<!-- ctrl=ApplyToOrgCtrl -->
+<br><br><br>
 <div>
-    <h1>Apply to This organization</h1>
-    <h2>{{applyToOrganizationCtrl.rParams.organizationName}}</h2>
+    <h1>Apply to {{applyToOrgCtrl.rParams.organizationName}}</h1>
+    <h2>Glad to see you're interested in joining us!</h2>
 
+    <form name="applyToOrgForm" ng-submit="applyToOrgCtrl.applyToOrg()">
+
+    </form>
 </div>

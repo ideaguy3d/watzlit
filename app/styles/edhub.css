@@ -2,6 +2,10 @@ body {
     padding: 0;
 }
 
+.edhub-margin-auto {
+    margin: auto !important;
+}
+
 /**
     -- edhub anim prac --
 **/

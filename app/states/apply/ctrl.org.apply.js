@@ -6,11 +6,18 @@
     "use strict";
 
     const app = angular.module('edhubJobsApp');
-    app.controller('ApplyToOrganizationCtrl', ['$routeParams', ApplyToOrganizationCtrlClass]);
+    app.controller('ApplyToOrgCtrl', ['$routeParams', ApplyToOrganizationCtrlClass]);
 
     function ApplyToOrganizationCtrlClass($routeParams) {
         const vm = this;
         vm.rParams = $routeParams;
+        vm.applyToOrgDataModel = {
+            applicantName: ''
+        };
+
+        vm.applyToOrg = function(){
+
+        };
 
         activate();
 

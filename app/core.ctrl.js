@@ -41,9 +41,9 @@
         });
 
         $scope.items = [
-            { name: "Twitter", icon: "img/icons/twitter.svg", direction: "bottom" },
-            { name: "Facebook", icon: "img/icons/facebook.svg", direction: "top" },
-            { name: "Google Hangout", icon: "img/icons/hangout.svg", direction: "bottom" }
+            { name: "Login", icon: "img/icons/twitter.svg", direction: "bottom" },
+            { name: "Edit Profile", icon: "img/icons/facebook.svg", direction: "top" },
+            { name: "Settings", icon: "img/icons/hangout.svg", direction: "bottom" }
         ];
 
         $scope.openDialog = function($event, item) {

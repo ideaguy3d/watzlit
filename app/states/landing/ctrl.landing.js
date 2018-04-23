@@ -10,15 +10,19 @@
             const vm = this;
             vm.jobPostBg = "images/chalkboard3dArt1.png";
 
+            vm.apply2job = function (organizationName) {
+                console.log("edhub - apply to "+organizationName);
+            };
+
             activate();
 
             function activate() {
                 console.log("edhub - above the async cal data");
-                edhubJobPostService.jobPostings.$loaded().then(function(res){
+                edhubJobPostService.jobPostings.$loaded().then(function (res) {
                     vm.jobPostings = res;
-                    console.log("edhub - res =");
-                    console.log(res);
-                }).catch(function(error){
+                    //console.log("edhub - res =");
+                    //console.log(res);
+                }).catch(function (error) {
                     console.log('Error: ', error);
                 });
             }

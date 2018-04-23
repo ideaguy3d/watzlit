@@ -47,15 +47,16 @@
     <md-content class="md-padding" layout-xs="column" layout="row" layout-align="center center">
         <div flex-xs flex-gt-xs="50" layout="column">
             <!-- In-card mixed Actions CARD -->
-            <!-- ng-repeat LOOP START -->
-            <md-card id="edhub-landing-job-post-loop" ng-repeat="jobPost in landingCtrl.jobPostings">
-                <img ng-src="images/edhub-bg.png" class="md-card-image" alt="Washed Out">
+            <!-- LOOP START - landingCtrl.jobPostings  -->
+            <md-card ng-repeat="jobPost in landingCtrl.jobPostings">
+                <img ng-src="images/edhub-bg-2x.png" class="md-card-image" alt="Washed Out">
                 <md-card-title>
                     <md-card-title-text>
                         <span class="md-headline">{{jobPost.organizationName}}</span>
                     </md-card-title-text>
                 </md-card-title>
                 <md-card-actions layout="row" layout-align="start center">
+                    <!-- Left side buttons -->
                     <md-card-icon-actions>
                         <md-button class="md-icon-button" aria-label="Favorite">
                             <ng-md-icon icon="favorite"></ng-md-icon>
@@ -70,8 +71,10 @@
                             <ng-md-icon icon="Share"></ng-md-icon>
                         </md-button>
                     </md-card-icon-actions>
-                    <md-button>Apply</md-button>
-                    <md-button>Dismiss</md-button>
+
+                    <!-- Right Side buttons -->
+                    <md-button data-ng-click="landingCtrl.apply2job(jobPost.organizationName)">Apply</md-button>
+                    <md-button data-ng-click="">Dismiss</md-button>
                 </md-card-actions>
                 <md-card-content>
                     <p>{{jobPost.aboutTheOrganization}}</p>

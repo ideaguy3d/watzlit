@@ -23,6 +23,7 @@ angular.module('edhubJobsApp').controller('PostJobCtrl', ['edhubJobPostService',
         };
 
         vm.postJob = function () {
+            vm.organization.timeStamp = firebase.database.ServerValue.TIMESTAMP;
             edhubJobPostService.jobPostings.$add(vm.organization).then(function (res) {
                 console.log("jha - successfully posted job to firebase ^_^/ res=");
                 console.log(res);

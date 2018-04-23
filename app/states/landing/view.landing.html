@@ -48,11 +48,11 @@
         <div flex-xs flex-gt-xs="50" layout="column">
             <!-- In-card mixed Actions CARD -->
             <!-- LOOP START - landingCtrl.jobPostings  -->
-            <md-card ng-repeat="jobPost in landingCtrl.jobPostings">
+            <md-card ng-repeat="jobPost in landingCtrl.jobPostings"  class="{{'edhub-landing-job'+$index}}">
                 <img ng-src="images/edhub-bg-2x.png" class="md-card-image" alt="Washed Out">
                 <md-card-title>
                     <md-card-title-text>
-                        <span class="md-headline">{{jobPost.organizationName}}</span>
+                        <span class="md-headline">{{ jobPost.organizationName }}</span>
                     </md-card-title-text>
                 </md-card-title>
                 <md-card-actions layout="row" layout-align="start center">
@@ -73,7 +73,7 @@
                     </md-card-icon-actions>
 
                     <!-- Right Side buttons -->
-                    <md-button data-ng-click="landingCtrl.apply2job(jobPost.organizationName)">Apply</md-button>
+                    <md-button data-ng-click="landingCtrl.apply2job(jobPost.organizationName, this)">Apply</md-button>
                     <md-button data-ng-click="">Dismiss</md-button>
                 </md-card-actions>
                 <md-card-content>
@@ -84,7 +84,8 @@
     </md-content>
     <!-- END OF: Recent Job Posts -->
 
-    <!-- START: md-card templates 1 
+    <!-- START: md-card templates 1 -->
+    <!--
     <md-content class="md-padding" layout-xs="column" layout="row">
         <div flex-xs flex-gt-xs="50" layout="column">
             <md-card>
@@ -153,7 +154,8 @@
             </md-card>
         </div>
     </md-content>
-    --><!-- END OF: md-card templates 1 -->
+    -->
+    <!-- END OF: md-card templates 1 -->
     
 
 </section>

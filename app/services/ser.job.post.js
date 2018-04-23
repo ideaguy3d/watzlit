@@ -10,8 +10,15 @@
         function ($firebaseArray) {
             const refJobPostings = firebase.database().ref('jobPostings');
 
+
+            const jobPostingsLimitTo = function (limit) {
+                const qJobPostingsLimitToOrderByDate = refJobPostings.orderByChild("timeStamp").limitToLast(limit);
+                return $firebaseArray(qJobPostingsLimitToOrderByDate);
+            };
+
             return {
-                jobPostings: $firebaseArray(refJobPostings)
+                jobPostings: $firebaseArray(refJobPostings),
+                jobPostingsLimitTo: jobPostingsLimitTo
             };
         }
 

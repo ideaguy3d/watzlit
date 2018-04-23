@@ -12,5 +12,11 @@
         const vm = this;
         vm.rParams = $routeParams;
 
+        activate();
+
+        function activate() {
+            console.log("route params = ");
+            console.log($routeParams);
+        }
     }
 }());

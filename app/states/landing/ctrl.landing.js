@@ -10,8 +10,9 @@
             const vm = this;
             vm.jobPostBg = "images/chalkboard3dArt1.png";
 
-            vm.apply2job = function (organizationName) {
-                console.log("edhub - apply to "+organizationName);
+            vm.apply2job = function (organizationName, elem) {
+                console.log("edhub - elem =");
+                console.log(elem);
                 $location.url('/apply/'+organizationName)
             };
 
@@ -19,7 +20,7 @@
 
             function activate() {
                 console.log("edhub - above the async cal data");
-                edhubJobPostService.jobPostings.$loaded().then(function (res) {
+                edhubJobPostService.jobPostingsLimitTo(3).$loaded().then(function (res) {
                     vm.jobPostings = res;
                     //console.log("edhub - res =");
                     //console.log(res);

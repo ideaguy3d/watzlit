@@ -5,13 +5,14 @@
 (function () {
     "use strict";
 
-    angular.module('edhubJobsApp').controller('LandingCtrl', ['edhubJobPostService',
-        function (edhubJobPostService) {
+    angular.module('edhubJobsApp').controller('LandingCtrl', ['edhubJobPostService', '$location',
+        function (edhubJobPostService, $location) {
             const vm = this;
             vm.jobPostBg = "images/chalkboard3dArt1.png";
 
             vm.apply2job = function (organizationName) {
                 console.log("edhub - apply to "+organizationName);
+                $location.url('/apply/'+organizationName)
             };
 
             activate();

@@ -40,7 +40,19 @@ angular
                     controllerAs: 'postJobCtrl'
                 })
                 .when('/apply', {
-                    templateUrl: 'states/apply/view.apply.html'
+                    templateUrl: 'states/apply/view.apply.html',
+                    controller: 'ApplyToJobCtrl',
+                    controllerAs: 'applyToJobCtrl'
+                })
+                .when('/apply/:organizationName', {
+                    templateUrl: 'states/apply/view.apply.organization.html',
+                    controller: 'ApplyToOrganizationCtrl',
+                    controllerAs: 'applyToOrganizationCtrl'
+                })
+                .when('/apply/:organizationName/job/:jobId', {
+                    templateUrl: 'states/apply/view.apply.organization.job.html',
+                    controller: 'ApplyToJobCtrl',
+                    controllerAs: 'applyToJobCtrl'
                 })
                 .when('/lab916', {
                     templateUrl: '/states/lab916/view.landing.html'

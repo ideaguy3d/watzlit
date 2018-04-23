@@ -10,10 +10,10 @@
             const vm = this;
             vm.jobPostBg = "images/chalkboard3dArt1.png";
 
-            vm.apply2job = function (organizationName, elem) {
-                console.log("edhub - elem =");
-                console.log(elem);
-                $location.url('/apply/'+organizationName)
+            vm.apply2job = function (organizationName, postId) {
+                console.log("edhub - post id =");
+                console.log(postId);
+                $location.url('/apply/'+organizationName);
             };
 
             activate();
@@ -28,7 +28,6 @@
                     console.log('Error: ', error);
                 });
             }
-
         }
     ]);
 }());

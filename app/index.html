@@ -61,13 +61,49 @@
     </md-subheader>
 </md-nav-bar>
 
+
 <!-- ----------------------------------- -->
 <!-- - Initial coreSidenav Menu Button - -->
 <!-- ----------------------------------- -->
-<md-button id="edhub-core-nav-menu-btn" class="md-fab md-primary" 
-        aria-label="Recent Jobs" ng-click="coreEdhubToggleSideNav()">
+<md-button id="edhub-core-nav-menu-btn" class="md-fab md-primary"
+           aria-label="Recent Jobs" ng-click="coreEdhubToggleSideNav()">
     <ng-md-icon icon="menu"></ng-md-icon>
 </md-button>
+
+
+<!-- ---------------------------- -->
+<!-- - EdHub Auth User Info Box - -->
+<!-- ---------------------------- -->
+<div id="edhub-auth-info-container" flex-xs="70" flex-sm="50" flex-gt-sm="20">
+    <md-fab-speed-dial ng-hide="coreAuthBoxHidden" md-direction="left" md-open="coreAuthBoxIsOpen"
+                       class="md-scale md-fab-top-right"
+                       ng-class="{ 'md-hover-full': coreAuthBoxHover }"
+                       ng-mouseenter="coreAuthBoxIsOpen=true" ng-mouseleave="coreAuthBoxIsOpen=false">
+        <md-fab-trigger>
+            <md-button aria-label="menu" class="md-primary">
+                <ng-md-icon id="edhub-auth-box-avatar" icon="account_box" size="36"></ng-md-icon>
+                <p class="edhub-auth-box-username">Guest</p>
+            </md-button>
+        </md-fab-trigger>
+
+        <md-fab-actions>
+            <div ng-repeat="item in items">
+                <md-button aria-label="{{item.name}}" class="md-fab md-raised md-mini" ng-click="demo.openDialog($event, item)">
+                    <md-tooltip md-direction="{{item.direction}}" md-visible="tooltipVisible" md-autohide="false">
+                        {{item.name}}
+                    </md-tooltip>
+
+                    <md-icon md-svg-src="{{item.icon}}" aria-label="{{item.name}}"></md-icon>
+                </md-button>
+            </div>
+        </md-fab-actions>
+    </md-fab-speed-dial>
+</div>
+
+
+
+
+
 
 <div ng-cloak layout="row">
     <!---------------------->
@@ -177,10 +213,11 @@
 <script src="states/landing/ctrl.landing.js"></script>
 <script src="states/auth/ctrl.auth.js"></script>
 <script src="states/post/ctrl.post.js"></script>
-<script src="ui-prac/ctrl.ui.prac.js"></script>
 <script src="states/lab916/ctrl.lab916.js"></script>
-<script src="states/apply/ctrl.apply.to.job.js"></script>
-<script src="states/apply/ctrl.apply.to.organization.js"></script>
+<script src="states/apply/ctrl.job.apply.js"></script>
+<script src="states/apply/ctrl.org.apply.js"></script>
+<!-- prac stuff -->
+<script src="ui-prac/ctrl.ui.prac.js"></script>
 <!-- endbuild -->
 
 </body>

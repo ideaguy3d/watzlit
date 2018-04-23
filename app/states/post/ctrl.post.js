@@ -3,8 +3,8 @@
  */
 
 
-angular.module('edhubJobsApp').controller('PostJobCtrl', ['edhubJobPostService',
-    function (edhubJobPostService) {
+angular.module('edhubJobsApp').controller('PostJobCtrl', ['edhubJobPostService', '$location',
+    function (edhubJobPostService, $location) {
         const vm = this;
         vm.progressMessage = "Your Progress";
         vm.formScope = {};
@@ -29,6 +29,7 @@ angular.module('edhubJobsApp').controller('PostJobCtrl', ['edhubJobPostService',
                 console.log(res);
                 vm.organization = {};
             });
+            $location.url('/');
         };
     }
 ]);

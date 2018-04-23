@@ -45,12 +45,12 @@ angular
                     controllerAs: 'applyToJobCtrl'
                 })
                 .when('/apply/:organizationName', {
-                    templateUrl: 'states/apply/view.apply.organization.html',
+                    templateUrl: 'states/apply/view.apply.org.html',
                     controller: 'ApplyToOrganizationCtrl',
                     controllerAs: 'applyToOrganizationCtrl'
                 })
                 .when('/apply/:organizationName/job/:jobId', {
-                    templateUrl: 'states/apply/view.apply.organization.job.html',
+                    templateUrl: 'states/apply/view.apply.org.job.html',
                     controller: 'ApplyToJobCtrl',
                     controllerAs: 'applyToJobCtrl'
                 })

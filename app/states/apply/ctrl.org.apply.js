@@ -7,11 +7,11 @@
 
     const app = angular.module('edhubJobsApp');
 
-    app.controller('ApplyToOrgCtrl', ['orgJobAppsRslv', ApplyToOrganizationClass]);
+    app.controller('ApplyToOrgCtrl', ['orgJobAppsRslv', '$routeParams', ApplyToOrganizationClass]);
 
-    function ApplyToOrganizationClass(orgJobAppsRslv) {
+    function ApplyToOrganizationClass(orgJobAppsRslv, $routeParams) {
         const vm = this;
-        //vm.rParams = $routeParams;
+        vm.rParams = $routeParams;
         vm.applyToOrgDataModel = {
             applicantName: '',
             applicantEmail: 'no.email@google.com'

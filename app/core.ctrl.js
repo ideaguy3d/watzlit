@@ -13,7 +13,7 @@
 
         $scope.ccSetCurrentUser = function (userEmail) {
             $scope.ccCurrentUser = userEmail;
-        }
+        };
 
         $scope.coreEdhubToggleSideNav = coreEdhubToggleSideNav('core-sidenav');
 

@@ -15,7 +15,7 @@
                 return $firebaseArray(qJobPostingsLimitToOrderByDate);
             };
 
-            let forOrg = function(orgId){
+            let forOrg = function (orgId) {
                 return $firebaseArray(refOrgApplicants.child(orgId));
             };
 

@@ -49,8 +49,10 @@ angular
                     controller: 'ApplyToOrgCtrl',
                     controllerAs: 'applyToOrgCtrl',
                     resolve: {
-                        orgJobAppsRslv: function($routeParams, edhubJobPostService){
-                            return edhubJobPostService.forOrg($routeParams.orgId).$loaded();
+                        orgJobAppsRslv: function($route, edhubJobPostService){
+                            console.log("$route.current = ");
+                            console.log($route.current);
+                            return edhubJobPostService.forOrg($route.current.params.orgId).$loaded();
                         }
                     }
                 })

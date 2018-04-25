@@ -14,13 +14,20 @@
         vm.rParams = $routeParams;
         vm.applyToOrgDataModel = {
             applicantName: '',
-            applicantEmail: 'no.email@google.com'
+            applicantEmail: '',
+            applicantLinkedin: '',
+            applicantCover: '',
+            orgApplyTo: $routeParams.orgName,
+            orgId: $routeParams.orgId
         };
 
         vm.applyToOrg = function () {
             orgJobAppsRslv.$add(vm.applyToOrgDataModel).then(function(res){
                 console.log("edhub - The response from firebase:");
                 console.log(res);
+            }).catch(function(err){
+                console.log("There was an error submitting applicant data to organization:");
+                console.log(err);
             });
         };
 

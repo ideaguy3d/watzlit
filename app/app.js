@@ -44,7 +44,7 @@ angular
                     controller: 'ApplyToJobCtrl',
                     controllerAs: 'applyToJobCtrl'
                 })
-                .when('/apply/:organizationName', {
+                .when('/apply/:orgId/:orgName', {
                     templateUrl: 'states/apply/view.apply.org.html',
                     controller: 'ApplyToOrgCtrl',
                     controllerAs: 'applyToOrgCtrl'

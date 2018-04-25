@@ -13,7 +13,7 @@
             vm.apply2job = function (organizationName, postId) {
                 console.log("edhub - post id =");
                 console.log(postId);
-                $location.url('/apply/'+organizationName);
+                $location.url('/apply/'+postId+'/'+organizationName);
             };
 
             activate();

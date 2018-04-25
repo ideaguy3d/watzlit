@@ -56,7 +56,10 @@ angular
                         }
                     }
                 })
-                .when('/apply/:organizationName/job/:jobId', {
+                .when('/apply-thanks', {
+                    templateUrl: 'states/apply/view.thanks.html'
+                })
+                .when('/apply-job/:organizationName/:jobId', {
                     templateUrl: 'states/apply/view.apply.org.job.html',
                     controller: 'ApplyToJobCtrl',
                     controllerAs: 'applyToJobCtrl'

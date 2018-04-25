@@ -11,7 +11,7 @@ Projects / Courses to MASTER for this product:
 FREE
 ~ "Slack Clone" thinkster tutorial
 ~ Other thinkster AngularJS tutorials
-~ "Monarch" template design
+~ "Monarch" template design <3 <3
 ~ "FirebaseDB blog app" glitch.com
 ~ Reading the Firebase source docs
 ~ Reading the AngularJS source docs

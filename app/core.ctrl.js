@@ -40,13 +40,19 @@
             }
         });
 
-        $scope.items = [
+        $scope.ccItems = [
+            { name: "Login", icon: "login", direction: "bottom" },
+            { name: "Edit Profile", icon: "edit", direction: "top" },
+            { name: "Settings", icon: "settings", direction: "bottom" }
+        ];
+
+        $scope.ccCustomIcons = [
             { name: "Login", icon: "img/icons/twitter.svg", direction: "bottom" },
             { name: "Edit Profile", icon: "img/icons/facebook.svg", direction: "top" },
             { name: "Settings", icon: "img/icons/hangout.svg", direction: "bottom" }
         ];
 
-        $scope.openDialog = function($event, item) {
+        $scope.ccOpenDialog = function($event, item) {
             // Show the dialog
             $mdDialog.show({
                 clickOutsideToClose: true,

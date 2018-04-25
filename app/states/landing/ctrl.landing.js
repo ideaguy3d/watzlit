@@ -11,8 +11,6 @@
             vm.jobPostBg = "images/chalkboard3dArt1.png";
 
             vm.apply2job = function (organizationName, postId) {
-                console.log("edhub - post id =");
-                console.log(postId);
                 $location.url('/apply/'+postId+'/'+organizationName);
             };
 

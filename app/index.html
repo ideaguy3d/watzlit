@@ -87,13 +87,13 @@
         </md-fab-trigger>
 
         <md-fab-actions>
-            <div ng-repeat="item in items">
-                <md-button aria-label="{{item.name}}" class="md-fab md-raised md-mini" ng-click="demo.openDialog($event, item)">
+            <div ng-repeat="item in ccItems">
+                <md-button aria-label="{{item.name}}" class="md-fab md-raised md-mini" ng-click="ccOpenDialog($event, item)">
                     <md-tooltip md-direction="{{item.direction}}" md-visible="tooltipVisible" md-autohide="false">
                         {{item.name}}
                     </md-tooltip>
-
-                    <md-icon md-svg-src="{{item.icon}}" aria-label="{{item.name}}"></md-icon>
+                    <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
+                    <!--<md-icon md-svg-src="{{item.icon}}" aria-label="{{item.name}}"></md-icon>-->
                 </md-button>
             </div>
         </md-fab-actions>

@@ -6,28 +6,23 @@
     "use strict";
 
     const app = angular.module('edhubJobsApp');
-    app.controller('ApplyToOrgCtrl', ['$routeParams', 'edhubJobPostService', ApplyToOrganizationClass]);
 
-    function ApplyToOrganizationClass($routeParams, edhubJobPostService) {
+    app.controller('ApplyToOrgCtrl', ['orgJobAppsRslv', ApplyToOrganizationClass]);
+
+    function ApplyToOrganizationClass(orgJobAppsRslv) {
         const vm = this;
-        vm.rParams = $routeParams;
+        //vm.rParams = $routeParams;
         vm.applyToOrgDataModel = {
             applicantName: '',
-            applicantEmail: ''
+            applicantEmail: 'no.email@google.com'
         };
 
-        vm.applyToOrg = function(){
-            edhubJobPostService.forOrg($routeParams.orgId).$loaded().then(function(res){
-                console.log("the response from firebasedb");
+        vm.applyToOrg = function () {
+            orgJobAppsRslv.$add(vm.applyToOrgDataModel).then(function(res){
+                console.log("edhub - The response from firebase:");
                 console.log(res);
             });
         };
 
-        activate();
-
-        function activate() {
-            console.log("route params = ");
-            console.log($routeParams);
-        }
     }
 }());

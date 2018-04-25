@@ -47,7 +47,12 @@ angular
                 .when('/apply/:orgId/:orgName', {
                     templateUrl: 'states/apply/view.apply.org.html',
                     controller: 'ApplyToOrgCtrl',
-                    controllerAs: 'applyToOrgCtrl'
+                    controllerAs: 'applyToOrgCtrl',
+                    resolve: {
+                        orgJobAppsRslv: function($routeParams, edhubJobPostService){
+                            return edhubJobPostService.forOrg($routeParams.orgId).$loaded();
+                        }
+                    }
                 })
                 .when('/apply/:organizationName/job/:jobId', {
                     templateUrl: 'states/apply/view.apply.org.job.html',

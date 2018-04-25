@@ -6,18 +6,23 @@
     "use strict";
 
     angular.module('edhubJobsApp').factory('edhubJobPostService', ['$firebaseArray',
-
         function ($firebaseArray) {
             const refJobPostings = firebase.database().ref('jobPostings');
+            const refOrgApplicants = firebase.database().ref('orgApplicants');
 
-            const jobPostingsLimitTo = function (limit) {
+            let jobPostingsLimitTo = function (limit) {
                 const qJobPostingsLimitToOrderByDate = refJobPostings.orderByChild("timeStamp").limitToLast(limit);
                 return $firebaseArray(qJobPostingsLimitToOrderByDate);
             };
 
+            let forOrg = function(orgId){
+                return $firebaseArray(refOrgApplicants.child(orgId));
+            };
+
             return {
                 jobPostings: $firebaseArray(refJobPostings),
-                jobPostingsLimitTo: jobPostingsLimitTo
+                jobPostingsLimitTo: jobPostingsLimitTo,
+                forOrg: forOrg
             };
         }
 

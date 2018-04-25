@@ -6,9 +6,9 @@
     "use strict";
 
     const app = angular.module('edhubJobsApp');
-    app.controller('ApplyToOrgCtrl', ['$routeParams', ApplyToOrganizationClass]);
+    app.controller('ApplyToOrgCtrl', ['$routeParams', 'edhubJobPostService', ApplyToOrganizationClass]);
 
-    function ApplyToOrganizationClass($routeParams) {
+    function ApplyToOrganizationClass($routeParams, edhubJobPostService) {
         const vm = this;
         vm.rParams = $routeParams;
         vm.applyToOrgDataModel = {
@@ -17,7 +17,10 @@
         };
 
         vm.applyToOrg = function(){
-
+            edhubJobPostService.forOrg($routeParams.orgId).$loaded().then(function(res){
+                console.log("the response from firebasedb");
+                console.log(res);
+            });
         };
 
         activate();

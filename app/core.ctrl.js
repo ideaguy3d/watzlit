@@ -5,17 +5,19 @@
 (function () {
     "use strict";
 
-    angular.module('edhubJobsApp').controller('CoreCtrl', ['$scope', '$mdSidenav', '$mdDialog', '$timeout', CoreCtrlClass]);
+    angular.module('edhubJobsApp').controller('CoreCtrl', ['$scope', '$mdSidenav', '$mdDialog', '$timeout', CoreClass]);
 
-    function CoreCtrlClass($scope, $mdSidenav) {
+    function CoreClass($scope, $mdSidenav, $mdDialog, $timeout) {
         $scope.ccCurrentUser = "";
         $scope.coreEdhubHorizontalState = false;
+        $scope.ccAuthBoxHidden = false;
+        $scope.ccAuthBoxIsOpen = false;
+        $scope.ccAuthBoxHover = true;
+        $scope.coreEdhubToggleSideNav = coreEdhubToggleSideNav('core-sidenav');
 
         $scope.ccSetCurrentUser = function (userEmail) {
             $scope.ccCurrentUser = userEmail;
         };
-
-        $scope.coreEdhubToggleSideNav = coreEdhubToggleSideNav('core-sidenav');
 
         function coreEdhubToggleSideNav (componentId) {
             console.log("edhub - coreEdhubToggleSideNav() invoked");
@@ -24,19 +26,17 @@
             }
         }
 
-        $scope.coreAuthBoxHidden = false;
-        $scope.coreAuthBoxIsOpen = false;
-        $scope.coreAuthBoxHover = false;
-
-        // On opening, add a delayed property which shows tooltips after the speed dial has opened
-        // so that they have the proper position; if closing, immediately hide the tooltips
-        $scope.$watch('demo.isOpen', function(isOpen) {
+        // On opening, add a delayed property which shows tooltips
+        // after the speed dial has opened
+        // so that they have the proper position; if closing,
+        // immediately hide the tooltips
+        $scope.$watch('ccAuthBoxIsOpen', function(isOpen) {
             if (isOpen) {
                 $timeout(function() {
-                    $scope.tooltipVisible = $scope.isOpen;
+                    $scope.tooltipVisible = $scope.ccAuthBoxIsOpen;
                 }, 600);
             } else {
-                $scope.tooltipVisible = $scope.isOpen;
+                $scope.tooltipVisible = $scope.ccAuthBoxIsOpen;
             }
         });
 

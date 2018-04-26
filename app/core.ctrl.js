@@ -34,14 +34,14 @@
             if (isOpen) {
                 $timeout(function() {
                     $scope.tooltipVisible = $scope.ccAuthBoxIsOpen;
-                }, 600);
+                }, 400);
             } else {
                 $scope.tooltipVisible = $scope.ccAuthBoxIsOpen;
             }
         });
 
         $scope.ccItems = [
-            { name: "Login", icon: "login", direction: "bottom" },
+            { name: "Login/Signup", icon: "login", direction: "bottom" },
             { name: "Edit Profile", icon: "edit", direction: "top" },
             { name: "Settings", icon: "settings", direction: "bottom" }
         ];
@@ -52,6 +52,7 @@
             { name: "Settings", icon: "img/icons/hangout.svg", direction: "bottom" }
         ];
 
+        // TODO: eventually get this modal to work because it's really REALLY cool!
         $scope.ccOpenDialog = function($event, item) {
             // Show the dialog
             $mdDialog.show({
@@ -68,8 +69,8 @@
                         $mdDialog.hide();
                     };
                 },
-                controllerAs: 'dialog',
-                templateUrl: 'dialog.html',
+                controllerAs: 'modalAuth',
+                templateUrl: 'states/auth/modal.auth.html',
                 targetEvent: $event
             });
         };

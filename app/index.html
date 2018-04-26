@@ -71,9 +71,9 @@
 </md-button>
 
 
-<!-- ---------------------------- -->
-<!-- - EdHub Auth User Info Box - -->
-<!-- ---------------------------- -->
+<!---------------------------------->
+<!---- EdHub Auth User Info Box ---->
+<!---------------------------------->
 <div id="edhub-auth-info-container" flex-xs="70" flex-sm="50" flex-gt-sm="20">
     <md-fab-speed-dial ng-hide="ccAuthBoxHidden" md-direction="left" md-open="ccAuthBoxIsOpen"
                        class="md-scale md-fab-top-right"
@@ -88,9 +88,9 @@
 
         <md-fab-actions>
             <div ng-repeat="item in ccItems">
-                <md-button aria-label="{{item.name}}" class="md-fab md-raised md-mini" ng-click="ccOpenDialog($event, item)">
+                <md-button aria-label="{{item.name}}" class="md-fab md-raised md-mini" ng-click="ccAuthBoxAction($event, item)">
                     <md-tooltip md-direction="{{item.direction}}" md-visible="tooltipVisible" md-autohide="false">
-                        {{item.name}}
+                        {{ item.name }}
                     </md-tooltip>
                     <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
                     <!--<md-icon md-svg-src="{{item.icon}}" aria-label="{{item.name}}"></md-icon>-->

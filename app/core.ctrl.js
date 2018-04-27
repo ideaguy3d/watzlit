@@ -5,21 +5,21 @@
 (function () {
     "use strict";
 
-    angular.module('edhubJobsApp').controller('CoreCtrl', ['$scope', '$mdSidenav',
+    angular.module('edhubJobsApp').controller('CoreCtrl', ['$rootScope', '$scope', '$mdSidenav',
         '$mdDialog', '$timeout', 'edhubAuthService', '$location',
         CoreClass
     ]);
 
-    function CoreClass($scope, $mdSidenav, $mdDialog, $timeout, edhubAuthService, $location) {
+    function CoreClass($rootScope, $scope, $mdSidenav, $mdDialog, $timeout, edhubAuthService, $location) {
         $scope.ccCurrentUser = "";
         $scope.coreEdhubHorizontalState = false;
         $scope.ccAuthBoxHidden = false;
         $scope.ccAuthBoxIsOpen = false;
         $scope.ccAuthBoxHover = true;
         $scope.coreEdhubToggleSideNav = coreEdhubToggleSideNav('core-sidenav');
-
         const enumAuthBox = {
             loginSignup: "Login/Signup",
+            logout: "Logout",
             settings: "Settings",
             editProfile: "Edit Profile"
         };
@@ -51,7 +51,7 @@
 
         // for ng-md-icon
         $scope.ccItems = [
-            {name: enumAuthBox.loginSignup, icon: "login", direction: "bottom"},
+            {name: _determineAuthState(), icon: "login", direction: "bottom"},
             {name: enumAuthBox.editProfile, icon: "edit", direction: "top"},
             {name: enumAuthBox.settings, icon: "settings", direction: "bottom"}
         ];
@@ -67,6 +67,9 @@
             switch (item.name) {
                 case enumAuthBox.loginSignup:
                     _loginSignup();
+                    break;
+                case enumAuthBox.logout:
+                    _logout();
                     break;
                 case enumAuthBox.settings:
                     _settings();
@@ -102,9 +105,32 @@
                 targetEvent: $event
             });
         };
+        
+        $rootScope.$on("edhub-event-auth-user", function(e, args){
+            $scope.ccItems[0].name = _determineAuthState();
+            console.log("edhub - in $rootScope.$on('edhub-event-auth-user')");
+            console.log("e = ");
+            console.log(e);
+            console.log("args.haveAuthUser ="+args.haveAuthUser);
+        });
+
+        function _determineAuthState() {
+            let authUser = edhubAuthService.getAuthUser();
+            console.log("edhub - in _determineAuthState(), authUser=");
+            console.log(authUser);
+            return authUser === ""
+                ? enumAuthBox.loginSignup
+                : enumAuthBox.logout;
+        }
 
         function _loginSignup() {
             console.log("in _authAction() !! ^_^");
+            $location.path("/signup");
+        }
+
+        function _logout() {
+            edhubAuthService.logout();
+            $location.path("/");
         }
 
         function _settings() {

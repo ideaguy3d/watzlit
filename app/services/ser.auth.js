@@ -11,7 +11,7 @@
     ]);
 
     function EdhubAuthClass($firebaseAuth, $rootScope, $firebaseObject, $location) {
-        $rootScope.edhubAuthUser = "";
+        $rootScope.rootEdhubAuthUser = "";
         const orgRef = firebase.database().ref('organizations');
         const auth = $firebaseAuth();
         let authApi = {};
@@ -19,9 +19,16 @@
         auth.$onAuthStateChanged(function (authUser) {
             if(authUser) {
                 let authUserRef = orgRef.child(authUser.uid);
-                $rootScope.edhubAuthUser = $firebaseObject(authUserRef);
+                $rootScope.rootEdhubAuthUser = $firebaseObject(authUserRef);
+                console.log("edhub - The Auth User =");
+                console.log($rootScope.rootEdhubAuthUser);
+                $rootScope.$broadcast("edhub-event-auth-user", {
+                    foo: "bar", haveAuthUser: true
+                });
             } else {
-                $rootScope.edhubAuthUser = "";
+                $rootScope.rootEdhubAuthUser = "";
+                console.log("There is no longer an Auth User");
+                console.log($rootScope.rootEdhubAuthUser);
             }
         });
 
@@ -34,7 +41,7 @@
                         $location.path('/');
                     })
                     .catch(function (error) {
-                        console.error("edhub - There was an error:")
+                        console.error("edhub - There was an error =");
                         console.log(error);
                         $rootScope.authError = error.message;
                     });
@@ -64,16 +71,13 @@
                         console.error("edhub - There was an error =");
                         console.log(error);
                     });
-            }
+            },
+            getAuthUser: getAuthUser
         };
 
-        const userSignup = function (email, pw) {
-            return $firebaseAuth().$createUserWithEmailAndPassword(email, pw);
-        };
-
-        const userLogin = function (email, pw) {
-            return $firebaseAuth().$signInWithEmailAndPassword(email, pw);
-        };
+        function getAuthUser() {
+            return $rootScope.rootEdhubAuthUser;
+        }
 
         // return $firebaseAuth();
         return authApi;

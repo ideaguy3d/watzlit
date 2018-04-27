@@ -17,7 +17,6 @@
             activate();
 
             function activate() {
-                console.log("edhub - above the async cal data");
                 edhubJobPostService.jobPostingsLimitTo(5).$loaded().then(function (res) {
                     vm.jobPostings = res;
                     //console.log("edhub - res =");

@@ -13,10 +13,11 @@
             vm.error = "";
             vm.name = "";
             vm.orgName = "";
-            
+            vm.showProgress = false;
+
             vm.orgSignupDataModel = {};
 
-            vm.authSignup = function(){
+            vm.authSignup = function () {
                 const orgInfo = {
                     email: vm.email,
                     password: vm.pw,
@@ -24,6 +25,7 @@
                     name: vm.name !== "" ? vm.name : "no name given"
                 };
                 edhubAuthService.signup(orgInfo);
+                vm.showProgress = true;
             };
 
             // old

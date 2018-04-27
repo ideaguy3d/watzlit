@@ -1,4 +1,4 @@
-<!-- ctrl= AuthCtrl -->
+<!-- ctrl=AuthCtrl as signup -->
 <div>
     <br><br><br>
     <!-- I have a div because I'm eventually going to add pretty design stuff -->
@@ -25,4 +25,7 @@
             <md-button type="submit" class="md-primary md-raised edhub-w33">Signup</md-button>
         </div>
     </form>
+    <div ng-show="signup.showProgress">
+        <md-progress-linear md-mode="indeterminite"></md-progress-linear>
+    </div>
 </div>

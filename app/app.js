@@ -18,11 +18,6 @@ angular
                     controller: 'LandingCtrl',
                     controllerAs: 'landingCtrl'
                 })
-                .when('/edhub', {
-                    templateUrl: 'states/landing/view.landing.html',
-                    controller: 'LandingCtrl',
-                    controllerAs: 'landing'
-                })
                 .when('/signup', {
                     url: '/signup',
                     templateUrl: 'states/auth/view.signup.html',
@@ -33,6 +28,9 @@ angular
                     templateUrl: 'states/auth/view.login.html',
                     controller: 'AuthCtrl',
                     controllerAs: 'login'
+                })
+                .when('/profile/:user', {
+                    templateUrl: 'states/auth/view.profile.html'
                 })
                 .when('/post', {
                     templateUrl: 'states/post/view.post.html',

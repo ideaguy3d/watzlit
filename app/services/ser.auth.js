@@ -17,7 +17,12 @@
         let authApi = {};
 
         auth.$onAuthStateChanged(function (authUser) {
-
+            if(authUser) {
+                let authUserRef = orgRef.child(authUser.uid);
+                $rootScope.edhubAuthUser = $firebaseObject(authUserRef);
+            } else {
+                $rootScope.edhubAuthUser = "";
+            }
         });
 
         authApi = {
@@ -41,13 +46,16 @@
                 return auth.requireSignIn();
             },
             signup: function (user) {
+                console.log("edhub - signup() factory user =");
+                console.log(user);
                 auth.$createUserWithEmailAndPassword(user.email, user.password)
                     .then(function(regUser){
                         orgRef.child(regUser.uid).set({
                             date: firebase.database.ServerValue.TIMESTAMP,
                             regUser: regUser.uid,
                             orgName: user.orgName,
-                            email: user.email
+                            email: user.email,
+                            repName: user.name
                         });
                         $rootScope.message = "Thanks for registering " + user.name;
                         authApi.login(user);

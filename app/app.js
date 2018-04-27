@@ -60,7 +60,7 @@ angular
                 .when('/apply-thanks', {
                     templateUrl: 'states/apply/view.thanks.html'
                 })
-                .when('/apply-job/:organizationName/:jobId', {
+                .when('/apply-job/:orgName/:jobId', {
                     templateUrl: 'states/apply/view.apply.org.job.html',
                     controller: 'ApplyToJobCtrl',
                     controllerAs: 'applyToJobCtrl'

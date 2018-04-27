@@ -37,6 +37,8 @@
 
         authApi = {
             login: function (user) {
+                console.log("edhub - login() factory user =");
+                console.log(user);
                 auth.$signInWithEmailAndPassword(user.email, user.password)
                     .then(function (user) {
                         console.log("edhub - user successfully signed in");
@@ -45,7 +47,7 @@
                     })
                     .catch(function (error) {
                         console.error("edhub - There was an error =");
-                        console.log(error);
+                        console.log(error.message);
                         $rootScope.authError = error.message;
                     });
             },
@@ -72,7 +74,7 @@
                     })
                     .catch(function(error){
                         console.error("edhub - There was an error =");
-                        console.log(error);
+                        console.log(error.message);
                     });
             },
             getAuthUser: getAuthUser

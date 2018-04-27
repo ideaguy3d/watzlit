@@ -108,10 +108,6 @@
         
         $rootScope.$on("edhub-event-auth-user", function(e, args){
             $scope.ccItems[0].name = _determineAuthState();
-            console.log("edhub - in $rootScope.$on('edhub-event-auth-user')");
-            console.log("e = ");
-            console.log(e);
-            console.log("args.haveAuthUser ="+args.haveAuthUser);
         });
 
         function _determineAuthState() {

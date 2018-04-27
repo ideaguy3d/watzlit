@@ -27,6 +27,9 @@
                 });
             } else {
                 $rootScope.rootEdhubAuthUser = "";
+                $rootScope.$broadcast("edhub-event-auth-user", {
+                    haveAuthUser: false
+                });
                 console.log("There is no longer an Auth User");
                 console.log($rootScope.rootEdhubAuthUser);
             }

@@ -29,6 +29,9 @@ angular
                     controller: 'AuthCtrl',
                     controllerAs: 'login'
                 })
+                .when('/user-auth-logout/logout-page', {
+                    templateUrl: 'states/auth/view.logout.html'
+                })
                 .when('/profile/:user', {
                     templateUrl: 'states/auth/view.profile.html'
                 })

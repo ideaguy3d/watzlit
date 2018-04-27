@@ -130,7 +130,7 @@
 
         function _logout() {
             edhubAuthService.logout();
-            $location.path("/");
+            $location.path("/user-auth-logout/logout-page");
         }
 
         function _settings() {

@@ -111,7 +111,7 @@
         });
 
         function _determineAuthState() {
-            let authUser = edhubAuthService.getAuthUser();
+            var authUser = edhubAuthService.getAuthUser();
             console.log("edhub - in _determineAuthState(), authUser=");
             console.log(authUser);
             return authUser === ""

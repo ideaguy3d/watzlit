@@ -14,11 +14,11 @@
         $rootScope.rootEdhubAuthUser = "";
         const orgRef = firebase.database().ref('organizations');
         const auth = $firebaseAuth();
-        let authApi = {};
+        var authApi = {};
 
         auth.$onAuthStateChanged(function (authUser) {
             if(authUser) {
-                let authUserRef = orgRef.child(authUser.uid);
+                var authUserRef = orgRef.child(authUser.uid);
                 $rootScope.rootEdhubAuthUser = $firebaseObject(authUserRef);
                 console.log("edhub - The Auth User =");
                 console.log($rootScope.rootEdhubAuthUser);

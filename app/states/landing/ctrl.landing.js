@@ -5,13 +5,18 @@
 (function () {
     "use strict";
 
-    angular.module('edhubJobsApp').controller('LandingCtrl', ['edhubJobPostService', '$location',
-        function (edhubJobPostService, $location) {
+    angular.module('edhubJobsApp').controller('LandingCtrl', ['edhubJobPostService', '$location', 'smoothScroll',
+        function (edhubJobPostService, $location, smoothScroll) {
             const vm = this;
             vm.jobPostBg = "images/chalkboard3dArt1.png";
 
             vm.apply2job = function (organizationName, postId) {
                 $location.url('/apply/'+postId+'/'+organizationName);
+            };
+
+            vm.go2recentJobs = function(){
+                var elem = document.getElementById("edhub-recent-jobs-landing-title");
+                smoothScroll(elem);
             };
 
             activate();

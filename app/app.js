@@ -8,7 +8,8 @@ angular
         'angular-md5',
         'ngRoute',
         'ngMaterial',
-        'ngMdIcons'
+        'ngMdIcons',
+        'smoothScroll'
     ])
     .config(['$routeProvider', '$locationProvider',
         function ($routeProvider) {

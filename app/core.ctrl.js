@@ -105,7 +105,7 @@
                 targetEvent: $event
             });
         };
-        
+
         $rootScope.$on("edhub-event-auth-user", function(e, args){
             $scope.ccItems[0].name = _determineAuthState();
         });

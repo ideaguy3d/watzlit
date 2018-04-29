@@ -10,10 +10,8 @@ angular.module('edhubJobsApp').controller('PostJobCtrl', ['$rootScope', 'edhubJo
         vm.progressMessage = "Your Progress";
         vm.formScope = {};
         vm.edhubAuthUser = !!edhubAuthService.getAuthUser();
-        
+
         $rootScope.$on("edhub-event-auth-user", function (e, data) {
-            console.log("edhub - in post ctrl listener, data = ");
-            console.log(data);
             vm.edhubAuthUser = data.haveAuthUser;
         });
 

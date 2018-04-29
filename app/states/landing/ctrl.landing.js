@@ -22,10 +22,11 @@
             activate();
 
             function activate() {
-                edhubJobPostService.jobPostingsLimitTo(5).$loaded().then(function (res) {
+                edhubJobPostService.jobPostingsLimitTo(7).$loaded().then(function (res) {
                     vm.jobPostings = res;
-                    //console.log("edhub - res =");
-                    //console.log(res);
+                    console.log("edhub - jobPostings res =");
+                    console.log(typeof res[0]);
+                    console.log(res);
                 }).catch(function (error) {
                     console.log('Error: ', error);
                 });

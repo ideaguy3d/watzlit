@@ -38,7 +38,7 @@ angular
                 })
                 .when('/post', {
                     templateUrl: 'states/post/view.post.html',
-                    controller: 'PostJobCtrl',
+                    controller: 'PostCtrl',
                     controllerAs: 'postJobCtrl'
                 })
                 .when('/apply', {

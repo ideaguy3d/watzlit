@@ -71,8 +71,8 @@
                         });
                         $rootScope.rootMessage = "Thanks for registering " + user.name;
                         if(info.listOrg) {
-                            console.log("broadcasting 'edhub-list-org-signup'");
-                            $rootScope.$broadcast("edhub-list-org-signup", {
+                            console.log("broadcasting 'edhub-list-unauth-org-signup'");
+                            $rootScope.$broadcast("edhub-list-unauth-org-signup", {
                                 orgId: regUser.uid
                             });
                         }

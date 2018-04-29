@@ -83,7 +83,7 @@
         };
 
         // as of 12:08pm-4/26/2018, the modal doesn't center correctly :(
-        // TODO: eventually get this modal dialog to work because it's really REALLY cool!
+        // TODO: eventually get this modal to work because it's really REALLY cool!
         $scope.ccOpenDialog = function ($event, item) {
             // Show the dialog
             $mdDialog.show({
@@ -112,6 +112,8 @@
 
         function _determineAuthState() {
             var authUser = edhubAuthService.getAuthUser();
+            console.log("edhub - in _determineAuthState(), authUser=");
+            console.log(authUser);
             return authUser === ""
                 ? enumAuthBox.loginSignup
                 : enumAuthBox.logout;

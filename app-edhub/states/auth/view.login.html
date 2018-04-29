@@ -1,7 +1,6 @@
 <!-- ctrl=AuthCtrl as login -->
 <div layout="column">
     <br><br><br>
-    <p>{{rootAuthError}}</p>
     <form name="loginForm" ng-submit="login.userLogin()">
         <div layout="column" layout-padding>
             <h1>Welcome Back</h1>
@@ -30,7 +29,4 @@
             </div>
         </div>
     </form>
-    <div ng-show="login.showProgress">
-        <md-progress-linear md-mode="indeterminite"></md-progress-linear>
-    </div>
 </div>

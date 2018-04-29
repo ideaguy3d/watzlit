@@ -3,28 +3,17 @@
  */
 
 
-angular.module('edhubJobsApp').controller('PostJobCtrl', ['$rootScope', 'edhubJobPostService',
-    '$location', 'edhubAuthService',
-    function ($rootScope, edhubJobPostService, $location, edhubAuthService) {
+angular.module('edhubJobsApp').controller('PostJobCtrl', ['edhubJobPostService', '$location',
+    function (edhubJobPostService, $location) {
         const vm = this;
         vm.progressMessage = "Your Progress";
         vm.formScope = {};
-        vm.edhubAuthUser = !!edhubAuthService.getAuthUser();
-        
-        $rootScope.$on("edhub-event-auth-user", function (e, data) {
-            console.log("edhub - in post ctrl listener, data = ");
-            console.log(data);
-            vm.edhubAuthUser = data.haveAuthUser;
-        });
 
-        //-- data model(s):
+        //-- data models:
         vm.organization = {
             organizationName: '',
             zipCode: '',
-            email: '',
-            aboutTheOrganization: '',
-            repName: '',
-            password: ''
+            email: ''
         };
 
         vm.setFormScope = function (scope) {

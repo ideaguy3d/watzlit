@@ -1,7 +1,6 @@
 <!-- ctrl=PostJobCtrl -->
 <div>
     <br><br><br>
-
     <form name="jobPostForm" ng-submit="postJobCtrl.postJob()" ng-init="postJobCtrl.setFormScope(this)">
         <div layout="column" flex-xs="100" flex-sm="90" flex-gt-sm="70" class=" edhub-margin-auto layout-padding">
             <h1>Post a job ^_^</h1>
@@ -33,17 +32,6 @@
                     <div ng-message="required">Your email is required.</div>
                 </div>
             </md-input-container>
-            {{postJobCtrl.edhubAuthUser}}
-            <!-- password if NOT logged in -->
-            <div ng-hide="postJobCtrl.edhubAuthUser">
-                <md-input-container class="md-icon-float md-block flex-gt-sm">
-                    <label>Password (so you can login & see who has applied)</label>
-                    <input name="password" type="password" ng-model="postJobCtrl.organization.password" required>
-                    <div ng-messages="jobPostForm.password.$error">
-                        <div ng-message="required">A password is required</div>
-                    </div>
-                </md-input-container>
-            </div>
             <!-- zip code -->
             <md-input-container class="md-icon-float md-block flex-gt-sm">
                 <label>Organizations' zip code</label>
@@ -59,7 +47,6 @@
                 <!--<md-icon md-svg-src="images/svg/sun1.svg"></md-icon>-->
                 <textarea name="zipcode" ng-model="postJobCtrl.organization.aboutTheOrganization" rows="5"></textarea>
             </md-input-container>
-
             <!-- buttons beneath fields -->
             <div layout="row">
                 <md-button type="submit" class="md-raised">Post</md-button>

@@ -6,26 +6,40 @@
     "use strict";
 
     angular.module('edhubJobsApp').factory('edhubJobPostService', ['$firebaseArray',
-        function ($firebaseArray) {
-            const refJobPostings = firebase.database().ref('jobPostings');
-            const refOrgApplicants = firebase.database().ref('orgApplicants');
-
-            var jobPostingsLimitTo = function (limit) {
-                const qJobPostingsLimitToOrderByDate = refJobPostings.orderByChild("timeStamp").limitToLast(limit);
-                return $firebaseArray(qJobPostingsLimitToOrderByDate);
-            };
-
-            var forOrg = function (orgId) {
-                return $firebaseArray(refOrgApplicants.child(orgId));
-            };
-
-            return {
-                jobPostings: $firebaseArray(refJobPostings),
-                jobPostingsLimitTo: jobPostingsLimitTo,
-                forOrg: forOrg
-            };
-        }
+        'edhubAuthService', EdhubJobPostClass
     ]);
+
+    function EdhubJobPostClass($firebaseArray, edhubAuthService) {
+        const refJobPostings = firebase.database().ref('jobPostings');
+        const refOrgApplicants = firebase.database().ref('orgApplicants');
+
+        var jobPostingsLimitTo = function (limit) {
+            const qJobPostingsLimitToOrderByDate = refJobPostings.orderByChild("timeStamp").limitToLast(limit);
+            return $firebaseArray(qJobPostingsLimitToOrderByDate);
+        };
+
+        var listOrganization = function (orgData) {
+            var signupInfo = {
+                email: orgData.email,
+                pw: orgData.pw ? orgData.pw : null
+            };
+            var orgId = edhubAuthService.signup(signupInfo);
+            return $firebaseArray(orgId).$add(orgData).then(function (res) {
+
+            });
+        };
+
+        var forOrg = function (orgId) {
+            return $firebaseArray(refOrgApplicants.child(orgId));
+        };
+
+        return {
+            jobPostings: $firebaseArray(refJobPostings),
+            jobPostingsLimitTo: jobPostingsLimitTo,
+            forOrg: forOrg,
+            listOrganization: listOrganization
+        };
+    }
 }());
 
 

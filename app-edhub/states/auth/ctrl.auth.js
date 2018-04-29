@@ -38,13 +38,13 @@
         };
 
         vm.userLogin = function () {
-            vm.showProgress = true;
             const orgInfo = {
                 email: vm.email,
                 password: vm.pw,
                 orgName: vm.orgName !== "" ? vm.orgName : "no orgName input field yet :/",
                 name: vm.name !== "" ? vm.name : "no name given"
             };
+
             edhubAuthService.login(orgInfo);
         };
     }

@@ -23,7 +23,7 @@
                 console.log("edhub - The Auth User =");
                 console.log($rootScope.rootEdhubAuthUser);
                 $rootScope.$broadcast("edhub-event-auth-user", {
-                    haveAuthUser: true
+                    foo: "bar", haveAuthUser: true
                 });
             } else {
                 $rootScope.rootEdhubAuthUser = "";
@@ -48,7 +48,7 @@
                     .catch(function (error) {
                         console.error("edhub - There was an error =");
                         console.log(error.message);
-                        $rootScope.rootAuthError = error.message;
+                        $rootScope.authError = error.message;
                     });
             },
             logout: function () {
@@ -75,7 +75,6 @@
                     .catch(function(error){
                         console.error("edhub - There was an error =");
                         console.log(error.message);
-                        $rootScope.rootAuthError = error.message;
                     });
             },
             getAuthUser: getAuthUser

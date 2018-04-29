@@ -6,18 +6,18 @@
     "use strict";
 
     angular.module('edhubJobsApp').factory('edhubAuthService', ['$firebaseAuth', '$rootScope',
-        '$firebaseObject', '$location',
+        '$firebaseObject', '$location', '$q',
         EdhubAuthClass
     ]);
 
-    function EdhubAuthClass($firebaseAuth, $rootScope, $firebaseObject, $location) {
+    function EdhubAuthClass($firebaseAuth, $rootScope, $firebaseObject, $location, $q) {
         $rootScope.rootEdhubAuthUser = "";
         const orgRef = firebase.database().ref('organizations');
         const auth = $firebaseAuth();
         var authApi = {};
 
         auth.$onAuthStateChanged(function (authUser) {
-            if(authUser) {
+            if (authUser) {
                 var authUserRef = orgRef.child(authUser.uid);
                 $rootScope.rootEdhubAuthUser = $firebaseObject(authUserRef);
                 console.log("edhub - The Auth User =");
@@ -58,10 +58,8 @@
                 return auth.requireSignIn();
             },
             signup: function (user) {
-                console.log("edhub - signup() factory user =");
-                console.log(user);
                 auth.$createUserWithEmailAndPassword(user.email, user.password)
-                    .then(function(regUser){
+                    .then(function (regUser) {
                         orgRef.child(regUser.uid).set({
                             date: firebase.database.ServerValue.TIMESTAMP,
                             regUser: regUser.uid,
@@ -69,13 +67,14 @@
                             email: user.email,
                             repName: user.name
                         });
-                        $rootScope.message = "Thanks for registering " + user.name;
+                        $rootScope.rootMessage = "Thanks for registering " + user.name;
                         authApi.login(user);
                     })
-                    .catch(function(error){
+                    .catch(function (error) {
                         console.error("edhub - There was an error =");
                         console.log(error.message);
                         $rootScope.rootAuthError = error.message;
+                        return null;
                     });
             },
             getAuthUser: getAuthUser

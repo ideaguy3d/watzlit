@@ -31,7 +31,15 @@ angular.module('edhubJobsApp').controller('PostJobCtrl', ['$rootScope', 'edhubJo
             vm.formScope = scope;
         };
 
-        vm.postJob = function () {
+        vm.listOrg = function(){
+            if(vm.edhubAuthUser) {
+                listOrgAuth();
+            } else {
+                listOrgUnauth();
+            }
+        };
+
+        var postJob = function () {
             vm.organization.timeStamp = firebase.database.ServerValue.TIMESTAMP;
             edhubJobPostService.jobPostings.$add(vm.organization).then(function (res) {
                 console.log("jha - successfully posted job to firebase ^_^/ res=");
@@ -40,5 +48,13 @@ angular.module('edhubJobsApp').controller('PostJobCtrl', ['$rootScope', 'edhubJo
             });
             $location.url('/');
         };
+
+        function listOrgAuth() {
+
+        }
+
+        function listOrgUnauth() {
+
+        }
     }
 ]);

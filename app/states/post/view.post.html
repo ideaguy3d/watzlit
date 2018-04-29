@@ -11,8 +11,8 @@
             <md-input-container class="md-icon-float md-block flex-gt-sm">
                 <label>Organizations' Name</label>
                 <!--<md-icon md-svg-src="images/svg/business.svg"></md-icon>-->
-                <input name="organizationName" ng-model="postJobCtrl.organization.organizationName" required>
-                <div ng-messages="jobPostForm.organizationName.$error">
+                <input name="organizationName" ng-model="postJobCtrl.organization.orgName" required>
+                <div ng-messages="jobPostForm.orgName.$error">
                     <div ng-message="required">An organization name is required.</div>
                 </div>
             </md-input-container>
@@ -20,8 +20,8 @@
             <md-input-container class="md-icon-float md-block flex-gt-sm">
                 <label>Your Name</label>
                 <!--<md-icon md-svg-src="images/svg/pencil.svg"></md-icon>-->
-                <input name="repName" type="text" ng-model="postJobCtrl.organization.repName" required>
-                <div ng-messages="jobPostForm.repName.$error">
+                <input name="repName" type="text" ng-model="postJobCtrl.organization.name" required>
+                <div ng-messages="jobPostForm.name.$error">
                     <div ng-message="required">Your name is required.</div>
                 </div>
             </md-input-container>

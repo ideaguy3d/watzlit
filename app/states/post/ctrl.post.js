@@ -12,25 +12,25 @@ angular.module('edhubJobsApp').controller('PostJobCtrl', ['$rootScope', 'edhubJo
         vm.edhubAuthUser = !!edhubAuthService.getAuthUser();
         vm.edhubAuthUser = edhubAuthService.getAuthUser();
 
+        //-- data model(s):
+        vm.organization = {
+            orgName: '',
+            zipCode: '',
+            email: '',
+            aboutTheOrganization: '',
+            name: '',
+            password: ''
+        };
+
         $rootScope.$on("edhub-event-auth-user", function (e, data) {
             vm.edhubAuthUser = data.haveAuthUser;
             vm.edhubAuthUser = edhubAuthService.getAuthUser();
         });
 
         $rootScope.$on("edhub-list-org-signup", function (e, data) {
-            edhubJobPostService.listOrg(vm.organization, data.orgId);
-            console.log("edhub - in $rootScope.$on(\"edhub-list-org-signup\"), hopefully org posted");
+            edhubJobPostService.listOrganization(vm.organization, data.orgId);
+            console.log("edhub - in $rootScope.$on('edhub-list-org-signup'), hopefully org posted");
         });
-
-        //-- data model(s):
-        vm.organization = {
-            organizationName: '',
-            zipCode: '',
-            email: '',
-            aboutTheOrganization: '',
-            repName: '',
-            password: ''
-        };
 
         vm.setFormScope = function (scope) {
             console.log("jha - form scope has been set, scope =");

@@ -36,14 +36,16 @@
         });
 
         authApi = {
-            login: function (user) {
-                console.log("edhub - login() factory user =");
-                console.log(user);
+            login: function (user, info) {
                 auth.$signInWithEmailAndPassword(user.email, user.password)
-                    .then(function (user) {
-                        console.log("edhub - user successfully signed in");
-                        console.log(user);
-                        $location.path('/');
+                    .then(function (authUser) {
+                        // console.log("edhub - user successfully signed in");
+                        // console.log(authUser);
+                        if(!!info.path) {
+                            $location.path('/'+info.path);
+                        } else {
+                            $location.path('/');
+                        }
                     })
                     .catch(function (error) {
                         console.error("edhub - There was an error =");
@@ -57,7 +59,7 @@
             requireAuth: function () {
                 return auth.requireSignIn();
             },
-            signup: function (user) {
+            signup: function (user, info) {
                 auth.$createUserWithEmailAndPassword(user.email, user.password)
                     .then(function (regUser) {
                         orgRef.child(regUser.uid).set({
@@ -68,7 +70,14 @@
                             repName: user.name
                         });
                         $rootScope.rootMessage = "Thanks for registering " + user.name;
-                        authApi.login(user);
+                        if(info.listOrg) {
+                            console.log("broadcasting 'edhub-list-org-signup'");
+                            $rootScope.$broadcast("edhub-list-org-signup", {
+                                orgId: regUser.uid
+                            });
+                        }
+
+                        authApi.login(user, info);
                     })
                     .catch(function (error) {
                         console.error("edhub - There was an error =");

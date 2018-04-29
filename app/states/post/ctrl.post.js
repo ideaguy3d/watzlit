@@ -10,9 +10,16 @@ angular.module('edhubJobsApp').controller('PostJobCtrl', ['$rootScope', 'edhubJo
         vm.progressMessage = "Your Progress";
         vm.formScope = {};
         vm.edhubAuthUser = !!edhubAuthService.getAuthUser();
+        vm.edhubAuthUser = edhubAuthService.getAuthUser();
 
         $rootScope.$on("edhub-event-auth-user", function (e, data) {
             vm.edhubAuthUser = data.haveAuthUser;
+            vm.edhubAuthUser = edhubAuthService.getAuthUser();
+        });
+
+        $rootScope.$on("edhub-list-org-signup", function (e, data) {
+            edhubJobPostService.listOrg(vm.organization, data.orgId);
+            console.log("edhub - in $rootScope.$on(\"edhub-list-org-signup\"), hopefully org posted");
         });
 
         //-- data model(s):
@@ -31,8 +38,8 @@ angular.module('edhubJobsApp').controller('PostJobCtrl', ['$rootScope', 'edhubJo
             vm.formScope = scope;
         };
 
-        vm.listOrg = function(){
-            if(vm.edhubAuthUser) {
+        vm.listOrg = function () {
+            if (vm.edhubAuthUser) {
                 listOrgAuth();
             } else {
                 listOrgUnauth();
@@ -54,7 +61,9 @@ angular.module('edhubJobsApp').controller('PostJobCtrl', ['$rootScope', 'edhubJo
         }
 
         function listOrgUnauth() {
-
+            edhubAuthService.signup(vm.organization, {listOrg: true, path: ''});
+            vm.edhubAuthUser = edhubAuthService.getAuthUser();
+            console.log("edhub - listOrgUnauth() auth user id = " + vm.edhubAuthUser.$id);
         }
     }
 ]);

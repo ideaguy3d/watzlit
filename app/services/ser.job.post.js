@@ -18,13 +18,13 @@
             return $firebaseArray(qJobPostingsLimitToOrderByDate);
         };
 
-        var listOrganization = function (orgData) {
+        var listOrganization = function (orgData, orgId) {
             var signupInfo = {
                 email: orgData.email,
                 pw: orgData.pw ? orgData.pw : null
             };
-            var orgId = edhubAuthService.signup(signupInfo);
-            return $firebaseArray(orgId).$add(orgData).then(function (res) {
+            // var orgId = edhubAuthService.signup(signupInfo);
+            return $firebaseArray(refJobPostings.child(orgId)).$add(orgData).then(function (res) {
 
             });
         };

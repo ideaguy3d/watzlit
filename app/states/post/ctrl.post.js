@@ -3,7 +3,7 @@
  */
 
 
-(function(){
+(function () {
     "use strict";
 
 
@@ -12,7 +12,8 @@
         PostClass
     ]);
 
-    function PostClass ($rootScope, edhubJobPostService, $location, edhubAuthService, eOrgListFact) {
+    function PostClass($rootScope, edhubJobPostService, $location, edhubAuthService, eOrgListFact) {
+
         const vm = this;
         vm.progressMessage = "Your Progress";
         vm.formScope = {};
@@ -29,16 +30,20 @@
             password: ''
         };
 
-        /* A user has either signup/login or logged out */
+        /* A user has either "signup/login" or logged out */
         $rootScope.$on("edhub-event-auth-user", function (e, data) {
             vm.edhubAuthUser = data.haveAuthUser;
             vm.edhubAuthUserData = edhubAuthService.getAuthUser();
         });
 
-        /* A user has listed their organization without login/signup */
+        /* A user has listed their organization without "login/signup" */
         $rootScope.$on("edhub-list-unauth-org-signup", function (e, data) {
-            eOrgListFact.listOrg(vm.organization, data.orgId);
-            console.log("edhub - in $rootScope.$on('edhub-list-org-signup'), hopefully org posted");
+            var jProVal = "";
+            // to get "node.key" & "node.parent.key"
+            eOrgListFact.listOrg(vm.organization, data.orgId).then(function (res) {
+                jProVal = res; // thisNode.key or thisNode.parent.key (to ascend up if need be)
+                //console.log("edhub - in $rootScope.$on('edhub-list-org-signup'), jProVal =", jProVal);
+            });
         });
 
         vm.setFormScope = function (scope) {

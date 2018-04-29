@@ -15,12 +15,9 @@
 
         function listOrg(orgInfo, orgId) {
             // TODO: seriously figure out / practice correctly returning this
-            var zRes = $firebaseArray(orgListingsRef.child(orgId)).$add(orgInfo).then(function (res) {
-                return res;
+            return $firebaseArray(orgListingsRef.child(orgId)).$add(orgInfo).then(function (ref) {
+                return ref;
             });
-            console.log("edhub - zRes = ");
-            console.log(zRes);
-            return zRes;
         }
 
         return {

@@ -28,6 +28,7 @@
         };
 
         vm.applyToOrg = function () {
+            vm.applyToOrgDataModel.timestamp = firebase.database.ServerValue.TIMESTAMP;
             orgJobAppsRslv.$add(vm.applyToOrgDataModel).then(function (ref) {
                 console.log("edhub - The response from firebase: ", ref);
                 $location.url('/apply-thanks');

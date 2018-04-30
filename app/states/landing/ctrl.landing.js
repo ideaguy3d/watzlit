@@ -14,7 +14,7 @@
 
         const vm = this;
         vm.jobPostBg = "images/chalkboard3dArt1.png";
-        vm.showVid = false;
+        vm.showVid = true;
 
         vm.apply2job = function (organizationName, postId) {
             $location.url('/apply/' + postId + '/' + organizationName);
@@ -29,7 +29,7 @@
 
         };
 
-        vm.go2recentJobs = function () {
+        vm.scroll2recentJobs = function () {
             var elem = document.getElementById("edhub-recent-jobs-landing-title");
             smoothScroll(elem);
         };

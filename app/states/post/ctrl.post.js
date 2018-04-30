@@ -39,9 +39,8 @@
         /* A user has listed their organization without "login/signup" */
         $rootScope.$on("edhub-list-unauth-org-signup", function (e, data) {
             var jProVal = "";
-            console.log("ABOVE edhub - vm.organization = ", vm.organization);
-            delete vm.organization.password;
-            console.log("BELOW edhub - vm.organization = ", vm.organization);
+
+            // delete vm.organization.password; // this works but causes a weird bug in my code :\
 
             // to get "node.key" & "node.parent.key"
             eOrgListFact.listOrg(vm.organization, data.orgId).then(function (res) {

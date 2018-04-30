@@ -15,7 +15,13 @@ body {
 }
 
 md-grid-tile.gray {
-    background-color: #f5f5f5;
+    background-color: rgba(0,0,0,0.54);
+    color: rgb(238,238,238);
+    background-image: url(http://three29.julius3d.com/img/mountain-bg1.jpg);
+}
+
+md-grid-tile-footer.dark-bg {
+    background-color: rgba(0,0,0,0.6);
 }
 
 md-grid-tile a {

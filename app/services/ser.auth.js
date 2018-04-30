@@ -60,14 +60,17 @@
                 return auth.requireSignIn();
             },
             signup: function (user, info) {
+                // give 'info a default value if nothing got passed in
+                info = !!info ? info : {};
+                console.log("edhub - signup user = ", user);
                 auth.$createUserWithEmailAndPassword(user.email, user.password)
                     .then(function (regUser) {
                         orgRef.child(regUser.uid).set({
                             date: firebase.database.ServerValue.TIMESTAMP,
                             regUser: regUser.uid,
-                            orgName: user.orgName,
+                            orgName: !!user.orgName ? user.orgName : 'blank',
                             email: user.email,
-                            repName: user.name
+                            repName: !!user.name ? user.name : 'blank'
                         });
                         $rootScope.rootMessage = "Thanks for registering " + user.name;
                         if(info.listOrg) {

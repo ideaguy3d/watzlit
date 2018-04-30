@@ -13,6 +13,7 @@
 
         const vm = this;
         vm.rParams = $routeParams;
+        // data model
         vm.applyToOrgDataModel = {
             applicantName: 'Julius Maximus Romulus',
             applicantEmail: 'julius@julius3d.com',

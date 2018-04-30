@@ -79,6 +79,9 @@
                 case enumAuthBox.editProfile:
                     _editProfile();
                     break;
+                case enumAuthBox.applications:
+                    _orgApplicants();
+                    break;
                 default:
                     console.error("Something went wront w/the AuthBox actions");
             }
@@ -135,6 +138,10 @@
 
         function _editProfile() {
             console.log("in _editProfile() ! :)");
+        }
+
+        function _orgApplicants() {
+            $location.path('/applications');
         }
     }
 }());

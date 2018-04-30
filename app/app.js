@@ -94,10 +94,15 @@ angular
                     controller: 'ApplyToJobCtrl',
                     controllerAs: 'applyToJobCtrl'
                 })
+                .when('/applications', {
+                    templateUrl: 'states/org-apps/view.org-apps.html',
+                    controller: 'OrgApplicantsCtrl',
+                    controllerAs: 'orgApps'
+                })
+                // practice stuff
                 .when('/lab916', {
                     templateUrl: '/states/lab916/view.landing.html'
                 })
-                // practice stuff
                 .when('/uit1', {
                     templateUrl: 'ui-prac/uit1.html',
                     controller: 'uiPracCtrl',

@@ -13,6 +13,7 @@
 
         const orgListingsRef = firebase.database().ref('orgListings');
         const orgFeedRef = firebase.database().ref('orgFeed');
+        const orgApplicantsRef = firebase.database().ref('orgApplicants');
 
         function listOrg(orgInfo, orgId) {
             return $firebaseArray(orgListingsRef.child(orgId)).$add(orgInfo).then(function (ref) {
@@ -33,10 +34,15 @@
             return $firebaseArray(qOrderLimit);
         }
 
+        function getOrgApplicants(edhubUserId) {
+            return $firebaseArray(orgApplicantsRef.child(edhubUserId));
+        }
+
         return {
             listOrg: listOrg,
             postToOrgFeed: postToOrgFeed,
-            readFromOrgFeed: readFromOrgFeed
+            readFromOrgFeed: readFromOrgFeed,
+            getOrgApplicants: getOrgApplicants
         };
 
     }

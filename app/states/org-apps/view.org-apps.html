@@ -1,0 +1,13 @@
+<!-- ctrl=OrgApplicantsCtrl as orgApps -->
+<div>
+    <br><br><br>
+    <h1>Your Applicants</h1>
+    <ul>
+        <li ng-repeat="a in orgApps.applicants">
+            <h4>Applicant Info</h4>
+            <p>{{a.email}}</p>
+            <p>{{a.applicantCover}}</p>
+            <p>{{a.applicantEmail}}</p>
+        </li>
+    </ul>
+</div>

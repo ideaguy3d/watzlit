@@ -21,7 +21,8 @@
             loginSignup: "Login/Signup",
             logout: "Logout",
             settings: "Settings",
-            editProfile: "Edit Profile"
+            editProfile: "Edit Profile",
+            applications: "Applications"
         };
 
         $scope.ccSetCurrentUser = function (userEmail) {
@@ -53,10 +54,11 @@
         $scope.ccItems = [
             {name: _determineAuthState(), icon: "login", direction: "bottom"},
             {name: enumAuthBox.editProfile, icon: "edit", direction: "top"},
-            {name: enumAuthBox.settings, icon: "settings", direction: "bottom"}
+            {name: enumAuthBox.settings, icon: "settings", direction: "bottom"},
+            {name: enumAuthBox.applications, icon: "view_list", direction: "top"}
         ];
 
-        // for md-icon
+        // for md-icon, NOT Currently Being Used!!
         $scope.ccCustomIcons = [
             {name: "Login", icon: "img/icons/twitter.svg", direction: "bottom"},
             {name: "Edit Profile", icon: "img/icons/facebook.svg", direction: "top"},

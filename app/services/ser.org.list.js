@@ -28,9 +28,15 @@
             });
         }
 
+        function readFromOrgFeed(limit, orderFeedBy) {
+            var qOrderLimit = orgFeedRef.orderByChild(orderFeedBy).limitToLast(limit);
+            return $firebaseArray(qOrderLimit);
+        }
+
         return {
             listOrg: listOrg,
-            postToOrgFeed: postToOrgFeed
+            postToOrgFeed: postToOrgFeed,
+            readFromOrgFeed: readFromOrgFeed
         };
 
     }

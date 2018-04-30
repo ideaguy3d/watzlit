@@ -6,10 +6,11 @@
     "use strict";
 
     angular.module('edhubJobsApp').controller('AuthCtrl', ['$scope', 'edhubAuthService',
-        '$location', AuthClass
+        '$location', 'unauthApplyRslv',
+        AuthClass
     ]);
 
-    function AuthClass($scope, edhubAuthService, $location) {
+    function AuthClass($scope, edhubAuthService, $location, unauthApplyRslv) {
         const vm = this;
         vm.email = "";
         vm.pw = "";
@@ -17,6 +18,7 @@
         vm.name = "";
         vm.orgName = "";
         vm.showProgress = false;
+        vm.edhubStatusMessage = unauthApplyRslv;
 
         vm.authSignup = function () {
             const orgInfo = {
@@ -42,10 +44,10 @@
             const orgInfo = {
                 email: vm.email,
                 password: vm.pw,
-                orgName: vm.orgName !== "" ? vm.orgName : "no orgName input field yet :/",
+                orgName: vm.orgName !== "" ? vm.orgName : "profile",
                 name: vm.name !== "" ? vm.name : "no name given"
             };
-            edhubAuthService.login(orgInfo);
+            edhubAuthService.login(orgInfo, {path: 'user/'+orgInfo.orgName});
         };
     }
 }());

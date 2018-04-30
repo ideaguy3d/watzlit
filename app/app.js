@@ -14,21 +14,51 @@ angular
     .config(['$routeProvider', '$locationProvider',
         function ($routeProvider) {
             $routeProvider
+                // 1
                 .when('/', {
                     templateUrl: 'states/landing/view.landing.html',
                     controller: 'LandingCtrl',
                     controllerAs: 'landingCtrl'
                 })
+                // 2
                 .when('/signup', {
-                    url: '/signup',
                     templateUrl: 'states/auth/view.signup.html',
                     controller: 'AuthCtrl',
-                    controllerAs: 'signup'
+                    controllerAs: 'signup',
+                    resolve: {
+                        unauthApplyRslv: function($route){
+                            // sta = Signup To Apply
+                            return $route.current.params.status === "sta"
+                                ? "Hi ^_^/ Please signup/login before applying"
+                                : null;
+                        }
+                    }
+                })
+                .when('/signup/:status', {
+                    templateUrl: 'states/auth/view.signup.html',
+                    controller: 'AuthCtrl',
+                    controllerAs: 'signup',
+                    resolve: {
+                        unauthApplyRslv: function($route){
+                            // sta = Signup To Apply
+                            return $route.current.params.status === "sta"
+                                ? "Hi ^_^/ Please signup/login before applying"
+                                : null;
+                        }
+                    }
                 })
                 .when('/login', {
                     templateUrl: 'states/auth/view.login.html',
                     controller: 'AuthCtrl',
-                    controllerAs: 'login'
+                    controllerAs: 'login',
+                    resolve: {
+                        unauthApplyRslv: function($route){
+                            // sta = Signup To Apply
+                            return $route.current.params.status === "sta"
+                                ? "Hi ^_^/ Please signup/login before applying"
+                                : null;
+                        }
+                    }
                 })
                 .when('/user-auth-logout/logout-page', {
                     templateUrl: 'states/auth/view.logout.html'

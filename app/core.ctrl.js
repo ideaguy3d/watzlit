@@ -54,8 +54,8 @@
         $scope.ccItems = [
             {name: _determineAuthState(), icon: "login", direction: "bottom"},
             {name: enumAuthBox.editProfile, icon: "edit", direction: "top"},
-            {name: enumAuthBox.settings, icon: "settings", direction: "bottom"},
-            {name: enumAuthBox.applications, icon: "view_list", direction: "top"}
+            //{name: enumAuthBox.settings, icon: "settings", direction: "bottom"},
+            {name: enumAuthBox.applications, icon: "view_list", direction: "bottom"}
         ];
 
         // for md-icon, NOT Currently Being Used!!

@@ -27,10 +27,10 @@
         };
 
         vm.applyToOrg = function () {
-            orgJobAppsRslv.$add(vm.applyToOrgDataModel).then(function(ref){
+            orgJobAppsRslv.$add(vm.applyToOrgDataModel).then(function (ref) {
                 console.log("edhub - The response from firebase: ", ref);
                 $location.url('/apply-thanks');
-            }).catch(function(err){
+            }).catch(function (err) {
                 console.log("There was an error submitting applicant data to organization:");
                 console.log(err);
             });

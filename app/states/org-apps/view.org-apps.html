@@ -2,12 +2,31 @@
 <div>
     <br><br><br>
     <h1>Your Applicants</h1>
-    <ul>
-        <li ng-repeat="a in orgApps.applicants">
-            <h4>Applicant Info</h4>
-            <p>{{a.email}}</p>
-            <p>{{a.applicantCover}}</p>
-            <p>{{a.applicantEmail}}</p>
-        </li>
-    </ul>
+
+    <!-- applicants grid -->
+    <md-grid-list md-cols-xs="1" md-cols-md="2" md-cols-gt-md="3"
+                  md-row-height="2:2" md-row-height-gt-md="3:3"
+                  md-gutter="12px" md-gutter-gt-sm="8px">
+
+        <md-grid-tile ng-repeat="a in orgApps.applicants" class="gray">
+            <div layout="column" layout-align="start start" layout-margin>
+                <div flex>
+                    <h2 class="edhub-applicant-linkedin-link">
+                        <a ng-href="{{a.applicantLinkedin}}" target="_blank">LinkedIn</a>
+                    </h2>
+                </div>
+                <div flex-xs="100" flex-sm="80" flex-gt-sm="60">
+                    <p><b>Cover:</b></p>
+                    <p>{{a.applicantCover}}</p>
+                    <p><b>Email:</b></p>
+                    <p>{{a.applicantEmail}}</p>
+                </div>
+            </div>
+
+            <md-grid-tile-footer>
+                <h3>{{a.applicantName}}</h3>
+            </md-grid-tile-footer>
+        </md-grid-tile>
+
+    </md-grid-list>
 </div>

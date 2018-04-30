@@ -14,13 +14,13 @@
         const refJobPostings = firebase.database().ref('jobPostings');
         const refOrgApplicants = firebase.database().ref('orgApplicants');
 
-        var jobPostingsLimitTo = function (limit) {
+        function jobPostingsLimitTo(limit) {
             const qJobPostingsLimitToOrderByDate =
                 refJobPostings.orderByChild("timeStamp").limitToLast(limit);
             return $firebaseArray(qJobPostingsLimitToOrderByDate);
-        };
+        }
 
-        var listOrganization = function (orgData, orgId) {
+        function listOrganization(orgData, orgId) {
             /* - old attempt to signup from with in this factory rather than from the controllers
              var signupInfo = {
                 email: orgData.email,
@@ -30,14 +30,14 @@
             */
 
             // TODO: seriously figure out / practice correctly returning this
-            return $firebaseArray(refJobPostings.child(orgId)).$add(orgData).then(function (res) {
-
+            return $firebaseArray(refJobPostings.child(orgId)).$add(orgData).then(function (ref) {
+                return ref;
             });
-        };
+        }
 
-        var forOrg = function (orgId) {
+        function forOrg(orgId) {
             return $firebaseArray(refOrgApplicants.child(orgId));
-        };
+        }
 
         return {
             jobPostings: $firebaseArray(refJobPostings),

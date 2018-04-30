@@ -52,8 +52,6 @@ angular
                     controllerAs: 'applyToOrgCtrl',
                     resolve: {
                         orgJobAppsRslv: function($route, edhubJobPostService){
-                            console.log("$route.current = ");
-                            console.log($route.current);
                             return edhubJobPostService.forOrg($route.current.params.orgId).$loaded();
                         }
                     }
@@ -62,7 +60,7 @@ angular
                     templateUrl: 'states/apply/view.thanks.html'
                 })
                 .when('/apply-job/:orgName/:jobId', {
-                    templateUrl: 'states/apply/view.apply.org.job.html',
+                    templateUrl: 'states/apply/view.apply.job-org.html',
                     controller: 'ApplyToJobCtrl',
                     controllerAs: 'applyToJobCtrl'
                 })

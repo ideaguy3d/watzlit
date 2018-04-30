@@ -10,6 +10,7 @@
     app.controller('ApplyToOrgCtrl', ['orgJobAppsRslv', '$routeParams', '$location', ApplyToOrganizationClass]);
 
     function ApplyToOrganizationClass(orgJobAppsRslv, $routeParams, $location) {
+
         const vm = this;
         vm.rParams = $routeParams;
         vm.applyToOrgDataModel = {
@@ -26,9 +27,8 @@
         };
 
         vm.applyToOrg = function () {
-            orgJobAppsRslv.$add(vm.applyToOrgDataModel).then(function(res){
-                console.log("edhub - The response from firebase:");
-                console.log(res);
+            orgJobAppsRslv.$add(vm.applyToOrgDataModel).then(function(ref){
+                console.log("edhub - The response from firebase: ", ref);
                 $location.url('/apply-thanks');
             }).catch(function(err){
                 console.log("There was an error submitting applicant data to organization:");

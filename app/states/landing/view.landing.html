@@ -40,16 +40,20 @@
     </md-content>
     <!-- END OF: Hero Landing -->
 
-    <section layout="column" layout-align="center center" layout-padding>
+    <!-- The EdHub anim1 vid -->
+    <section ng-show="landingCtrl.showVid" layout="column" layout-align="center center" layout-padding>
+        <!--
         <iframe src="https://spark.adobe.com/video/IxtVoZ1nCN0Kc/embed" width="960" height="540" frameborder="0"
-                allowfullscreen></iframe>
+               allowfullscreen></iframe>
+         -->
     </section>
 
+    <!-- Recent Jobs Title -->
     <md-toolbar id="edhub-recent-jobs-landing-title" class="md-padding edhub-text-center">
         <h2>Recent Job Posting</h2>
     </md-toolbar>
 
-    <!-- START: Recent Job Posts -->
+    <!-- START: Recent Job Posts LOOP -->
     <md-content class="md-padding" layout-xs="column" layout="row" layout-align="center center">
         <div flex-xs flex-gt-xs="50" layout="column">
             <!-- In-card mixed Actions CARD -->

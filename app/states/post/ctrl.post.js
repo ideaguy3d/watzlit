@@ -20,7 +20,7 @@
         vm.edhubAuthUser = !!edhubAuthService.getAuthUser();
         vm.edhubAuthUser = edhubAuthService.getAuthUser();
 
-        //-- data model(s):
+        //-- Data Model:
         vm.organization = {
             orgName: '',
             zipCode: '',
@@ -39,11 +39,18 @@
         /* A user has listed their organization without "login/signup" */
         $rootScope.$on("edhub-list-unauth-org-signup", function (e, data) {
             var jProVal = "";
+            console.log("ABOVE edhub - vm.organization = ", vm.organization);
+            delete vm.organization.password;
+            console.log("BELOW edhub - vm.organization = ", vm.organization);
+
             // to get "node.key" & "node.parent.key"
             eOrgListFact.listOrg(vm.organization, data.orgId).then(function (res) {
-                jProVal = res; // thisNode.key or thisNode.parent.key (to ascend up if need be)
-                //console.log("edhub - in $rootScope.$on('edhub-list-org-signup'), jProVal =", jProVal);
+                jProVal = res; // thisNode.key or thisNode.parent.key (to ascend upward if need be)
+                //console.log("edhub - jProVal =", jProVal);
             });
+
+            // now post to the organization feed so orgs can be easily looped
+            eOrgListFact.postToOrgFeed(vm.organization, data.orgId);
         });
 
         vm.setFormScope = function (scope) {

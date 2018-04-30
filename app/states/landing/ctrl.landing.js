@@ -7,8 +7,10 @@
 
     angular.module('edhubJobsApp').controller('LandingCtrl', ['edhubJobPostService', '$location', 'smoothScroll',
         function (edhubJobPostService, $location, smoothScroll) {
+
             const vm = this;
             vm.jobPostBg = "images/chalkboard3dArt1.png";
+            vm.showVid = false;
 
             vm.apply2job = function (organizationName, postId) {
                 $location.url('/apply/'+postId+'/'+organizationName);

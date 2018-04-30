@@ -12,16 +12,25 @@
     function OrgListClass($rootScope, $firebaseArray) {
 
         const orgListingsRef = firebase.database().ref('orgListings');
+        const orgFeedRef = firebase.database().ref('orgFeed');
 
         function listOrg(orgInfo, orgId) {
-            // TODO: seriously figure out / practice correctly returning this
             return $firebaseArray(orgListingsRef.child(orgId)).$add(orgInfo).then(function (ref) {
                 return ref;
             });
         }
 
+        function postToOrgFeed(orgInfo, orgId) {
+            orgInfo.timestamp = firebase.database.ServerValue.TIMESTAMP;
+            orgInfo.orgId = orgId;
+            return $firebaseArray(orgFeedRef).$add(orgInfo).then(function (refNode) {
+                return refNode;
+            });
+        }
+
         return {
-            listOrg: listOrg
+            listOrg: listOrg,
+            postToOrgFeed: postToOrgFeed
         };
 
     }

@@ -1,14 +1,14 @@
 <!-- ctrl=AuthCtrl as signup -->
 <div>
     <br><br><br>
-    <div layout="column" layout-align="center center">
+    <div layout="column" layout-align="center center" layout-padding>
         <h1>Join EdHub.co</h1>
         <p>EdHub.co is The Hub for any type of job in education. Whether you're
             a teacher, admin, or support... EdHub has your covered!</p>
         <h2 class="edhub-text-center"><strong>{{signup.edhubStatusMessage}}</strong></h2>
     </div>
 
-    <div layout="column" layout-gt-sm="row" layout-align="center center" layout-padding>
+    <div layout="column" layout-gt-xs="row" layout-align="center center" layout-padding layout-wrap>
         <!-- Left side, "sales pitch" -->
         <div flex="nogrow">
             <div layout="column" layout-align="center center">
@@ -16,8 +16,8 @@
             </div>
         </div>
         <!-- Right side, input form -->
-        <div flex>
-            <form flex name="userForm" ng-submit="signup.authSignup()" class="md-whiteframe-8dp">
+        <div id="edhub-signup-form" flex>
+            <form name="userForm" ng-submit="signup.authSignup()" class="md-whiteframe-8dp">
                 <div layout="column" layout-padding>
                     <p ng-class="{'edhub-general-error': rootAuthError}"><strong>{{rootAuthError}}</strong></p>
                     <h2 ng-if="signup.error" class="edhub-general-error">

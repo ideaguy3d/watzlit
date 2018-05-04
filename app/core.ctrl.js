@@ -50,12 +50,12 @@
             }
         });
 
-        // for ng-md-icon
+        // for ng-md-icon, This is what is being used.
         $scope.ccItems = [
-            {name: _determineAuthState(), icon: "login", direction: "bottom"},
-            {name: enumAuthBox.editProfile, icon: "edit", direction: "top"},
+            {name: _determineAuthState(), icon: "login", direction: "left"},
+            {name: enumAuthBox.editProfile, icon: "edit", direction: "left"},
             //{name: enumAuthBox.settings, icon: "settings", direction: "bottom"},
-            {name: enumAuthBox.applications, icon: "view_list", direction: "bottom"}
+            {name: enumAuthBox.applications, icon: "view_list", direction: "left"}
         ];
 
         // for md-icon, NOT Currently Being Used!!

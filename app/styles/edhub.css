@@ -36,6 +36,10 @@ md-grid-tile a {
     text-decoration: none;
 }
 
+.edhub-auth-error {
+    color: indianred;
+}
+
 /**
     -- edhub anim prac --
 **/

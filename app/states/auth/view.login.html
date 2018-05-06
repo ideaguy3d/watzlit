@@ -1,12 +1,11 @@
 <!-- ctrl=AuthCtrl as login -->
-<div layout="column">
-    <br><br><br>
-    <p class="edhub-text-center"><strong>{{rootAuthError}}</strong></p>
-    <form name="loginForm" ng-submit="login.userLogin()">
-        <div layout="column" layout-padding>
+<div layout="row" layout-align="center center" layout-padding layout-wrap class="edhub-view-mtop">
+    <form flex="grow" name="loginForm" ng-submit="login.userLogin()">
+        <div layout="column">
             <h1>Welcome Back</h1>
-            <div layout-gt-sm="row">
-                <md-input-container flex-gt-sm>
+            <p class="edhub-text-center" ng-class="{'edhub-general-error': rootAuthError}"><strong>{{rootAuthError}}</strong></p>
+            <div layout-gt-xs="row">
+                <md-input-container flex-gt-xs>
                     <label>Email</label>
                     <input name="userEmail" type="email" ng-model="login.email" required>
                     <div ng-messages="loginForm.userEmail.$error">
@@ -14,7 +13,7 @@
                     </div>
                     <!--<p>email: {{login.email}}</p>-->
                 </md-input-container>
-                <md-input-container flex-gt-sm>
+                <md-input-container flex-gt-xs>
                     <label>Password</label>
                     <input name="userPass" type="password" ng-model="login.pw" required>
                     <div ng-messages="loginForm.userPass.$error">

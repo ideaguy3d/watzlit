@@ -14,6 +14,10 @@ body {
     height: 70vh;
 }
 
+.edhub-view-mtop {
+    margin: 100px;
+}
+
 @media screen and (max-width: 600px) {
     #edhub-signup-form {
         width: 390px;

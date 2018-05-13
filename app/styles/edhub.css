@@ -714,7 +714,7 @@ AuthBox style rules
 }
 
 /**
- #anim-link:hover + #viewport > #cube {
+#anim-link:hover + #viewport > #cube {
     animation: Rotate 5s 1;
 }
 

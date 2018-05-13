@@ -22,6 +22,19 @@ angular
                 })
                 // 2
                 .when('/signup', {
+                    templateUrl: 'states/auth/view.tab.join.html',
+                    controller: 'AuthCtrl',
+                    controllerAs: 'signup',
+                    resolve: {
+                        unauthApplyRslv: function($route){
+                            // sta = Signup To Apply
+                            return $route.current.params.status === "sta"
+                                ? "Hi ^_^/ Please signup/login before applying"
+                                : null;
+                        }
+                    }
+                })
+                .when('/signup2', {
                     templateUrl: 'states/auth/view.signup.html',
                     controller: 'AuthCtrl',
                     controllerAs: 'signup',

@@ -13,6 +13,7 @@
 
         const refJobPostings = firebase.database().ref('jobPostings');
         const refOrgApplicants = firebase.database().ref('orgApplicants');
+        const refApplicantJobApps = firebase.database().ref('applicantJobApps');
 
         function jobPostingsLimitTo(limit) {
             const qJobPostingsLimitToOrderByDate =
@@ -37,6 +38,14 @@
 
         function forOrg(orgId) {
             return $firebaseArray(refOrgApplicants.child(orgId));
+        }
+
+        function forApplicants(applicantId) {
+
+        }
+        
+        function applicantJobApplication() {
+
         }
 
         return {

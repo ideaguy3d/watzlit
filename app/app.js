@@ -14,7 +14,7 @@ angular
     .config(['$routeProvider', '$locationProvider',
         function ($routeProvider) {
             $routeProvider
-                // 1
+            // 1
                 .when('/', {
                     templateUrl: 'states/landing/view.landing.html',
                     controller: 'LandingCtrl',
@@ -26,7 +26,7 @@ angular
                     controller: 'AuthCtrl',
                     controllerAs: 'signup',
                     resolve: {
-                        unauthApplyRslv: function($route){
+                        unauthApplyRslv: function ($route) {
                             // sta = Signup To Apply
                             return $route.current.params.status === "sta"
                                 ? "Hi ^_^/ Please signup/login before applying"
@@ -39,7 +39,7 @@ angular
                     controller: 'AuthCtrl',
                     controllerAs: 'signup',
                     resolve: {
-                        unauthApplyRslv: function($route){
+                        unauthApplyRslv: function ($route) {
                             // sta = Signup To Apply
                             return $route.current.params.status === "sta"
                                 ? "Hi ^_^/ Please signup/login before applying"
@@ -52,7 +52,7 @@ angular
                     controller: 'AuthCtrl',
                     controllerAs: 'signup',
                     resolve: {
-                        unauthApplyRslv: function($route){
+                        unauthApplyRslv: function ($route) {
                             // sta = Signup To Apply
                             return $route.current.params.status === "sta"
                                 ? "Hi ^_^/ Please signup/login before applying"
@@ -65,7 +65,7 @@ angular
                     controller: 'AuthCtrl',
                     controllerAs: 'login',
                     resolve: {
-                        unauthApplyRslv: function($route){
+                        unauthApplyRslv: function ($route) {
                             // sta = Signup To Apply
                             return $route.current.params.status === "sta"
                                 ? "Hi ^_^/ Please signup/login before applying"
@@ -94,7 +94,7 @@ angular
                     controller: 'ApplyToOrgCtrl',
                     controllerAs: 'applyToOrgCtrl',
                     resolve: {
-                        orgJobAppsRslv: function($route, edhubJobPostService){
+                        orgJobAppsRslv: function ($route, edhubJobPostService) {
                             return edhubJobPostService.forOrg($route.current.params.orgId).$loaded();
                         }
                     }

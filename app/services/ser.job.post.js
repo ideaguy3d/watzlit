@@ -41,7 +41,7 @@
         }
 
         function forApplicants(applicantId) {
-
+            
         }
         
         function applicantJobApplication() {

@@ -22,7 +22,6 @@ module.exports = function (grunt) {
 
     // Define the configuration for all the tasks
     grunt.initConfig({
-
         // Project settings
         yeoman: appConfig,
 
@@ -67,7 +66,7 @@ module.exports = function (grunt) {
             options: {
                 port: 4000,
                 // Change this to '0.0.0.0' to access the server from outside.
-                hostname: '0.0.0.0',
+                hostname: 'localhost',
                 livereload: 4002
             },
             livereload: {
@@ -229,7 +228,7 @@ module.exports = function (grunt) {
             }
         },
 
-        // Performs rewrites based on filerev and the useminPrepare configuration
+        // Performs rewrites based on file revision and the useminPrepare configuration
         usemin: {
             html: ['<%= yeoman.dist %>/{,*/}*.html'],
             css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
@@ -290,6 +289,7 @@ module.exports = function (grunt) {
             }
         },
 
+        // minify the HTML
         htmlmin: {
             dist: {
                 options: {
@@ -359,17 +359,9 @@ module.exports = function (grunt) {
 
         // Run some tasks in parallel to speed up the build process
         concurrent: {
-            server: [
-                'copy:styles'
-            ],
-            test: [
-                'copy:styles'
-            ],
-            dist: [
-                'copy:styles',
-                'imagemin',
-                'svgmin'
-            ]
+            server: ['copy:styles'],
+            test: ['copy:styles'],
+            dist: ['copy:styles', 'imagemin', 'svgmin']
         },
 
         // Test settings

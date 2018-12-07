@@ -14,7 +14,7 @@ angular
     .config(['$routeProvider', '$locationProvider',
         function ($routeProvider) {
             $routeProvider
-            // 1
+                // 1
                 .when('/', {
                     templateUrl: 'states/landing/view.landing.html',
                     controller: 'LandingCtrl',
@@ -34,6 +34,7 @@ angular
                         }
                     }
                 })
+                // 3
                 .when('/signup2', {
                     templateUrl: 'states/auth/view.signup.html',
                     controller: 'AuthCtrl',
@@ -47,6 +48,7 @@ angular
                         }
                     }
                 })
+                // 4
                 .when('/signup/:status', {
                     templateUrl: 'states/auth/view.signup.html',
                     controller: 'AuthCtrl',
@@ -60,6 +62,7 @@ angular
                         }
                     }
                 })
+                // 5
                 .when('/login', {
                     templateUrl: 'states/auth/view.login.html',
                     controller: 'AuthCtrl',
@@ -73,22 +76,27 @@ angular
                         }
                     }
                 })
+                // 6
                 .when('/user-auth-logout/logout-page', {
                     templateUrl: 'states/auth/view.logout.html'
                 })
+                // 7
                 .when('/profile/:user', {
                     templateUrl: 'states/auth/view.profile.html'
                 })
+                // 8
                 .when('/post', {
                     templateUrl: 'states/post/view.post.html',
                     controller: 'PostCtrl',
                     controllerAs: 'postJobCtrl'
                 })
+                // 9
                 .when('/apply', {
                     templateUrl: 'states/apply/view.apply.html',
                     controller: 'ApplyToJobCtrl',
                     controllerAs: 'applyToJobCtrl'
                 })
+                // 10
                 .when('/apply/:orgId/:orgName', {
                     templateUrl: 'states/apply/view.apply.org.html',
                     controller: 'ApplyToOrgCtrl',
@@ -99,23 +107,37 @@ angular
                         }
                     }
                 })
+                .when('/view-job/:orgId/:orgName', {
+                    templateUrl: 'states/apply/view.view-job.html',
+                    controller: 'ApplyToOrgCtrl',
+                    controllerAs: 'cApplyToOrg',
+                    resolve: {
+                        orgJobAppsRslv: function($route, edhubJobPostService){
+                            return edhubJobPostService.forOrg($route.current.params.orgId).$loaded();
+                        }
+                    }
+                })
+                // 11
                 .when('/apply-thanks', {
                     templateUrl: 'states/apply/view.thanks.html'
                 })
+                // 12
                 .when('/apply-job/:orgName/:jobId', {
                     templateUrl: 'states/apply/view.apply.job-org.html',
                     controller: 'ApplyToJobCtrl',
                     controllerAs: 'applyToJobCtrl'
                 })
+                // 13
                 .when('/applications', {
                     templateUrl: 'states/org-apps/view.org-apps.html',
                     controller: 'OrgApplicantsCtrl',
                     controllerAs: 'orgApps'
                 })
-                // practice stuff
+                // 14, practice stuff
                 .when('/lab916', {
                     templateUrl: '/states/lab916/view.landing.html'
                 })
+                // 15
                 .when('/uit1', {
                     templateUrl: 'ui-prac/uit1.html',
                     controller: 'uiPracCtrl',

@@ -36,12 +36,17 @@
             });
         }
 
+        /**
+         * Get firebase node
+         * @param orgId
+         * @returns {*}
+         */
         function forOrg(orgId) {
             return $firebaseArray(refOrgApplicants.child(orgId));
         }
 
         function forApplicants(applicantId) {
-            
+
         }
         
         function applicantJobApplication() {
@@ -52,7 +57,9 @@
             jobPostings: $firebaseArray(refJobPostings),
             jobPostingsLimitTo: jobPostingsLimitTo,
             forOrg: forOrg,
-            listOrganization: listOrganization
+            listOrganization: listOrganization,
+            forApplicants: forApplicants,
+            applicantJobApplication: applicantJobApplication
         };
     }
 }());

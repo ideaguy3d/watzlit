@@ -7,10 +7,12 @@
 
     const app = angular.module('edhubJobsApp');
 
-    app.controller('ApplyToOrgCtrl', ['orgJobAppsRslv', '$routeParams', '$location', ApplyToOrganizationClass]);
+    app.controller('ApplyToOrgCtrl', [
+        'orgJobAppsRslv', '$routeParams', '$location', //'resolvedViewJobOrg',
+        ApplyToOrganizationClass
+    ]);
 
     function ApplyToOrganizationClass(orgJobAppsRslv, $routeParams, $location) {
-
         const vm = this;
         vm.rParams = $routeParams;
         // data model
@@ -26,6 +28,11 @@
             orgApplyTo: $routeParams.orgName,
             orgId: $routeParams.orgId
         };
+        vm.orgName = orgJobAppsRslv.organizationName;
+        console.log("orgJobAppsRslv data = ");
+        console.log(orgJobAppsRslv);
+
+        vm.orgImg = 'images/stanford/stanford.png';
 
         vm.applyToOrg = function () {
             vm.applyToOrgDataModel.timestamp = firebase.database.ServerValue.TIMESTAMP;

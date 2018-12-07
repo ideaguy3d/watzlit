@@ -28,7 +28,7 @@
             orgApplyTo: $routeParams.orgName,
             orgId: $routeParams.orgId
         };
-        vm.orgName = orgJobAppsRslv.organizationName;
+        vm.orgName = orgJobAppsRslv[2].$value;
         console.log("orgJobAppsRslv data = ");
         console.log(orgJobAppsRslv);
 

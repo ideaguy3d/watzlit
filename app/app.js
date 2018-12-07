@@ -113,7 +113,7 @@ angular
                     controllerAs: 'cApplyToOrg',
                     resolve: {
                         orgJobAppsRslv: function($route, edhubJobPostService){
-                            return edhubJobPostService.forOrg($route.current.params.orgId).$loaded();
+                            return edhubJobPostService.getOrganization($route.current.params.orgId).$loaded();
                         }
                     }
                 })

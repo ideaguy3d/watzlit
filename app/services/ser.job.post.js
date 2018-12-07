@@ -14,6 +14,7 @@
         const refJobPostings = firebase.database().ref('jobPostings');
         const refOrgApplicants = firebase.database().ref('orgApplicants');
         const refApplicantJobApps = firebase.database().ref('applicantJobApps');
+        const refOrganizations = firebase.database().ref('organizations');
 
         function jobPostingsLimitTo(limit) {
             const qJobPostingsLimitToOrderByDate =
@@ -45,6 +46,10 @@
             return $firebaseArray(refOrgApplicants.child(orgId));
         }
 
+        function getOrganization (orgId) {
+            return $firebaseArray(refOrganizations.child(orgId));
+        }
+
         function forApplicants(applicantId) {
 
         }
@@ -59,7 +64,8 @@
             forOrg: forOrg,
             listOrganization: listOrganization,
             forApplicants: forApplicants,
-            applicantJobApplication: applicantJobApplication
+            applicantJobApplication: applicantJobApplication,
+            getOrganization: getOrganization
         };
     }
 }());

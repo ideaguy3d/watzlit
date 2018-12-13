@@ -14,7 +14,7 @@ angular
     .config(['$routeProvider', '$locationProvider',
         function ($routeProvider) {
             $routeProvider
-                // 1
+            // 1
                 .when('/', {
                     templateUrl: 'states/landing/view.landing.html',
                     controller: 'LandingCtrl',
@@ -107,16 +107,6 @@ angular
                         }
                     }
                 })
-                .when('/view-job/:orgId/:orgName', {
-                    templateUrl: 'states/apply/view.view-job.html',
-                    controller: 'ApplyToOrgCtrl',
-                    controllerAs: 'cApplyToOrg',
-                    resolve: {
-                        orgJobAppsRslv: function($route, edhubJobPostService){
-                            return edhubJobPostService.getOrganization($route.current.params.orgId).$loaded();
-                        }
-                    }
-                })
                 // 11
                 .when('/apply-thanks', {
                     templateUrl: 'states/apply/view.thanks.html'
@@ -142,6 +132,21 @@ angular
                     templateUrl: 'ui-prac/uit1.html',
                     controller: 'uiPracCtrl',
                     controllerAs: 'ui'
+                })
+                // 16
+                .when('/view-job/:orgId/:orgName', {
+                    templateUrl: 'states/apply/view.view-job.html',
+                    controller: 'ApplyToOrgCtrl',
+                    controllerAs: 'cApplyToOrg',
+                    resolve: {
+                        orgJobAppsRslv: function ($route, edhubJobPostService) {
+                            return edhubJobPostService.getOrganization($route.current.params.orgId).$loaded();
+                        }
+                    }
+                })
+                // 17
+                .when('/julius', {
+                    templateUrl: 'states'
                 })
                 // go to base url
                 .otherwise('/');

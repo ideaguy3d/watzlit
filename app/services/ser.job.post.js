@@ -50,6 +50,10 @@
             return $firebaseArray(refOrganizations.child(orgId));
         }
 
+        function returnAllOrganizations () {
+            return $firebaseArray(refOrganizations);
+        }
+
         function forApplicants(applicantId) {
 
         }
@@ -65,7 +69,8 @@
             listOrganization: listOrganization,
             forApplicants: forApplicants,
             applicantJobApplication: applicantJobApplication,
-            getOrganization: getOrganization
+            getOrganization: getOrganization,
+            returnAllOrganizations: returnAllOrganizations
         };
     }
 }());

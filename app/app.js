@@ -146,7 +146,12 @@ angular
                 })
                 // 17
                 .when('/julius', {
-                    templateUrl: 'states'
+                    templateUrl: 'states/julius/view.julius.html',
+                    controller: 'JuliusCtrl',
+                    controllerAs: 'cJulius',
+                    resolve: {
+
+                    }
                 })
                 // go to base url
                 .otherwise('/');

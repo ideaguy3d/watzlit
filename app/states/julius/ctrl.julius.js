@@ -15,16 +15,22 @@
         vm.deleteOrg = deleteOrg;
 
         function deleteOrg() {
-            console.log("delete org button pressed.");
-            let allOrgnanizations = edhubJobPostService.returnAllOrganizations();
-           edhubJobPostService.returnAllOrganizations().$remove(2).then(function(res){
-               console.log("The item that got deleted = ");
-               console.log(res);
-            });
+            // edhubJobPostService.returnAllOrganizations().$remove(1).then(function (res) {
+            //     console.log("The item that got deleted = ");
+            //     console.log(res);
+            // });
+
+            let organizationsList = edhubJobPostService.returnAllOrganizations();
             edhubJobPostService.returnAllOrganizations().$loaded().then(function(res){
-                console.log("response from .returnAllOrgs()");
-                console.log(res);
-            })
+                let organizationItem = organizationsList[1];
+                console.log("organizationItem = ", organizationItem);
+                organizationsList.$remove(organizationItem);
+            });
+
+        }
+        
+        function deleteOrg2 () {
+            
         }
     }
 }());

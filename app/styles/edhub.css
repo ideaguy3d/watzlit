@@ -713,8 +713,7 @@ AuthBox style rules
     padding-left: 5px;
 }
 
-/**
-#anim-link:hover + #viewport > #cube {
+#anim-link-jtwo:hover + #viewport > #cube {
     animation: Rotate 5s 1;
 }
 
@@ -732,7 +731,7 @@ AuthBox style rules
         transform: rotateY(360deg);
     }
 }
-**/
+
 
 
 

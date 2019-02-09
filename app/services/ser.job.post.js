@@ -7,6 +7,7 @@
 
     angular.module('edhubJobsApp').factory('edhubJobPostService', ['$firebaseArray',
         'edhubAuthService', EdhubJobPostClass
+
     ]);
 
     function EdhubJobPostClass($firebaseArray, edhubAuthService) {
@@ -46,6 +47,7 @@
             return $firebaseArray(refOrgApplicants.child(orgId));
         }
 
+        // refOrganizations = firebase.database().ref('organizations')
         function getOrganization (orgId) {
             return $firebaseArray(refOrganizations.child(orgId));
         }

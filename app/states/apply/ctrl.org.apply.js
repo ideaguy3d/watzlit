@@ -15,22 +15,25 @@
     function ApplyToOrganizationClass(orgJobAppsRslv, $routeParams, $location) {
         const vm = this;
         vm.rParams = $routeParams;
+
         // data model
         vm.applyToOrgDataModel = {
             applicantName: 'Julius Maximus Romulus',
             applicantEmail: 'julius@julius3d.com',
             applicantLinkedin: 'https://linkedin.com/in/juliusalvarado',
             applicantCover: 'Hi ^_^/ \n' +
-            ' I\'m Julius Alvarado(:\n' +
-            '\n' +
-            ' I\'m a Web Developer / Software Engineer / Graphic & UIUX Designer\n' +
-            'and an overall Hard Working Focused and Motivated Optimistic Team Player.',
+                ' I\'m Julius Alvarado(:\n' +
+                '\n' +
+                ' I\'m a Web Developer / Software Engineer / Graphic & UIUX Designer\n' +
+                'and an overall Hard Working Focused and Motivated Optimistic Team Player.',
             orgApplyTo: $routeParams.orgName,
             orgId: $routeParams.orgId
         };
-        vm.orgName = orgJobAppsRslv[2].$value;
-        console.log("orgJobAppsRslv data = ");
-        console.log(orgJobAppsRslv);
+        // vm.orgName = orgJobAppsRslv[2].$value;
+        orgJobAppsRslv.then(function (res) {
+            console.log("orgJobAppsRslv fb res data = ");
+            console.log(res);
+        });
 
         vm.orgImg = 'images/stanford/stanford.png';
 

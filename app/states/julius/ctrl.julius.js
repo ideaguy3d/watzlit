@@ -25,7 +25,7 @@
                 let organizationItem = organizationsList[1];
                 console.log("organizationItem = ", organizationItem);
                 organizationsList.$remove(organizationItem);
-            });
+            }); 
 
         }
         

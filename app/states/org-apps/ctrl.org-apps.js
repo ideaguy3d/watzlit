@@ -11,7 +11,6 @@
     ]);
 
     function OrgApplicantsClass($rootScope, edhubAuthService, eOrgListFact) {
-
         const vm = this;
 
         /* a user has logged in or out */

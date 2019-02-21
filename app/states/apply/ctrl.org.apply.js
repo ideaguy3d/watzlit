@@ -30,9 +30,12 @@
             orgId: $routeParams.orgId
         };
         // vm.orgName = orgJobAppsRslv[2].$value;
-        orgJobAppsRslv.then(function (res) {
-            console.log("orgJobAppsRslv fb res data = ");
+        orgJobAppsRslv.$loaded().then(function (res) {
+            console.log('orgJobAppsRslv firebase res data = ');
             console.log(res);
+        }).catch(function(err){
+            console.log('There was an error ):');
+            console.log(err);
         });
 
         vm.orgImg = 'images/stanford/stanford.png';

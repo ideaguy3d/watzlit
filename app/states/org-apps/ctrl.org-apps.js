@@ -6,7 +6,8 @@
     "use strict";
 
     const app = angular.module('edhubJobsApp');
-    app.controller('OrgApplicantsCtrl', ['$rootScope', 'edhubAuthService', 'eOrgListFact',
+    app.controller('OrgApplicantsCtrl', [
+        '$rootScope', 'edhubAuthService', 'eOrgListFact',
         OrgApplicantsClass
     ]);
 

@@ -6,12 +6,11 @@
     "use strict";
 
     angular.module('edhubJobsApp').controller('LandingCtrl', [
-        'edhubJobPostService', '$location', 'smoothScroll', 'eOrgListFact', '$rootScope',
-        LandingClass
+        'edhubJobPostService', '$location', 'smoothScroll', 'eOrgListFact',
+        '$rootScope', LandingClass
     ]);
 
     function LandingClass(edhubJobPostService, $location, smoothScroll, eOrgListFact, $rootScope) {
-
         const vm = this;
         vm.jobPostBg = "images/chalkboard3dArt1.png";
         vm.showVid = true;

@@ -113,7 +113,7 @@ angular
                 .when('/applications', {
                     templateUrl: 'states/org-apps/view.org-apps.html',
                     controller: 'OrgApplicantsCtrl',
-                    controllerAs: 'orgApps'
+                    controllerAs: 'orgApps' // cOrgApplicants
                 })
                 .when('/lab916', {
                     templateUrl: '/states/lab916/view.landing.html'

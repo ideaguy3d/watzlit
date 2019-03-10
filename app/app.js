@@ -19,6 +19,11 @@ angular
                     controller: 'YCombinatorCtrl',
                     controllerAs: 'ycCtrl'
                 })
+                .when('/ycombinator/chat', {
+                    templateUrl: 'states/ycombinator/chat/view.chat.html',
+                    controller: 'ycAuthCtrl',
+                    controllerAs: 'cycAuth'
+                })
                 .when('/landing', {
                     templateUrl: 'states/landing/view.landing.html',
                     controller: 'LandingCtrl',

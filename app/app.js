@@ -24,6 +24,11 @@ angular
                     controller: 'ycAuthCtrl',
                     controllerAs: 'cycAuth'
                 })
+                .when('/ycombinator/chat/register', {
+                    templateUrl: 'states/ycombinator/chat/view.yc.register.html',
+                    controller: 'ycAuthCtrl',
+                    controllerAs: 'cycAuth'
+                })
                 .when('/landing', {
                     templateUrl: 'states/landing/view.landing.html',
                     controller: 'LandingCtrl',

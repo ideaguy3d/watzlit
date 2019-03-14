@@ -13,6 +13,13 @@
         }
     }
 
+    function YCombinatorUsersSerClass ($firebaseArray, $firebaseObject) {
+        
+        return {
+
+        };
+    }
+
     // controller class
     function YCombinatorAuthCtrlClass(ycAuthSer, $location) {
         var authCtrl = this;
@@ -53,6 +60,9 @@
     angular.module('edhubJobsApp')
         .factory('ycAuthSer', [
             '$firebaseAuth', YCombinatorAuthSerClass
+        ])
+        .factory('ycUsersSer', [
+            '$firebaseArray', '$firebaseObject', YCombinatorUsersSerClass
         ])
         .controller('ycAuthCtrl', [
             'ycAuthSer', '$location', YCombinatorAuthCtrlClass

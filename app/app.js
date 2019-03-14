@@ -27,7 +27,36 @@ angular
                 .when('/ycombinator/chat/register', {
                     templateUrl: 'states/ycombinator/chat/view.yc.register.html',
                     controller: 'ycAuthCtrl',
-                    controllerAs: 'cycAuth'
+                    controllerAs: 'cycAuth',
+                    resolve: {
+                        // no authenticated user should go to login/signup view
+                        requireNoAuth: function (ycAuthSer, $location) {
+                            return ycAuthSer.auth.$requireSignIn()
+                                .then(function (authenticatedUserResObj) {
+                                    $location.url('/chat');
+                                })
+                                // the user is not authenticated
+                                .catch(function (error) {
+                                    return "ERROR = " + error;
+                                })
+                        }
+                    }
+                })
+                .when('/ycombinator/chat/login', {
+                    templateUrl: 'states/ycombinator/chat/view.yc.login.html',
+                    controller: 'ycAuthCtrl',
+                    controllerAs: 'cycAuth',
+                    resolve: {
+                        // no authenticated user should go to login/signup view
+                        requireNoAuth: function (ycAuthSer, $location) {
+                            return ycAuthSer.auth.$requireSignIn().then(function (res) {
+                                console.log("__>> user is already authenticated");
+                                $location.url('/chat');
+                            }).catch(function (error) {
+                                return "ERROR = " + error;
+                            })
+                        }
+                    }
                 })
                 .when('/landing', {
                     templateUrl: 'states/landing/view.landing.html',

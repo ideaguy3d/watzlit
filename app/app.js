@@ -15,22 +15,22 @@ angular
         function ($routeProvider) {
             $routeProvider
                 .when('/', {
-                    templateUrl: 'states/ycombinator/view.ycombinator-landing.html',
+                    templateUrl: 'states/ycombinator/chat/view.yc-home.html',
                     controller: 'YCombinatorCtrl',
-                    controllerAs: 'ycCtrl'
+                    controllerAs: 'cycCtrl'
                 })
                 .when('/ycombinator/chat', {
-                    templateUrl: 'states/ycombinator/chat/view.chat.html',
+                    templateUrl: 'states/ycombinator/chat/view.yc-chat.html',
                     controller: 'ycAuthCtrl',
                     controllerAs: 'cycAuth'
                 })
                 .when('/ycombinator/chat/register', {
-                    templateUrl: 'states/ycombinator/chat/view.yc.register.html',
+                    templateUrl: 'states/ycombinator/chat/view.yc-register.html',
                     controller: 'ycAuthCtrl',
                     controllerAs: 'cycAuth',
                     resolve: {
                         // no authenticated user should go to login/signup view
-                        requireNoAuth: function (ycAuthSer, $location) {
+                        requireNoAuthRslv: function (ycAuthSer, $location) {
                             return ycAuthSer.auth.$requireSignIn()
                                 .then(function (authenticatedUserResObj) {
                                     $location.url('/chat');
@@ -43,18 +43,40 @@ angular
                     }
                 })
                 .when('/ycombinator/chat/login', {
-                    templateUrl: 'states/ycombinator/chat/view.yc.login.html',
+                    templateUrl: 'states/ycombinator/chat/view.yc-login.html',
                     controller: 'ycAuthCtrl',
                     controllerAs: 'cycAuth',
                     resolve: {
                         // no authenticated user should go to login/signup view
-                        requireNoAuth: function (ycAuthSer, $location) {
+                        requireNoAuthRslv: function (ycAuthSer, $location) {
                             return ycAuthSer.auth.$requireSignIn().then(function (res) {
                                 console.log("__>> user is already authenticated");
                                 $location.url('/chat');
                             }).catch(function (error) {
                                 return "ERROR = " + error;
                             })
+                        }
+                    }
+                })
+                .when('/ycombinator/profile', {
+                    templateUrl: '',
+                    controller: '',
+                    controllerAs: '',
+                    resolve: {
+                        authRslv: function ($location, ycUsersSer, ycAuthSer) {
+                            // .$requireSignIn() will have an on success cb if there is an authenticated user
+                            return ycAuthSer.auth.$requireSignIn().catch(function (error) {
+                                console.log('__>> ERROR - tried to go to profile ui state without being authenticated, err = ', error);
+                                $location.url('/ycombinator/home');
+                            });
+                        },
+                        profileRslv: function (ycUsersSer, ycAuthSer) {
+                            return ycAuthSer.auth.$requireSignIn().then(
+                                function (authUserObj) {
+                                    // CRITICAL ! CRITICAL !! CRITICAL !!! This is where to put $loaded()
+                                    return ycUsersSer.getProfile(authUserObj.uid).$loaded();
+                                }
+                            )
                         }
                     }
                 })

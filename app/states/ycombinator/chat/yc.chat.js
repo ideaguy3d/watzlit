@@ -4,7 +4,7 @@
 (function () {
     'use strict';
 
-    // data service class
+    // data service class's 
     function YCombinatorAuthSerClass($firebaseAuth) {
         var auth = $firebaseAuth();
 
@@ -13,14 +13,26 @@
         }
     }
 
-    function YCombinatorUsersSerClass ($firebaseArray, $firebaseObject) {
-        
-        return {
+    function YCombinatorUsersSerClass($firebaseArray, $firebaseObject) {
+        var refUsers = firebase.database().ref('/users');
+        var users = $firebaseArray(refUsers);
 
+        function getProfile(uid) {
+            return $firebaseObject(refUsers.child(uid));
+        }
+
+        function getDisplayName(uid) {
+            return users.$getRecord(uid).displayName;
+        }
+
+        return {
+            getProfile: getProfile,
+            getDisplayName: getDisplayName,
+            all: users
         };
     }
 
-    // controller class
+    // controller class's 
     function YCombinatorAuthCtrlClass(ycAuthSer, $location) {
         var authCtrl = this;
         authCtrl.error = '';
@@ -57,6 +69,10 @@
         }
     }
 
+    function YCombinatorProfileCtrlClass ($location, md5, authRslv, profileRslv) {
+        var profileCtrl = this;
+    }
+    
     angular.module('edhubJobsApp')
         .factory('ycAuthSer', [
             '$firebaseAuth', YCombinatorAuthSerClass
@@ -66,5 +82,9 @@
         ])
         .controller('ycAuthCtrl', [
             'ycAuthSer', '$location', YCombinatorAuthCtrlClass
-        ]);
+        ])
+        .controller('ycProfileCtrl', [
+            '$location', 'md5', 'authRslv', 'profileRslv', YCombinatorProfileCtrlClass
+        ])
+    ;
 }());

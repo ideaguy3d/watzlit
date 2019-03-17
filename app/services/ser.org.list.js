@@ -5,8 +5,8 @@
 (function () {
     "use strict";
 
-    angular.module('edhubJobsApp').factory('eOrgListFact', ['$rootScope', '$firebaseArray',
-        OrgListClass
+    angular.module('edhubJobsApp').factory('eOrgListFact', [
+        '$rootScope', '$firebaseArray', OrgListClass
     ]);
 
     function OrgListClass($rootScope, $firebaseArray) {

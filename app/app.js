@@ -59,9 +59,9 @@ angular
                     }
                 })
                 .when('/ycombinator/profile', {
-                    templateUrl: '',
-                    controller: '',
-                    controllerAs: '',
+                    templateUrl: 'states/ycombinator/chat/view.profile.html',
+                    controller: 'ycProfileCtrl',
+                    controllerAs: 'cycProfile',
                     resolve: {
                         authRslv: function ($location, ycUsersSer, ycAuthSer) {
                             // .$requireSignIn() will have an on success cb if there is an authenticated user

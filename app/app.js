@@ -76,7 +76,7 @@ angular
                                     // CRITICAL ! CRITICAL !! CRITICAL !!! This is where to put $loaded()
                                     return ycUsersSer.getProfile(authUserObj.uid).$loaded();
                                 }
-                            )
+                            );
                         }
                     }
                 })

@@ -5,7 +5,7 @@
     'use strict';
 
     // data service class's 
-    function YCombinatorAuthSerClass($firebaseAuth) {
+    function AuthSerClass($firebaseAuth) {
         var auth = $firebaseAuth();
 
         return {
@@ -13,7 +13,7 @@
         }
     }
 
-    function YCombinatorUsersSerClass($firebaseArray, $firebaseObject) {
+    function UsersSerClass($firebaseArray, $firebaseObject) {
         var refUsers = firebase.database().ref('/users');
         var users = $firebaseArray(refUsers);
 
@@ -24,16 +24,21 @@
         function getDisplayName(uid) {
             return users.$getRecord(uid).displayName;
         }
+        
+        function getGravatar (uid) {
+            return '//www.gravatar.com/avatar/' + users.$getRecord(uid).emailHash;
+        }
 
         return {
             getProfile: getProfile,
             getDisplayName: getDisplayName,
+            getGravatar: getGravatar,
             all: users
         };
     }
 
     // controller class's 
-    function YCombinatorAuthCtrlClass(ycAuthSer, $location) {
+    function AuthCtrlClass(ycAuthSer, $location) {
         var authCtrl = this;
         authCtrl.error = '';
         authCtrl.authInfo = 'The auth ctrl is wired up to the view';
@@ -69,22 +74,29 @@
         }
     }
 
-    function YCombinatorProfileCtrlClass ($location, md5, authRslv, profileRslv) {
+    function ProfileCtrlClass($location, md5, authRslv, profileRslv) {
         var profileCtrl = this;
+        // this simply returns the username of the profile
+        profileCtrl.profile = profileRslv;
+
+        profileCtrl.updateProfile = function () {
+            profileCtrl.profile.emailHash = md5.createHash(authRslv.email);
+            profileCtrl.profile.$save();
+        };
     }
-    
+
     angular.module('edhubJobsApp')
         .factory('ycAuthSer', [
-            '$firebaseAuth', YCombinatorAuthSerClass
+            '$firebaseAuth', AuthSerClass
         ])
         .factory('ycUsersSer', [
-            '$firebaseArray', '$firebaseObject', YCombinatorUsersSerClass
+            '$firebaseArray', '$firebaseObject', UsersSerClass
         ])
         .controller('ycAuthCtrl', [
-            'ycAuthSer', '$location', YCombinatorAuthCtrlClass
+            'ycAuthSer', '$location', AuthCtrlClass
         ])
         .controller('ycProfileCtrl', [
-            '$location', 'md5', 'authRslv', 'profileRslv', YCombinatorProfileCtrlClass
+            '$location', 'md5', 'authRslv', 'profileRslv', ProfileCtrlClass
         ])
     ;
 }());

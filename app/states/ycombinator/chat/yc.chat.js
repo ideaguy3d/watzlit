@@ -37,7 +37,7 @@
         };
     }
 
-    function ChannelsClass($firebaseArray) {
+    function ChannelsSerClass($firebaseArray) {
         var ref = firebase.database().ref('channels');
         var channels = $firebaseArray(ref);
         return channels;
@@ -92,17 +92,35 @@
             profileCtrl.updateProfileFeedback = 'Username saved ^_^';
             $timeout(function () {
                 profileCtrl.updateProfileFeedback = '';
-                $location.url('/ycombinator/channels'); 
+                $location.url('/ycombinator/channels');
             }, 1000);
         };
     }
 
     function ChannelsCtrlClass($location, ycAuthSer, ycUsersSer, profilesRsv, channelsRsv) {
         var channelsCtrl = this;
+        channelsCtrl.messages = null;
         channelsCtrl.profile = profilesRsv;
-        channelsCtrl.channel = channelsRsv;
+        channelsCtrl.channels = channelsRsv;
+        channelsCtrl.newChannel = {
+            name: ''
+        };
+
         channelsCtrl.getDisplayName = ycUsersSer.getDisplayName;
         channelsCtrl.getGravatar = ycUsersSer.getGravatar;
+        
+        channelsCtrl.switchChannel = function(channelId){
+            channelsCtrl.messages = 'messages for channel id =' + channelId;     
+        };
+
+        channelsCtrl.createChannel = function () {
+            channelsCtrl.channels.$add(channelsCtrl.newChannel).then(function () {
+                 channelsCtrl.newChannel = {
+                     name: ''
+                 };
+            });
+        };
+
         channelsCtrl.logout = function () {
             ycAuthSer.auth.$signOut().then(function (res) {
                 console.log('__>> Firebase Response from signing out = ', res);
@@ -120,7 +138,7 @@
             '$firebaseArray', '$firebaseObject', UsersSerClass
         ])
         .factory('ycChannelsSer', [
-            '$firebaseArray', ChannelsClass
+            '$firebaseArray', ChannelsSerClass
         ])
         // CONTROLLERS
         .controller('ycAuthCtrl', [

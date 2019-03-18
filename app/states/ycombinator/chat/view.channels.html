@@ -1,0 +1,27 @@
+<section class="main">
+    <div class="sidebar">
+        <div class="slack-name">
+            <h2>Y Combinator Talent Messaging System</h2>
+        </div>
+
+        <div class="channel-list">
+            <div class="list-head">Channels</div>
+        </div>
+
+        <div class="my-info">
+            <img class="user-pic" ng-src="{{ cycChannels.getGravatar(cycChannels.profile.$id) }}"/>
+            <div class="user-info">
+                <div class="user-name">
+                    {{ cycChannels.profile.displayName }}
+                </div>
+
+                <div class="options">
+                    <a ui-sref="profile">edit profile</a>
+                    /
+                    <a href="#" ng-click="cycChannels.logout()">logout</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>

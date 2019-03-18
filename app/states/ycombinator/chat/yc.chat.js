@@ -24,8 +24,8 @@
         function getDisplayName(uid) {
             return users.$getRecord(uid).displayName;
         }
-        
-        function getGravatar (uid) {
+
+        function getGravatar(uid) {
             return '//www.gravatar.com/avatar/' + users.$getRecord(uid).emailHash;
         }
 
@@ -35,6 +35,12 @@
             getGravatar: getGravatar,
             all: users
         };
+    }
+
+    function ChannelsClass($firebaseArray) {
+        var ref = firebase.database().ref('channels');
+        var channels = $firebaseArray(ref);
+        return channels;
     }
 
     // controller class's 
@@ -74,29 +80,59 @@
         }
     }
 
-    function ProfileCtrlClass($location, md5, authRslv, profileRslv) {
+    function ProfileCtrlClass($location, md5, authRsv, profileRsv, $timeout) {
         var profileCtrl = this;
+        profileCtrl.updateProfileFeedback = '';
         // this simply returns the username of the profile
         profileCtrl.profile = profileRslv;
 
         profileCtrl.updateProfile = function () {
-            profileCtrl.profile.emailHash = md5.createHash(authRslv.email);
+            profileCtrl.profile.emailHash = md5.createHash(authRsv.email);
             profileCtrl.profile.$save();
+            profileCtrl.updateProfileFeedback = 'Username saved ^_^';
+            $timeout(function () {
+                profileCtrl.updateProfileFeedback = '';
+                $location.url('/ycombinator/channels'); 
+            }, 1000);
+        };
+    }
+
+    function ChannelsCtrlClass($location, ycAuthSer, ycUsersSer, profilesRsv, channelsRsv) {
+        var channelsCtrl = this;
+        channelsCtrl.profile = profilesRsv;
+        channelsCtrl.channel = channelsRsv;
+        channelsCtrl.getDisplayName = ycUsersSer.getDisplayName;
+        channelsCtrl.getGravatar = ycUsersSer.getGravatar;
+        channelsCtrl.logout = function () {
+            ycAuthSer.auth.$signOut().then(function (res) {
+                console.log('__>> Firebase Response from signing out = ', res);
+                $location.url('/ycombinator/home');
+            });
         };
     }
 
     angular.module('edhubJobsApp')
+    // FACTORIES
         .factory('ycAuthSer', [
             '$firebaseAuth', AuthSerClass
         ])
         .factory('ycUsersSer', [
             '$firebaseArray', '$firebaseObject', UsersSerClass
         ])
+        .factory('ycChannelsSer', [
+            '$firebaseArray', ChannelsClass
+        ])
+        // CONTROLLERS
         .controller('ycAuthCtrl', [
             'ycAuthSer', '$location', AuthCtrlClass
         ])
         .controller('ycProfileCtrl', [
-            '$location', 'md5', 'authRslv', 'profileRslv', ProfileCtrlClass
+            '$location', 'md5', 'authRsv', 'profileRsv', '$timeout',
+            ProfileCtrlClass
+        ])
+        .controller('ycChannelsCtrl', [
+            '$location', 'ycAuthSer', 'ycUsersSer', 'profileRsv', 'channelsRsv',
+            ChannelsCtrlClass
         ])
     ;
 }());

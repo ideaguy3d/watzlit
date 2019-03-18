@@ -15,9 +15,27 @@ angular
         function ($routeProvider) {
             $routeProvider
                 .when('/', {
+                    templateUrl: 'states/landing/view.landing.html',
+                    controller: 'LandingCtrl',
+                    controllerAs: 'landingCtrl'
+                })
+                .when('/ycombinator/home', {
                     templateUrl: 'states/ycombinator/chat/view.yc-home.html',
                     controller: 'YCombinatorCtrl',
-                    controllerAs: 'cycCtrl'
+                    controllerAs: 'cycCtrl',
+                    resolve: {
+                        // the user does not have to be authenticated
+                        requireNoAuth: function ($location, ycAuthSer) {
+                            ycAuthSer.auth.$requireSignIn(function (authUser) {
+                                // if the user is already logged in send them to the channels state
+                                $location.url('/ycombinator/channels');
+                            }).catch(function (error) {
+                                var errorMessage = '__>> ERROR - error while going to UI state home'
+                                console.log(errorMessage, error);
+                                return errorMessage;
+                            });
+                        }
+                    }
                 })
                 .when('/ycombinator/chat', {
                     templateUrl: 'states/ycombinator/chat/view.yc-chat.html',
@@ -30,15 +48,16 @@ angular
                     controllerAs: 'cycAuth',
                     resolve: {
                         // no authenticated user should go to login/signup view
-                        requireNoAuthRslv: function (ycAuthSer, $location) {
+                        requireNoAuthRsv: function (ycAuthSer, $location) {
                             return ycAuthSer.auth.$requireSignIn()
                                 .then(function (authenticatedUserResObj) {
-                                    $location.url('/chat');
+                                    $location.url('/ycombinator/chat');
                                 })
                                 // the user is not authenticated
                                 .catch(function (error) {
-                                    return "ERROR = " + error;
-                                })
+                                    console.log('__>> ERROR = ', error);
+                                    return 'ERROR = ' + error;
+                                });
                         }
                     }
                 })
@@ -51,10 +70,11 @@ angular
                         requireNoAuthRslv: function (ycAuthSer, $location) {
                             return ycAuthSer.auth.$requireSignIn().then(function (res) {
                                 console.log("__>> user is already authenticated");
-                                $location.url('/chat');
+                                $location.url('/ycombinator/chat');
                             }).catch(function (error) {
-                                return "ERROR = " + error;
-                            })
+                                console.log('__>> ERROR = ', error);
+                                return 'ERROR = ' + error;
+                            });
                         }
                     }
                 })
@@ -63,20 +83,43 @@ angular
                     controller: 'ycProfileCtrl',
                     controllerAs: 'cycProfile',
                     resolve: {
-                        authRslv: function ($location, ycUsersSer, ycAuthSer) {
+                        authRsv: function ($location, ycUsersSer, ycAuthSer) {
                             // .$requireSignIn() will have an on success cb if there is an authenticated user
                             return ycAuthSer.auth.$requireSignIn().catch(function (error) {
                                 console.log('__>> ERROR - tried to go to profile ui state without being authenticated, err = ', error);
                                 $location.url('/ycombinator/home');
                             });
                         },
-                        profileRslv: function (ycUsersSer, ycAuthSer) {
+                        profileRsv: function (ycUsersSer, ycAuthSer) {
                             return ycAuthSer.auth.$requireSignIn().then(
                                 function (authUserObj) {
                                     // CRITICAL ! CRITICAL !! CRITICAL !!! This is where to put $loaded()
                                     return ycUsersSer.getProfile(authUserObj.uid).$loaded();
                                 }
                             );
+                        }
+                    }
+                })
+                .when('/ycombinator/channels', {
+                    templateUrl: 'states/ycombinator/chat/view.channels.html',
+                    controller: 'ycChannelsCtrl',
+                    controllerAs: 'cycChannels',
+                    resolve: {
+                        channelsRsv: function (ycChannelsSer) {
+                            return ycChannelsSer.$loaded();
+                        },
+                        profileRsv: function ($location, ycAuthSer, ycUsersSer) {
+                            return ycAuthSer.auth.$requireSignIn(function (authUser) {
+                                return ycUsersSer.getProfile(authUser.uid).$loaded().then(function (profile) {
+                                    if (profile.displayName) {
+                                        return profile;
+                                    } else {
+                                        $location.url('/ycombinator/profile');
+                                    }
+                                });
+                            }, function (error) {
+                                $location.url('/ycombinator/home');
+                            })
                         }
                     }
                 })

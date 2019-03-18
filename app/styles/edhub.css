@@ -732,6 +732,10 @@ AuthBox style rules
     }
 }
 
+.edhub-main-app-view-container {
+    min-height: 70%;
+}
+
 
 
 

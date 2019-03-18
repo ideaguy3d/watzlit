@@ -47,7 +47,7 @@ body {
 }
 
 .sidebar .channel-list {
-  margin-top:20px;
+  margin-top:50px;
   background:#4d394b;
   position:relative;
 }
@@ -80,6 +80,7 @@ body {
 
 .sidebar .channel-list .channel.create {
   font-style: italic;
+  cursor: pointer;
 }
 
 .sidebar .channel-list .list-head {

@@ -84,7 +84,7 @@
         var profileCtrl = this;
         profileCtrl.updateProfileFeedback = '';
         // this simply returns the username of the profile
-        profileCtrl.profile = profileRslv;
+        profileCtrl.profile = profileRsv;
 
         profileCtrl.updateProfile = function () {
             profileCtrl.profile.emailHash = md5.createHash(authRsv.email);
@@ -100,24 +100,33 @@
     function ChannelsCtrlClass($location, ycAuthSer, ycUsersSer, profilesRsv, channelsRsv) {
         var channelsCtrl = this;
         channelsCtrl.messages = null;
+        channelsCtrl.channelsToDisplay = {
+            createChannel: false
+        };
+
         channelsCtrl.profile = profilesRsv;
         channelsCtrl.channels = channelsRsv;
+
         channelsCtrl.newChannel = {
             name: ''
         };
 
         channelsCtrl.getDisplayName = ycUsersSer.getDisplayName;
         channelsCtrl.getGravatar = ycUsersSer.getGravatar;
-        
-        channelsCtrl.switchChannel = function(channelId){
-            channelsCtrl.messages = 'messages for channel id =' + channelId;     
+
+        channelsCtrl.switchChannel = function (channelId) {
+            channelsCtrl.messages = 'messages for channel id =' + channelId;
+        };
+
+        channelsCtrl.showCreateChannel = function (boolVal) {
+            channelsCtrl.channelsToDisplay.createChannel = boolVal;
         };
 
         channelsCtrl.createChannel = function () {
             channelsCtrl.channels.$add(channelsCtrl.newChannel).then(function () {
-                 channelsCtrl.newChannel = {
-                     name: ''
-                 };
+                channelsCtrl.newChannel = {
+                    name: ''
+                };
             });
         };
 

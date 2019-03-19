@@ -1,5 +1,5 @@
-<section class="main">
-    <div class="sidebar">
+<section class="main" layout="row">
+    <div class="sidebar" flex="20">
         <div class="slack-name">
             <h2>Y Combinator Talent Messaging System</h2>
         </div>
@@ -8,7 +8,9 @@
             <div class="list-head">Channels</div>
 
             <div class="channel" ng-repeat="channel in cycChannels.channels">
-                <md-button ui-sref="channels.messages({channelId: channel.$id})">
+                <!-- ui-sref="channels.messages({channelId: channel.$id})" -->
+                <md-button data-ng-click="cycChannels.getMessagesFor(channel.$id)"
+                           class="edhub-channel-list-item-btn">
                     # {{ channel.name }}
                 </md-button>
             </div>
@@ -20,7 +22,8 @@
             <div class="list-head">Direct Messages</div>
 
             <div class="channel" ng-repeat="user in cycChannels.users">
-                <a ng-if="user.$id !== cycChannels.profile.$id" ui-sref="channels.direct({uid: user.$id})" ui-sref-active="selected">
+                <!-- ui-sref="channels.direct({uid: user.$id})" -->
+                <a ng-if="user.$id !== cycChannels.profile.$id">
                     <span class="presence" ng-class="{online: user.online}"></span>
                     {{ user.displayName }}
                 </a>
@@ -43,24 +46,25 @@
         </div>
     </div>
 
-    <div class="message-pane">
+    <div class="message-pane" flex="80">
         <!-- where a nested ui-state would go -->
         <!--<ui-view></ui-view>-->
 
-        <div ng-if="cycChannels.channelsToDisplay.createChannel">
-            <div class="header">
-                <h1>julius - Create a channel</h1>
-                <!--<h4>showCreateChannel = {{cycChannels.createChannel}}</h4>-->
-            </div>
-
-            <form ng-submit="cycChannels.createChannel()">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Channel Name"
-                           ng-model="cycChannels.newChannel.name">
+        <div id="yc-chat-view">
+            <div ng-if="cycChannels.channelsToDisplay.createChannel">
+                <div class="header">
+                    <h1>Create a channel</h1>
                 </div>
-                <input type="submit" class="btn btn-default" value="Create Channel">
-            </form>
-        </div>
 
+                <form ng-submit="cycChannels.createChannel()">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Channel Name"
+                               ng-model="cycChannels.newChannel.name">
+                    </div>
+                    <input type="submit" class="btn btn-default" value="Create Channel">
+                </form>
+                <button data-ng-click="cycChannels.showCreateChannel(false)">back</button>
+            </div>
+        </div>
     </div>
 </section>

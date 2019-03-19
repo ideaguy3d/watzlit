@@ -118,6 +118,10 @@
             channelsCtrl.messages = 'messages for channel id =' + channelId;
         };
 
+        channelsCtrl.getMessagesFor = function(channelId){
+            // will be making a new messages service
+        };
+
         channelsCtrl.showCreateChannel = function (boolVal) {
             channelsCtrl.channelsToDisplay.createChannel = boolVal;
         };

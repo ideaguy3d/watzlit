@@ -133,7 +133,7 @@
         const channelsCtrl = this;
         channelsCtrl.messages = null;
         channelsCtrl.channelName = null;
-        channelsCtrl.channelsToDisplay = {
+        channelsCtrl.toDisplay = {
             createChannel: 'createChannel',
             messages: 'messages'
         };
@@ -160,7 +160,7 @@
          * @param messagesFor
          */
         channelsCtrl.getMessagesFor = function (entityId, messagesFor) {
-            channelsCtrl.window = channelsCtrl.channelsToDisplay.messages;
+            channelsCtrl.window = channelsCtrl.toDisplay.messages;
 
             if (messagesFor === 'forChannel') {
                 channelsCtrl.channelName = ycChannelsSer.channels.$getRecord(entityId).name;

@@ -1,14 +1,13 @@
 <section class="main" layout="row">
-    <!-- the sidebar -->
+    <!-- LEFT SIDE - the sidebar -->
     <div class="sidebar" flex="20">
         <div class="slack-name">
             <h2>Y Combinator Talent Messaging System</h2>
         </div>
 
         <div class="channel-list">
+            <!-- ng-switch-window: CHANNEL MESSAGES -->
             <div class="list-head">Channels</div>
-
-            <!-- CHANNEL MESSAGES -->
             <div class="channel" ng-repeat="channel in cycChannels.channels">
                 <md-button data-ng-click="cycChannels.getMessagesFor(channel.$id, 'forChannel')"
                            class="edhub-channel-list-item-btn">
@@ -16,15 +15,15 @@
                 </md-button>
             </div>
 
+            <!-- ng-switch-window: CREATE CHANNEL -->
             <div class="channel create">
-                <a ng-click="cycChannels.switchChannel(cycChannels.channelsToDisplay.createChannel)">
+                <a ng-click="cycChannels.switchChannel(cycChannels.toDisplay.createChannel)">
                     + create channel
                 </a>
             </div>
 
+            <!-- ng-switch-window: DIRECT MESSAGES -->
             <div class="list-head">Direct Messages</div>
-
-            <!-- DIRECT MESSAGES -->
             <div class="channel" ng-repeat="user in cycChannels.users">
                 <md-button ng-if="user.$id !== cycChannels.profile.$id"
                            data-ng-click="cycChannels.getMessagesFor(user.$id, 'forUsers')">
@@ -35,7 +34,7 @@
         </div>
 
         <div class="my-info">
-            <img class="user-pic" ng-src="{{ cycChannels.getGravatar(cycChannels.profile.uid) }}" alt="avatar"/>
+            <img class="user-pic" ng-src="{{ cycChannels.getGravatar(cycChannels.profile.$id) }}" alt="avatar"/>
             <div class="user-info">
                 <div class="user-name">
                     {{ cycChannels.profile.displayName || 'displayName is NULL' }}
@@ -50,7 +49,7 @@
         </div>
     </div>
 
-    <!-- inner window container -->
+    <!-- RIGHT SIDE - inner window container -->
     <div class="message-pane" flex="80">
         <!-- where a nested ui-state would go -->
         <!--<ui-view></ui-view>-->

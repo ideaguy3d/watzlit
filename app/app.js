@@ -151,9 +151,6 @@ angular
                                     console.log('__>> ERROR - The user is not signed in, error: ', error);
                                     $location.url('/ycombinator/home');
                                 });
-                        },
-                        channelNameRsv: function () {
-
                         }
                     }
                 })

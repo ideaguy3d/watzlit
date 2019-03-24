@@ -119,10 +119,12 @@
     }
 
     function CtrlChannelsClass(
-        $location, ycAuthSer, ycUsersSer, profileRsv, channelsRsv, ycMessagesSer
+        $location, ycAuthSer, ycUsersSer, profileRsv, channelsRsv, ycMessagesSer,
+        ycChannelsSer
     ) {
         const channelsCtrl = this;
         channelsCtrl.messages = null;
+        channelsCtrl.channelName = null;
         channelsCtrl.channelsToDisplay = {
             createChannel: false,
             messages: false
@@ -143,11 +145,27 @@
         channelsCtrl.getMessagesFor = function (channelId) {
             channelsCtrl.channelsToDisplay.createChannel = false;
             channelsCtrl.channelsToDisplay.messages = true;
+            channelsCtrl.channelName = ycChannelsSer.channels.$getRecord(channelId).name;
+
             // will be making a new messages service
             ycMessagesSer.forChannel(channelId).$loaded()
                 .then(function (messages) {
                     channelsCtrl.messages = messages;
                 })
+        };
+
+        channelsCtrl.sendMessage = function () {
+            const message = channelsCtrl.message;
+            const messageData = {
+                uid: channelsCtrl.profile.uid,
+                body: message,
+                timestamp: firebase.database.ServerValue.TIMESTAMP
+            };
+            if (message.length > 0) {
+                channelsCtrl.messages.$add(messageData).then(function () {
+                    channelsCtrl.message = '';
+                });
+            }
         };
 
         channelsCtrl.showCreateChannel = function (boolVal) {
@@ -216,7 +234,7 @@
         ])
         .controller('ycChannelsCtrl', [
             '$location', 'ycAuthSer', 'ycUsersSer', 'profileRsv', 'channelsRsv',
-            'ycMessagesSer', CtrlChannelsClass
+            'ycMessagesSer', 'ycChannelsSer', CtrlChannelsClass
         ])
         .controller('ycMessagesCtrl', [
             'messagesRsv', 'channelNameRsv', 'profileRsv', CtrlMessagesClass

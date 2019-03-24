@@ -50,8 +50,9 @@ angular
                         // no authenticated user should go to login/signup view
                         requireNoAuthRsv: function (ycAuthSer, $location) {
                             return ycAuthSer.auth.$requireSignIn()
-                                .then(function (authenticatedUserResObj) {
-                                    $location.url('/ycombinator/chat');
+                                .then(function (authUser) {
+                                    console.log('__>> INFO - user is already logged in, authUser: ', authUser);
+                                    $location.url('/ycombinator/channels');
                                 })
                                 // the user is not authenticated
                                 .catch(function (error) {
@@ -68,13 +69,15 @@ angular
                     resolve: {
                         // no authenticated user should go to login/signup view
                         requireNoAuthRslv: function (ycAuthSer, $location) {
-                            return ycAuthSer.auth.$requireSignIn().then(function (res) {
-                                console.log("__>> user is already authenticated");
-                                $location.url('/ycombinator/chat');
-                            }).catch(function (error) {
-                                console.log('__>> ERROR = ', error);
-                                return 'ERROR = ' + error;
-                            });
+                            return ycAuthSer.auth.$requireSignIn()
+                                .then(function (res) {
+                                    console.log('__>> INFO - user is already logged in, authUser: ', authUser);
+                                    $location.url('/ycombinator/channels');
+                                })
+                                .catch(function (error) {
+                                    console.log('__>> ERROR = ', error);
+                                    return 'ERROR = ' + error;
+                                });
                         }
                     }
                 })
@@ -106,21 +109,26 @@ angular
                     controllerAs: 'cycChannels',
                     resolve: {
                         channelsRsv: function (ycChannelsSer) {
-                            return ycChannelsSer.$loaded();
+                            return ycChannelsSer.channels.$loaded()
+                                .catch(function (error) {
+                                    console.log('__>> ERROR - There was an error fetching the channels, error: ' + error);
+                                });
                         },
                         profileRsv: function ($location, ycAuthSer, ycUsersSer) {
                             return ycAuthSer.auth.$requireSignIn(
                                 // on success callback
                                 function (authUser) {
-                                    return ycUsersSer.getProfile(authUser.uid).$loaded().then(function (profile) {
-                                        if (profile.displayName) {
-                                            return profile;
-                                        } else {
-                                            $location.url('/ycombinator/profile');
-                                        }
-                                    }).catch(function (error) {
-                                        console.log('__>> ERROR - Unable to get the users profile, error: ', error);
-                                    });
+                                    return ycUsersSer.getProfile(authUser.uid).$loaded()
+                                        .then(function (profile) {
+                                            if (profile.displayName) {
+                                                return profile;
+                                            } else {
+                                                $location.url('/ycombinator/profile');
+                                            }
+                                        })
+                                        .catch(function (error) {
+                                            console.log('__>> ERROR - Unable to get the users profile, error: ', error);
+                                        });
                                 },
                                 // on error callback
                                 function (error) {
@@ -131,7 +139,7 @@ angular
                         }
                     }
                 })
-                .when('/ycombinator/:channelId/messages', {
+                .when('/ycombinator/rooms/:channelId/messages', {
                     templateUrl: 'states/ycombinator/chat/view.messages.html',
                     controller: 'ycMessagesCtrl',
                     controllerAs: 'cycMessages',

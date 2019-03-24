@@ -15,7 +15,7 @@
     }
 
     function SerUsersClass($firebaseArray, $firebaseObject) {
-        var refUsers = firebase.database().ref(yc + '/users');
+        var refUsers = firebase.database().ref('/users');
         var users = $firebaseArray(refUsers);
 
         function getProfile(uid) {
@@ -39,7 +39,7 @@
     }
 
     function SerChannelsClass($firebaseArray) {
-        var ref = firebase.database().ref(yc + '/channels');
+        var ref = firebase.database().ref('/channels');
         var channels = $firebaseArray(ref);
 
         console.log('__>> channels data set,  ', channels);
@@ -50,7 +50,7 @@
     }
 
     function SerMessagesClass($firebaseArray) {
-        var channelMessagesRef = firebase.database().ref(yc + '/channelMessages');
+        var channelMessagesRef = firebase.database().ref('/channelMessages');
 
         function forChannel(channelId) {
             return $firebaseArray(channelMessagesRef.child(channelId));
@@ -119,17 +119,17 @@
     }
 
     function CtrlChannelsClass(
-        $location, ycAuthSer, ycUsersSer, profilesRsv, channelsRsv
+        $location, ycAuthSer, ycUsersSer, profileRsv, channelsRsv
     ) {
-        var channelsCtrl = this;
+        console.log('__>> DEBUG - well the ctrl is being loaded...');
+
+        const channelsCtrl = this;
         channelsCtrl.messages = null;
         channelsCtrl.channelsToDisplay = {
             createChannel: false
         };
-
-        channelsCtrl.profile = profilesRsv;
+        channelsCtrl.profile = profileRsv;
         channelsCtrl.channels = channelsRsv;
-
         channelsCtrl.newChannel = {
             name: ''
         };
@@ -165,8 +165,26 @@
         };
     }
 
-    function CtrlMessagesClass (messagesRsv, channelNameRsv, profileRsv) {
+    function CtrlMessagesClass(messagesRsv, channelNameRsv, profileRsv) {
+        const messagesCtrl = this;
+        const profile = profileRsv;
+        messagesCtrl.messages = messagesRsv;
+        messagesCtrl.channelName = channelNameRsv;
+        messagesCtrl.message = '';
 
+        messagesCtrl.sendMessage = function () {
+            const message = messagesCtrl.message;
+            const messageData = {
+                uid: profile.uid,
+                body: message,
+                timestamp: firebase.database.ServerValue.TIMESTAMP
+            };
+            if (message.length > 0) {
+                messagesCtrl.messages.$add(messageData).then(function () {
+                    messagesCtrl.message = '';
+                });
+            }
+        }
     }
 
     angular.module('edhubJobsApp')

@@ -136,6 +136,9 @@ angular
                                     $location.url('/ycombinator/home');
                                 }
                             )
+                        },
+                        channelNameRsv: function(){
+
                         }
                     }
                 })

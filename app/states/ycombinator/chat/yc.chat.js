@@ -119,14 +119,13 @@
     }
 
     function CtrlChannelsClass(
-        $location, ycAuthSer, ycUsersSer, profileRsv, channelsRsv
+        $location, ycAuthSer, ycUsersSer, profileRsv, channelsRsv, ycMessagesSer
     ) {
-        console.log('__>> DEBUG - well the ctrl is being loaded...');
-
         const channelsCtrl = this;
         channelsCtrl.messages = null;
         channelsCtrl.channelsToDisplay = {
-            createChannel: false
+            createChannel: false,
+            messages: false
         };
         channelsCtrl.profile = profileRsv;
         channelsCtrl.channels = channelsRsv;
@@ -138,11 +137,17 @@
         channelsCtrl.getGravatar = ycUsersSer.getGravatar;
 
         channelsCtrl.switchChannel = function (channelId) {
-            channelsCtrl.messages = 'messages for channel id =' + channelId;
+            channelsCtrl.messages = 'messages for channel id = ' + channelId;
         };
 
         channelsCtrl.getMessagesFor = function (channelId) {
+            channelsCtrl.channelsToDisplay.createChannel = false;
+            channelsCtrl.channelsToDisplay.messages = true;
             // will be making a new messages service
+            ycMessagesSer.forChannel(channelId).$loaded()
+                .then(function (messages) {
+                    channelsCtrl.messages = messages;
+                })
         };
 
         channelsCtrl.showCreateChannel = function (boolVal) {
@@ -168,6 +173,7 @@
     function CtrlMessagesClass(messagesRsv, channelNameRsv, profileRsv) {
         const messagesCtrl = this;
         const profile = profileRsv;
+
         messagesCtrl.messages = messagesRsv;
         messagesCtrl.channelName = channelNameRsv;
         messagesCtrl.message = '';
@@ -210,7 +216,7 @@
         ])
         .controller('ycChannelsCtrl', [
             '$location', 'ycAuthSer', 'ycUsersSer', 'profileRsv', 'channelsRsv',
-            CtrlChannelsClass
+            'ycMessagesSer', CtrlChannelsClass
         ])
         .controller('ycMessagesCtrl', [
             'messagesRsv', 'channelNameRsv', 'profileRsv', CtrlMessagesClass

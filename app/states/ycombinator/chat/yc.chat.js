@@ -3,6 +3,7 @@
  */
 (function () {
     'use strict';
+    var yc = '/ycombinator';
 
     // SERVICES
     function SerAuthClass($firebaseAuth) {
@@ -14,7 +15,7 @@
     }
 
     function SerUsersClass($firebaseArray, $firebaseObject) {
-        var refUsers = firebase.database().ref('/users');
+        var refUsers = firebase.database().ref(yc + '/users');
         var users = $firebaseArray(refUsers);
 
         function getProfile(uid) {
@@ -38,7 +39,7 @@
     }
 
     function SerChannelsClass($firebaseArray) {
-        var ref = firebase.database().ref('channels');
+        var ref = firebase.database().ref(yc + '/channels');
         var channels = $firebaseArray(ref);
 
         console.log('__>> channels data set,  ', channels);
@@ -49,7 +50,7 @@
     }
 
     function SerMessagesClass($firebaseArray) {
-        var channelMessagesRef = firebase.database().ref('channelMessages');
+        var channelMessagesRef = firebase.database().ref(yc + '/channelMessages');
 
         function forChannel(channelId) {
             return $firebaseArray(channelMessagesRef.child(channelId));
@@ -61,7 +62,7 @@
     }
 
     // CONTROLLERS
-    function AuthCtrlClass(ycAuthSer, $location) {
+    function CtrlAuthClass(ycAuthSer, $location) {
         var authCtrl = this;
         authCtrl.error = '';
         authCtrl.authInfo = 'The auth ctrl is wired up to the view';
@@ -97,9 +98,12 @@
         }
     }
 
-    function ProfileCtrlClass($location, md5, authRsv, profileRsv, $timeout) {
+    function CtrlProfileClass(
+        $location, md5, authRsv, profileRsv, $timeout
+    ) {
         var profileCtrl = this;
         profileCtrl.updateProfileFeedback = '';
+
         // this simply returns the username of the profile
         profileCtrl.profile = profileRsv;
 
@@ -114,7 +118,9 @@
         };
     }
 
-    function ChannelsCtrlClass($location, ycAuthSer, ycUsersSer, profilesRsv, channelsRsv) {
+    function CtrlChannelsClass(
+        $location, ycAuthSer, ycUsersSer, profilesRsv, channelsRsv
+    ) {
         var channelsCtrl = this;
         channelsCtrl.messages = null;
         channelsCtrl.channelsToDisplay = {
@@ -159,6 +165,10 @@
         };
     }
 
+    function CtrlMessagesClass (messagesRsv, channelNameRsv, profileRsv) {
+
+    }
+
     angular.module('edhubJobsApp')
         .factory('ycAuthSer', [
             '$firebaseAuth', SerAuthClass
@@ -174,15 +184,18 @@
         ])
         // CONTROLLERS
         .controller('ycAuthCtrl', [
-            'ycAuthSer', '$location', AuthCtrlClass
+            'ycAuthSer', '$location', CtrlAuthClass
         ])
         .controller('ycProfileCtrl', [
             '$location', 'md5', 'authRsv', 'profileRsv', '$timeout',
-            ProfileCtrlClass
+            CtrlProfileClass
         ])
         .controller('ycChannelsCtrl', [
             '$location', 'ycAuthSer', 'ycUsersSer', 'profileRsv', 'channelsRsv',
-            ChannelsCtrlClass
+            CtrlChannelsClass
+        ])
+        .controller('ycMessagesCtrl', [
+            'messagesRsv', 'channelNameRsv', 'profileRsv', CtrlMessagesClass
         ])
     ;
 }());

@@ -109,24 +109,32 @@ angular
                             return ycChannelsSer.$loaded();
                         },
                         profileRsv: function ($location, ycAuthSer, ycUsersSer) {
-                            return ycAuthSer.auth.$requireSignIn(function (authUser) {
-                                return ycUsersSer.getProfile(authUser.uid).$loaded().then(function (profile) {
-                                    if (profile.displayName) {
-                                        return profile;
-                                    } else {
-                                        $location.url('/ycombinator/profile');
-                                    }
-                                });
-                            }, function (error) {
-                                $location.url('/ycombinator/home');
-                            })
+                            return ycAuthSer.auth.$requireSignIn(
+                                // on success callback
+                                function (authUser) {
+                                    return ycUsersSer.getProfile(authUser.uid).$loaded().then(function (profile) {
+                                        if (profile.displayName) {
+                                            return profile;
+                                        } else {
+                                            $location.url('/ycombinator/profile');
+                                        }
+                                    }).catch(function (error) {
+                                        console.log('__>> ERROR - Unable to get the users profile, error: ', error);
+                                    });
+                                },
+                                // on error callback
+                                function (error) {
+                                    console.log('__>> ERROR - The user is not signed in, error: ', error);
+                                    $location.url('/ycombinator/home');
+                                }
+                            )
                         }
                     }
                 })
-                .when('/ycombinator/channels/messages', {
-                    templateUrl: 'ycombinator/:channelId/messages',
-                    controller: '',
-                    controllerAs: '',
+                .when('/ycombinator/:channelId/messages', {
+                    templateUrl: 'states/ycombinator/chat/view.messages.html',
+                    controller: 'ycMessagesCtrl',
+                    controllerAs: 'cycMessages',
                     resolve: {
                         messagesRsv: function ($route, ycMessagesSer) {
                             return ycMessagesSer.forChannel($route.current.params.channelId).$loaded();
@@ -134,6 +142,28 @@ angular
                         channelNameRsv: function ($route, ycChannelsSer) {
                             // we're not using $loaded() here... Hmmm. I wonder why.
                             return '#' + ycChannelsSer.channels.$loaded().$getRecord($route.current.params.channelId).name;
+                        },
+                        profileRsv: function ($location, ycAuthSer, ycUsersSer) {
+                            return ycAuthSer.auth.$requireSignIn(
+                                // on success callback
+                                function (authUser) {
+                                    return ycUsersSer.getProfile(authUser.uid).$loaded().then(function (profile) {
+                                        var displayName = profile.displayName;
+                                        if (displayName) {
+                                            return displayName;
+                                        } else {
+                                            $location.url('/ycombinator/profile');
+                                        }
+                                    }).catch(function (error) {
+                                        console.log('__>> ERROR - unable to get the users profile info, error: ', error);
+                                    });
+                                },
+                                // on error callback
+                                function (error) {
+                                    console.log('__>> The user is not authenticated, error: ', error);
+                                    $location.url('/ycombinator/home');
+                                }
+                            );
                         }
                     }
                 })

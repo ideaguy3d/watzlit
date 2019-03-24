@@ -123,6 +123,20 @@ angular
                         }
                     }
                 })
+                .when('/ycombinator/channels/messages', {
+                    templateUrl: 'ycombinator/:channelId/messages',
+                    controller: '',
+                    controllerAs: '',
+                    resolve: {
+                        messagesRsv: function ($route, ycMessagesSer) {
+                            return ycMessagesSer.forChannel($route.current.params.channelId).$loaded();
+                        },
+                        channelNameRsv: function ($route, ycChannelsSer) {
+                            // we're not using $loaded() here... Hmmm. I wonder why.
+                            return '#' + ycChannelsSer.channels.$loaded().$getRecord($route.current.params.channelId).name;
+                        }
+                    }
+                })
                 .when('/landing', {
                     templateUrl: 'states/landing/view.landing.html',
                     controller: 'LandingCtrl',

@@ -4,8 +4,8 @@
 (function () {
     'use strict';
 
-    // data service class's 
-    function AuthSerClass($firebaseAuth) {
+    // SERVICES
+    function SerAuthClass($firebaseAuth) {
         var auth = $firebaseAuth();
 
         return {
@@ -13,7 +13,7 @@
         }
     }
 
-    function UsersSerClass($firebaseArray, $firebaseObject) {
+    function SerUsersClass($firebaseArray, $firebaseObject) {
         var refUsers = firebase.database().ref('/users');
         var users = $firebaseArray(refUsers);
 
@@ -37,13 +37,30 @@
         };
     }
 
-    function ChannelsSerClass($firebaseArray) {
+    function SerChannelsClass($firebaseArray) {
         var ref = firebase.database().ref('channels');
         var channels = $firebaseArray(ref);
-        return channels;
+
+        console.log('__>> channels data set,  ', channels);
+
+        return {
+            channels: channels
+        };
     }
 
-    // controller class's 
+    function SerMessagesClass($firebaseArray) {
+        var channelMessagesRef = firebase.database().ref('channelMessages');
+
+        function forChannel(channelId) {
+            return $firebaseArray(channelMessagesRef.child(channelId));
+        }
+
+        return {
+            forChannel: forChannel
+        };
+    }
+
+    // CONTROLLERS
     function AuthCtrlClass(ycAuthSer, $location) {
         var authCtrl = this;
         authCtrl.error = '';
@@ -118,7 +135,7 @@
             channelsCtrl.messages = 'messages for channel id =' + channelId;
         };
 
-        channelsCtrl.getMessagesFor = function(channelId){
+        channelsCtrl.getMessagesFor = function (channelId) {
             // will be making a new messages service
         };
 
@@ -143,15 +160,17 @@
     }
 
     angular.module('edhubJobsApp')
-    // FACTORIES
         .factory('ycAuthSer', [
-            '$firebaseAuth', AuthSerClass
+            '$firebaseAuth', SerAuthClass
         ])
         .factory('ycUsersSer', [
-            '$firebaseArray', '$firebaseObject', UsersSerClass
+            '$firebaseArray', '$firebaseObject', SerUsersClass
         ])
         .factory('ycChannelsSer', [
-            '$firebaseArray', ChannelsSerClass
+            '$firebaseArray', SerChannelsClass
+        ])
+        .factory('ycMessagesSer', [
+            '$firebaseArray', SerMessagesClass
         ])
         // CONTROLLERS
         .controller('ycAuthCtrl', [

@@ -1,4 +1,5 @@
 <section class="main" layout="row">
+    <!-- the sidebar -->
     <div class="sidebar" flex="20">
         <div class="slack-name">
             <h2>Y Combinator Talent Messaging System</h2>
@@ -16,7 +17,7 @@
             </div>
 
             <div class="channel create">
-                <a ng-click="cycChannels.showCreateChannel(true)">+ create channel</a>
+                <a ng-click="cycChannels.switchChannel(cycChannels.channelsToDisplay.createChannel)">+ create channel</a>
             </div>
 
             <div class="list-head">Direct Messages</div>
@@ -46,53 +47,20 @@
         </div>
     </div>
 
+    <!-- inner window container -->
     <div class="message-pane" flex="80">
         <!-- where a nested ui-state would go -->
         <!--<ui-view></ui-view>-->
 
         <div id="yc-chat-view">
-            <!-- ng-if-window -->
-            <div ng-if="cycChannels.channelsToDisplay.createChannel">
-                <div class="header">
-                    <h1>Create a channel</h1>
+            <div ng-switch="cycChannels.window">
+                <div ng-switch-when="createChannel">
+                    <div ng-include="'states/ycombinator/chat/in.create-channel.html'"></div>
                 </div>
 
-                <form ng-submit="cycChannels.createChannel()">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Channel Name"
-                               ng-model="cycChannels.newChannel.name">
-                    </div>
-                    <input type="submit" class="btn btn-default" value="Create Channel">
-                </form>
-                <button data-ng-click="cycChannels.showCreateChannel(false)">back</button>
-            </div>
-
-            <!-- ng-if-window -->
-            <div ng-if="cycChannels.channelsToDisplay.messages" layout="column">
-                <div class="header">
-                    <h1>Channel: {{ cycChannels.channelName }}</h1>
+                <div ng-switch-when="messages">
+                    <div ng-include="'states/ycombinator/chat/in.messages.html'"></div>
                 </div>
-
-                <div class="message-wrap" ng-repeat="message in cycChannels.messages">
-                    <img class="user-pic" ng-src="{{ cycChannels.getGravatar(message.uid) }}" alt="avatar"/>
-                    <div class="message-info">
-                        <div class="user-name">
-                            {{ cycChannels.getDisplayName(message.uid) }}
-                            <span class="timestamp">{{ message.timestamp | date:'short' }}</span>
-                        </div>
-                        <div class="message">
-                            {{ message.body }}
-                        </div>
-                    </div>
-                </div>
-
-                <!-- class="message-form"  -->
-                <form ng-submit="cycChannels.sendMessage()">
-                    <div class="input-group">
-                        <input type="text" class="form-control" ng-model="cycChannels.message" placeholder="Type a message...">
-                        <span class="input-group-btn"><button class="btn btn-default" type="submit">Send</button></span>
-                    </div>
-                </form>
             </div>
         </div>
     </div>

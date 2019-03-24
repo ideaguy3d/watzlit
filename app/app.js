@@ -26,21 +26,38 @@ angular
                     resolve: {
                         // the user does not have to be authenticated
                         requireNoAuth: function ($location, ycAuthSer) {
-                            ycAuthSer.auth.$requireSignIn(function (authUser) {
-                                // if the user is already logged in send them to the channels state
-                                $location.url('/ycombinator/channels');
-                            }).catch(function (error) {
-                                var errorMessage = '__>> ERROR - error while going to UI state home'
-                                console.log(errorMessage, error);
-                                return errorMessage;
-                            });
+                            ycAuthSer.auth.$requireSignIn()
+                                .then(function (authUser) {
+                                    // if the user is already logged in send them to the channels state
+                                    $location.url('/ycombinator/channels');
+                                })
+                                .catch(function (error) {
+                                    var errorMessage = '__>> ERROR - error while going to UI state home'
+                                    console.log(errorMessage, error);
+                                    return errorMessage;
+                                });
                         }
                     }
                 })
                 .when('/ycombinator/chat', {
                     templateUrl: 'states/ycombinator/chat/view.yc-chat.html',
                     controller: 'ycAuthCtrl',
-                    controllerAs: 'cycAuth'
+                    controllerAs: 'cycAuth',
+                    resolve: {
+                        // the user does not have to be authenticated
+                        requireNoAuth: function ($location, ycAuthSer) {
+                            ycAuthSer.auth.$requireSignIn()
+                                .then(function (authUser) {
+                                    // if the user is already logged in send them to the channels state
+                                    $location.url('/ycombinator/channels');
+                                })
+                                .catch(function (error) {
+                                    var errorMessage = '__>> ERROR - error while going to UI state home'
+                                    console.log(errorMessage, error);
+                                    return errorMessage;
+                                });
+                        }
+                    }
                 })
                 .when('/ycombinator/chat/register', {
                     templateUrl: 'states/ycombinator/chat/view.yc-register.html',
@@ -137,7 +154,7 @@ angular
                                 }
                             )
                         },
-                        channelNameRsv: function(){
+                        channelNameRsv: function () {
 
                         }
                     }

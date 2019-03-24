@@ -126,9 +126,10 @@
         channelsCtrl.messages = null;
         channelsCtrl.channelName = null;
         channelsCtrl.channelsToDisplay = {
-            createChannel: false,
-            messages: false
+            createChannel: 'createChannel',
+            messages: 'messages'
         };
+        channelsCtrl.window = '';
         channelsCtrl.profile = profileRsv;
         channelsCtrl.channels = channelsRsv;
         channelsCtrl.newChannel = {
@@ -138,13 +139,12 @@
         channelsCtrl.getDisplayName = ycUsersSer.getDisplayName;
         channelsCtrl.getGravatar = ycUsersSer.getGravatar;
 
-        channelsCtrl.switchChannel = function (channelId) {
-            channelsCtrl.messages = 'messages for channel id = ' + channelId;
+        channelsCtrl.switchChannel = function (window) {
+            channelsCtrl.window = window;
         };
 
         channelsCtrl.getMessagesFor = function (channelId) {
-            channelsCtrl.channelsToDisplay.createChannel = false;
-            channelsCtrl.channelsToDisplay.messages = true;
+            channelsCtrl.window = channelsCtrl.channelsToDisplay.messages;
             channelsCtrl.channelName = ycChannelsSer.channels.$getRecord(channelId).name;
 
             // will be making a new messages service
@@ -173,11 +173,16 @@
         };
 
         channelsCtrl.createChannel = function () {
-            channelsCtrl.channels.$add(channelsCtrl.newChannel).then(function () {
-                channelsCtrl.newChannel = {
-                    name: ''
-                };
-            });
+            channelsCtrl.channels.$add(channelsCtrl.newChannel)
+                .then(function (ref) {
+                    channelsCtrl.newChannel = {
+                        name: ''
+                    };
+                    channelsCtrl.getMessagesFor(ref.key);
+                })
+                .catch(function(error){
+                    console.log('__>> ERROR - unable to add a channel, error: ', error);
+                });
         };
 
         channelsCtrl.logout = function () {

@@ -3,7 +3,7 @@
  */
 (function () {
     'use strict';
-    var yc = '/ycombinator';
+    var yc = '/ycombinator/';
 
     // SERVICES
     function SerAuthClass($firebaseAuth) {
@@ -51,13 +51,21 @@
 
     function SerMessagesClass($firebaseArray) {
         var channelMessagesRef = firebase.database().ref('/channelMessages');
+        var userMessagesRef = firebase.database().ref('/userMessages');
 
         function forChannel(channelId) {
             return $firebaseArray(channelMessagesRef.child(channelId));
         }
 
+        function forUsers(uid1, uid2) {
+            var path = uid1 < uid2 ? (uid1 + '/' + uid2) : (uid2 + '/' + uid1);
+
+            return $firebaseArray(userMessagesRef.child(path));
+        }
+
         return {
-            forChannel: forChannel
+            forChannel: forChannel,
+            forUsers: forUsers
         };
     }
 
@@ -130,6 +138,7 @@
             messages: 'messages'
         };
         channelsCtrl.window = '';
+        channelsCtrl.users = ycUsersSer.all;
         channelsCtrl.profile = profileRsv;
         channelsCtrl.channels = channelsRsv;
         channelsCtrl.newChannel = {
@@ -143,15 +152,36 @@
             channelsCtrl.window = window;
         };
 
-        channelsCtrl.getMessagesFor = function (channelId) {
+        /**
+         *  Will get messages for either the rooms' messages or direct messages with
+         *  other users
+         *
+         * @param entityId string - could be either a channelID or a userID
+         * @param messagesFor
+         */
+        channelsCtrl.getMessagesFor = function (entityId, messagesFor) {
             channelsCtrl.window = channelsCtrl.channelsToDisplay.messages;
-            channelsCtrl.channelName = ycChannelsSer.channels.$getRecord(channelId).name;
 
-            // will be making a new messages service
-            ycMessagesSer.forChannel(channelId).$loaded()
-                .then(function (messages) {
+            if (messagesFor === 'forChannel') {
+                channelsCtrl.channelName = ycChannelsSer.channels.$getRecord(entityId).name;
+
+                ycMessagesSer.forChannel(entityId).$loaded().then(function (messages) {
                     channelsCtrl.messages = messages;
                 })
+            } else if (messagesFor === 'forUsers') {
+                // get the other users display name
+                var otherUsersDisplay = null;
+                ycUsersSer.all.$loaded().then(function () {
+                    otherUsersDisplay = ycUsersSer.getDisplayName(entityId);
+                });
+                channelsCtrl.channelName = otherUsersDisplay;
+
+                // the parameter order I'm passing in could be wrong
+                ycMessagesSer.forUsers(entityId, channelsCtrl.profile.uid).$loaded()
+                    .then(function (messages) {
+                        channelsCtrl.messages = messages;
+                    })
+            }
         };
 
         channelsCtrl.sendMessage = function () {
@@ -168,10 +198,6 @@
             }
         };
 
-        channelsCtrl.showCreateChannel = function (boolVal) {
-            channelsCtrl.channelsToDisplay.createChannel = boolVal;
-        };
-
         channelsCtrl.createChannel = function () {
             channelsCtrl.channels.$add(channelsCtrl.newChannel)
                 .then(function (ref) {
@@ -180,16 +206,17 @@
                     };
                     channelsCtrl.getMessagesFor(ref.key);
                 })
-                .catch(function(error){
+                .catch(function (error) {
                     console.log('__>> ERROR - unable to add a channel, error: ', error);
                 });
         };
 
         channelsCtrl.logout = function () {
-            ycAuthSer.auth.$signOut().then(function (res) {
-                console.log('__>> Firebase Response from signing out = ', res);
-                $location.url('/ycombinator/home');
-            });
+            ycAuthSer.auth.$signOut()
+                .then(function (res) {
+                    console.log('__>> Firebase Response from signing out = ', res);
+                    $location.url('/ycombinator/home');
+                });
         };
     }
 

@@ -132,11 +132,11 @@ angular
                                 });
                         },
                         profileRsv: function ($location, ycAuthSer, ycUsersSer) {
-                            return ycAuthSer.auth.$requireSignIn(
-                                // on success callback
-                                function (authUser) {
+                            return ycAuthSer.auth.$requireSignIn()
+                                .then(function (authUser) {
                                     return ycUsersSer.getProfile(authUser.uid).$loaded()
                                         .then(function (profile) {
+                                            console.log('in .then()...');
                                             if (profile.displayName) {
                                                 return profile;
                                             } else {
@@ -146,13 +146,11 @@ angular
                                         .catch(function (error) {
                                             console.log('__>> ERROR - Unable to get the users profile, error: ', error);
                                         });
-                                },
-                                // on error callback
-                                function (error) {
+                                })
+                                .catch(function (error) {
                                     console.log('__>> ERROR - The user is not signed in, error: ', error);
                                     $location.url('/ycombinator/home');
-                                }
-                            )
+                                });
                         },
                         channelNameRsv: function () {
 

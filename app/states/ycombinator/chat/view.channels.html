@@ -8,26 +8,29 @@
         <div class="channel-list">
             <div class="list-head">Channels</div>
 
+            <!-- CHANNEL MESSAGES -->
             <div class="channel" ng-repeat="channel in cycChannels.channels">
-                <!-- ui-sref="channels.messages({channelId: channel.$id})" -->
-                <md-button data-ng-click="cycChannels.getMessagesFor(channel.$id)"
+                <md-button data-ng-click="cycChannels.getMessagesFor(channel.$id, 'forChannel')"
                            class="edhub-channel-list-item-btn">
                     # {{ channel.name }}
                 </md-button>
             </div>
 
             <div class="channel create">
-                <a ng-click="cycChannels.switchChannel(cycChannels.channelsToDisplay.createChannel)">+ create channel</a>
+                <a ng-click="cycChannels.switchChannel(cycChannels.channelsToDisplay.createChannel)">
+                    + create channel
+                </a>
             </div>
 
             <div class="list-head">Direct Messages</div>
 
+            <!-- DIRECT MESSAGES -->
             <div class="channel" ng-repeat="user in cycChannels.users">
-                <!-- ui-sref="channels.direct({uid: user.$id})" -->
-                <a ng-if="user.$id !== cycChannels.profile.$id">
+                <md-button ng-if="user.$id !== cycChannels.profile.$id"
+                           data-ng-click="cycChannels.getMessagesFor(user.$id, 'forUsers')">
                     <span class="presence" ng-class="{online: user.online}"></span>
                     {{ user.displayName }}
-                </a>
+                </md-button>
             </div>
         </div>
 
@@ -35,7 +38,7 @@
             <img class="user-pic" ng-src="{{ cycChannels.getGravatar(cycChannels.profile.uid) }}" alt="avatar"/>
             <div class="user-info">
                 <div class="user-name">
-                    {{ cycChannels.profile.displayName }}
+                    {{ cycChannels.profile.displayName || 'displayName is NULL' }}
                 </div>
 
                 <div class="options">

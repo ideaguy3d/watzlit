@@ -136,7 +136,6 @@ angular
                                 .then(function (authUser) {
                                     return ycUsersSer.getProfile(authUser.uid).$loaded()
                                         .then(function (profile) {
-                                            console.log('in .then()...');
                                             if (profile.displayName) {
                                                 return profile;
                                             } else {

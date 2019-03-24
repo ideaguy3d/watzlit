@@ -27,6 +27,7 @@
             <div class="channel" ng-repeat="user in cycChannels.users">
                 <md-button ng-if="user.$id !== cycChannels.profile.$id"
                            data-ng-click="cycChannels.getMessagesFor(user.$id, 'forUsers')">
+                    <!-- presence indicator -->
                     <span class="presence" ng-class="{online: user.online}"></span>
                     {{ user.displayName }}
                 </md-button>

@@ -736,8 +736,8 @@ AuthBox style rules
     min-height: 70%;
 }
 
-md-button.edhub-channel-list-item-btn {
-    text-align: left;
+.edhub-channel-list-item-btn {
+    text-align: left !important;
 }
 
 

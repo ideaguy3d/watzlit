@@ -127,8 +127,7 @@
     }
 
     function CtrlChannelsClass(
-        $location, ycAuthSer, ycUsersSer, profileRsv, channelsRsv, ycMessagesSer,
-        ycChannelsSer
+        $location, ycAuthSer, ycUsersSer, profileRsv, channelsRsv, ycMessagesSer, ycChannelsSer
     ) {
         const channelsCtrl = this;
         channelsCtrl.messages = null;
@@ -170,24 +169,20 @@
                 })
             } else if (messagesFor === 'forUsers') {
                 // get the other users display name
-                var otherUsersDisplay = null;
-                ycUsersSer.all.$loaded().then(function () {
-                    otherUsersDisplay = ycUsersSer.getDisplayName(entityId);
-                });
-                channelsCtrl.channelName = otherUsersDisplay;
+                channelsCtrl.channelName = ycUsersSer.getDisplayName(entityId);
 
-                // the parameter order I'm passing in could be wrong
-                ycMessagesSer.forUsers(entityId, channelsCtrl.profile.uid).$loaded()
+                // the parameter order I'm passing in could be wrong ???
+                ycMessagesSer.forUsers(entityId, channelsCtrl.profile.$id).$loaded()
                     .then(function (messages) {
                         channelsCtrl.messages = messages;
-                    })
+                    });
             }
         };
 
         channelsCtrl.sendMessage = function () {
-            const message = channelsCtrl.message;
-            const messageData = {
-                uid: channelsCtrl.profile.uid,
+            var message = channelsCtrl.message;
+            var messageData = {
+                uid: channelsCtrl.profile.$id,
                 body: message,
                 timestamp: firebase.database.ServerValue.TIMESTAMP
             };
@@ -204,7 +199,7 @@
                     channelsCtrl.newChannel = {
                         name: ''
                     };
-                    channelsCtrl.getMessagesFor(ref.key);
+                    channelsCtrl.getMessagesFor(ref.key, 'forChannel');
                 })
                 .catch(function (error) {
                     console.log('__>> ERROR - unable to add a channel, error: ', error);

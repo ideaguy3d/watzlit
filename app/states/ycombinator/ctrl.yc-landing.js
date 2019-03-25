@@ -37,7 +37,7 @@
         activate();
 
         function activate() {
-            eOrgListFact.readFromOrgFeed(5, 'timestamp').$loaded().then(function (data) {
+            eOrgListFact.ycReadFromOrgFeed(5, 'timestamp').$loaded().then(function (data) {
                 vm.orgFeed = data;
             }).catch(function (error) {
                 console.error('edhub - Error: ', error);

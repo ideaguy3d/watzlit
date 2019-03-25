@@ -13,6 +13,7 @@
 
         const orgListingsRef = firebase.database().ref('orgListings');
         const orgFeedRef = firebase.database().ref('orgFeed');
+        const ycOrgFeedRef = firebase.database().ref('ycOrgFeed');
         const orgApplicantsRef = firebase.database().ref('orgApplicants');
 
         function listOrg(orgInfo, orgId) {
@@ -34,6 +35,11 @@
             return $firebaseArray(qOrderLimit);
         }
 
+        function ycReadFromOrgFeed(limit, orderFeedBy) {
+            var qOrderLimit = ycOrgFeedRef.orderByChild(orderFeedBy).limitToLast(limit);
+            return $firebaseArray(qOrderLimit);
+        }
+
         function getOrgApplicants(edhubUserId) {
             return $firebaseArray(orgApplicantsRef.child(edhubUserId));
         }
@@ -42,7 +48,8 @@
             listOrg: listOrg,
             postToOrgFeed: postToOrgFeed,
             readFromOrgFeed: readFromOrgFeed,
-            getOrgApplicants: getOrgApplicants
+            getOrgApplicants: getOrgApplicants,
+            ycReadFromOrgFeed: ycReadFromOrgFeed
         };
 
     }

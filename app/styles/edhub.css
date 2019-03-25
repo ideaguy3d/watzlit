@@ -146,6 +146,13 @@ md-content.edhub-landing-hero {
     background-size: cover;
 }
 
+md-content.yc-landing-hero {
+    background: #e4e4e4 no-repeat fixed center;
+    color: #f1f1f1;
+    height: 40vh;
+    background-size: cover;
+}
+
 md-content.edhub-landing-hero .edhub-landing-hero-text {
     text-align: center;
 }

@@ -12,7 +12,7 @@
 
     function CoreClass($rootScope, $scope, $mdSidenav, $mdDialog, $timeout, edhubAuthService, $location) {
         $scope.ccCurrentUser = "";
-        $scope.coreEdhubHorizontalState = false;
+        $scope.coreEdhubHorizontalState = true;
         $scope.ccAuthBoxHidden = false;
         $scope.ccAuthBoxIsOpen = false;
         $scope.ccAuthBoxHover = true;

@@ -17,7 +17,7 @@ angular
                 .when('/', {
                     templateUrl: 'states/ycombinator/view.yc-landing.html',
                     controller: 'YCombinatorLandingCtrl',
-                    controllerAs: 'cycLanding'
+                    controllerAs: 'landingCtrl'
                 })
                 .when('/ycombinator/home', {
                     templateUrl: 'states/ycombinator/chat/view.yc-home.html',

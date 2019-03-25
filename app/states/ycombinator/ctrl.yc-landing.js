@@ -1,11 +1,12 @@
 /**
- * Created by Julius Alvarado on 9/4/2017.
+ * Created by Julius Alvarado on 3/4/2019.
  */
+
 
 (function () {
     "use strict";
 
-    angular.module('edhubJobsApp').controller('LandingCtrl', [
+    angular.module('edhubJobsApp').controller('YCombinatorLandingCtrl', [
         'edhubJobPostService', '$location', 'smoothScroll', 'eOrgListFact',
         '$rootScope', LandingClass
     ]);
@@ -24,14 +25,7 @@
             if ($rootScope.rootEdhubAuthUser) {
                 $location.url('/apply/' + orgInfo.orgId + '/' + orgInfo.orgName);
             } else {
-                ////-- if user is not authenticated send them to "sign up to apply" view --\\\\
-
-                //-- sta = Signup To Apply view
-                // $location.url('/signup/sta');
-
-                //-- 'apply to job' view:
-                //$location.url('/apply/' + orgInfo.orgId + '/' + orgInfo.orgName);
-                $location.url('/view-job/'+ orgInfo.orgId + '/' + orgInfo.orgName)
+                 $location.url('/view-job/'+ orgInfo.orgId + '/' + orgInfo.orgName)
             }
         };
 
@@ -48,16 +42,6 @@
             }).catch(function (error) {
                 console.error('edhub - Error: ', error);
             });
-
-            /*
-            edhubJobPostService.jobPostingsLimitTo(7).$loaded().then(function (res) {
-                vm.jobPostings = res;
-                console.log("edhub - jobPostings res =");
-                console.log(res);
-            }).catch(function (error) {
-                console.error('edhub - Error: ', error);
-            });
-            */
         }
     }
 

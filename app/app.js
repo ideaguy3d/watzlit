@@ -15,14 +15,14 @@ angular
         function ($routeProvider) {
             $routeProvider
                 .when('/', {
-                    templateUrl: 'states/landing/view.landing.html',
-                    controller: 'LandingCtrl',
-                    controllerAs: 'landingCtrl'
+                    templateUrl: 'states/ycombinator/view.yc-landing.html',
+                    controller: 'YCombinatorLandingCtrl',
+                    controllerAs: 'cycLanding'
                 })
                 .when('/ycombinator/home', {
                     templateUrl: 'states/ycombinator/chat/view.yc-home.html',
-                    controller: 'YCombinatorCtrl',
-                    controllerAs: 'cycCtrl',
+                    controller: 'YCombinatorLandingCtrl',
+                    controllerAs: 'landingCtrl',
                     resolve: {
                         // the user does not have to be authenticated
                         requireNoAuth: function ($location, ycAuthSer) {

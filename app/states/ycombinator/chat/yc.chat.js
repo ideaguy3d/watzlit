@@ -15,11 +15,12 @@
     }
 
     function SerUsersClass($firebaseArray, $firebaseObject) {
-        var refUsers = firebase.database().ref('/users');
-        var users = $firebaseArray(refUsers);
+        var usersRef = firebase.database().ref('/users');
+        var connectedRef = firebase.database().ref('.info/connected');
+        var users = $firebaseArray(usersRef);
 
         function getProfile(uid) {
-            return $firebaseObject(refUsers.child(uid));
+            return $firebaseObject(usersRef.child(uid));
         }
 
         function getDisplayName(uid) {
@@ -30,10 +31,24 @@
             return '//www.gravatar.com/avatar/' + users.$getRecord(uid).emailHash;
         }
 
+        function setOnline(uid) {
+            var connected = $firebaseObject(connectedRef);
+            var online = $firebaseArray(usersRef.child(uid + '/online'));
+
+            connected.$watch(function () {
+                if (connected.$value === true) {
+                    online.$add(true).then(function (connectedRef) {
+                        connectedRef.onDisconnect().remove();
+                    })
+                }
+            });
+        }
+
         return {
             getProfile: getProfile,
             getDisplayName: getDisplayName,
             getGravatar: getGravatar,
+            setOnline: setOnline,
             all: users
         };
     }
@@ -58,6 +73,8 @@
         }
 
         function forUsers(uid1, uid2) {
+            // essentially, the user who has the lower id will "hold" the conversation w/anyone who has
+            // this is just a way to ensure users are pulling from the right path in firebase
             var path = uid1 < uid2 ? (uid1 + '/' + uid2) : (uid2 + '/' + uid1);
 
             return $firebaseArray(userMessagesRef.child(path));
@@ -106,9 +123,7 @@
         }
     }
 
-    function CtrlProfileClass(
-        $location, md5, authRsv, profileRsv, $timeout
-    ) {
+    function CtrlProfileClass($location, md5, authRsv, profileRsv, $timeout) {
         var profileCtrl = this;
         profileCtrl.updateProfileFeedback = '';
 
@@ -126,9 +141,7 @@
         };
     }
 
-    function CtrlChannelsClass(
-        $location, ycAuthSer, ycUsersSer, profileRsv, channelsRsv, ycMessagesSer, ycChannelsSer
-    ) {
+    function CtrlChannelsClass($location, ycAuthSer, ycUsersSer, profileRsv, channelsRsv, ycMessagesSer, ycChannelsSer) {
         const channelsCtrl = this;
         channelsCtrl.messages = null;
         channelsCtrl.channelName = null;
@@ -139,10 +152,10 @@
         channelsCtrl.window = '';
         channelsCtrl.users = ycUsersSer.all;
         channelsCtrl.profile = profileRsv;
+        // add online presence
+        ycUsersSer.setOnline(channelsCtrl.profile.$id);
         channelsCtrl.channels = channelsRsv;
-        channelsCtrl.newChannel = {
-            name: ''
-        };
+        channelsCtrl.newChannel = {name: ''};
 
         channelsCtrl.getDisplayName = ycUsersSer.getDisplayName;
         channelsCtrl.getGravatar = ycUsersSer.getGravatar;
@@ -207,11 +220,13 @@
         };
 
         channelsCtrl.logout = function () {
-            ycAuthSer.auth.$signOut()
-                .then(function (res) {
+            channelsCtrl.profile.online = null;
+            channelsCtrl.profile.$save().then(function () {
+                ycAuthSer.auth.$signOut().then(function (res) {
                     console.log('__>> Firebase Response from signing out = ', res);
                     $location.url('/ycombinator/home');
                 });
+            });
         };
     }
 

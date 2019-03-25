@@ -40,18 +40,18 @@
 <md-nav-bar ng-show="coreEdhubHorizontalState" md-selected-nav-item="currentNavItem"
             nav-bar-aria-label="navigationLinks">
     <md-nav-item md-nav-sref="landing" name="home">
-        EdHub.co
+        <b>EdHub.co</b>
     </md-nav-item>
     <!--You can also add options for the <code>ui-sref-opts</code> attribute.-->
     <md-nav-item md-nav-sref="post" sref-opts="{reload:true, notify:true}">
-        Post a Job
+        Learning Management
     </md-nav-item>
     <md-nav-item ng-if="!ccCurrentUser" md-nav-sref="signup" name="signup">
-        Signup
+        Performance Management
     </md-nav-item>
     <!--You can also add options for the <code>ui-sref-opts</code> attribute.-->
     <md-nav-item ng-if="!ccCurrentUser" md-nav-sref="login" sref-opts="{reload:true, notify:true}">
-        Login
+        Talent Acquisition
     </md-nav-item>
     <md-subheader ng-if="ccCurrentUser" layout="column">
         <ng-md-icon icon="perm_identity"></ng-md-icon>

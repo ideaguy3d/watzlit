@@ -20,9 +20,9 @@
             //     console.log(res);
             // });
 
-            let organizationsList = edhubJobPostService.returnAllOrganizations();
+            var organizationsList = edhubJobPostService.returnAllOrganizations();
             edhubJobPostService.returnAllOrganizations().$loaded().then(function(res){
-                let organizationItem = organizationsList[1];
+                var organizationItem = organizationsList[1];
                 console.log("organizationItem = ", organizationItem);
                 organizationsList.$remove(organizationItem);
             }); 

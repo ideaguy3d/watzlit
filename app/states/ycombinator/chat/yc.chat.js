@@ -92,14 +92,14 @@
         authCtrl.error = '';
         authCtrl.authInfo = 'The auth ctrl is wired up to the view';
         authCtrl.user = {
-            email: '',
-            password: ''
+            email: 'chat@app.com',
+            password: 'jiha89'
         };
 
         authCtrl.login = function () {
             ycAuthSer.auth.$signInWithEmailAndPassword(authCtrl.user.email, authCtrl.user.password)
                 .then(function (authRes) {
-                    $location.url('/');
+                    $location.url('/ycombinator/channels');
                 })
                 .catch(function (error) {
                     console.log("__>> ERROR:");

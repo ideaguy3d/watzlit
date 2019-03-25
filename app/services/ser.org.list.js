@@ -10,7 +10,6 @@
     ]);
 
     function OrgListClass($rootScope, $firebaseArray) {
-
         const orgListingsRef = firebase.database().ref('orgListings');
         const orgFeedRef = firebase.database().ref('orgFeed');
         const ycOrgFeedRef = firebase.database().ref('ycOrgFeed');

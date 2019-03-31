@@ -7,7 +7,7 @@
           ".read": true
         },
         "gameContent": {
-          ".read": "auth !== null || data.child('isPublic').val() === true"
+          ".read": "data.parent().child('tickets').hasChild(auth.uid)"
         },
         "tickets": {
           "$uid": {

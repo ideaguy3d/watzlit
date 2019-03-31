@@ -1,4 +1,12 @@
 {
+  "admins": {
+    "sdaf982-kjlh234-xcv987": {
+      "name": "paul verne"
+    },
+    "lkj982-werwh234-xcv987": {
+      "name": "samantha grant"
+    }
+  },
   "games": {
     "-KhsaldkfjOJ987-99J": {
       "metadata": {

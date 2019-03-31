@@ -45,7 +45,7 @@
     <!--You can also add options for the <code>ui-sref-opts</code> attribute.-->
     <md-nav-item md-nav-sref="post" sref-opts="{reload:true, notify:true}">
         Learning Management
-    </md-nav-item>
+    </md-nav-item>x
     <md-nav-item ng-if="!ccCurrentUser" md-nav-sref="signup" name="signup">
         Performance Management
     </md-nav-item>
@@ -76,11 +76,12 @@
                        class="md-scale md-fab-top-right"
                        ng-class="{ 'md-hover-full': ccAuthBoxHover }"
                        ng-mouseenter="ccAuthBoxIsOpen=true" ng-mouseleave="ccAuthBoxIsOpen=false">
+
         <md-fab-trigger>
             <md-button aria-label="menu" class="md-primary">
                 <ng-md-icon id="edhub-auth-box-avatar" icon="account_box" size="36"></ng-md-icon>
                 <p class="edhub-auth-box-username">
-                    {{rootEdhubAuthUser.email ? rootEdhubAuthUser.email : "Edhub Guest"}}
+                    {{rootEdhubAuthUser.email ? rootEdhubAuthUser.email : "This doesn't work Yet"}}
                 </p>
             </md-button>
         </md-fab-trigger>

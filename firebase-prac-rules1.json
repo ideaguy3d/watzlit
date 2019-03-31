@@ -1,0 +1,21 @@
+{
+  "rules": {
+    ".read": true,
+    "games": {
+      "$gameId": {
+        "metadata": {
+          ".read": true
+        },
+        "gameContent": {
+          ".read": "auth !== null || data.child('isPublic').val() === true"
+        },
+        "tickets": {
+          "$uid": {
+            ".read": "auth.uid === $uid",
+            ".write": "auth.uid === $uid"
+          }
+        }
+      }
+    }
+  }
+}

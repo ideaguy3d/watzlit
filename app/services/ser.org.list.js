@@ -3,7 +3,7 @@
  */
 
 (function () {
-    "use strict";
+    'use strict';
 
     angular.module('edhubJobsApp').factory('eOrgListFact', [
         '$rootScope', '$firebaseArray', OrgListClass

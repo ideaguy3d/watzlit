@@ -36,23 +36,32 @@
     upgrade your browser</ato improve your experience.</p>
 <![endif]-->
 
-<!-- Horizontal Navigation, At the moment this won't show. -->
+<!-- Horizontal Navigation -->
 <md-nav-bar ng-show="coreEdhubHorizontalState" md-selected-nav-item="currentNavItem"
             nav-bar-aria-label="navigationLinks">
+
+    <!-- Home Link -->
     <md-nav-item md-nav-sref="landing" name="home">
         <b>EdHub.co</b>
     </md-nav-item>
+
     <!--You can also add options for the <code>ui-sref-opts</code> attribute.-->
     <md-nav-item md-nav-sref="post" sref-opts="{reload:true, notify:true}">
         Learning Management
-    </md-nav-item>x
+    </md-nav-item>
+
     <md-nav-item ng-if="!ccCurrentUser" md-nav-sref="signup" name="signup">
         Performance Management
     </md-nav-item>
-    <!--You can also add options for the <code>ui-sref-opts</code> attribute.-->
-    <md-nav-item ng-if="!ccCurrentUser" md-nav-sref="login" sref-opts="{reload:true, notify:true}">
-        Talent Acquisition
+
+    <md-nav-item>
+        Talent Acquisition?
     </md-nav-item>
+
+    <md-nav-item md-nav-href="#!/julius">
+        Julius
+    </md-nav-item>
+
     <md-subheader ng-if="ccCurrentUser" layout="column">
         <ng-md-icon icon="perm_identity"></ng-md-icon>
         {{ " Welcome " + ccCurrentUser }}

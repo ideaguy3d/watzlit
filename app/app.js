@@ -310,8 +310,8 @@ angular
                     controllerAs: 'cJulius',
                     resolve: {}
                 })
-                .when('/chat', {
-                    templateUrl: 'states/chat/view.chat.html'
+                .when('/talent-acquisition', {
+                    templateUrl: 'states/talent-acquisition/view.talent-acquisition.html'
                 })
                 // go to base url
                 .otherwise('/');

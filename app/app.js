@@ -9,7 +9,8 @@ angular
         'ngRoute',
         'ngMaterial',
         'ngMdIcons',
-        'smoothScroll'
+        'smoothScroll',
+        'ngAnimate'
     ])
     .config(['$routeProvider', '$locationProvider',
         function ($routeProvider) {
@@ -311,7 +312,9 @@ angular
                     resolve: {}
                 })
                 .when('/talent-acquisition', {
-                    templateUrl: 'states/talent-acquisition/view.talent-acquisition.html'
+                    templateUrl: 'states/talent-acquisition/view.talent-acquisition.html',
+                    controller: 'TalentAcquisitionCtrl',
+                    controllerAs: 'cTalentAcquisition'
                 })
                 // go to base url
                 .otherwise('/');

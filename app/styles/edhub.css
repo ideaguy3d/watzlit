@@ -747,7 +747,18 @@ AuthBox style rules
     text-align: left !important;
 }
 
+.edhub-form1 {
+    padding: 12px;
+    margin: 12px;
+    border: 1px solid rgba(0,0,0,0.5);
+    border-radius: 4px;
+    transition: all linear 0.5s;
+}
 
+.edhub-form.ng-hide {
+    opacity: 0;
+    transform: scale(0.8);
+}
 
 
 

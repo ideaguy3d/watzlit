@@ -1,9 +1,19 @@
 /**
  * Created by Julius Alvarado on 9/2/2017.
+ *
+ * The talent management system CORE components:
+ * PM  = Performance Management
+ * LM  = Learning Management
+ * TA  = Talent Acquisition
+ * OO  = On boarding/Off boarding
+ * SP  = Succession Planning
+ * WP  = Workforce Planning
+ * POM = Position Oversight Management
+ * BIT = Background Investigation Tracking
+ *
  */
 
-angular
-    .module('edhubJobsApp', [
+angular.module('edhubJobsApp', [
         'firebase',
         'angular-md5',
         'ngRoute',
@@ -20,6 +30,7 @@ angular
                     controller: 'YCombinatorLandingCtrl',
                     controllerAs: 'landingCtrl'
                 })
+                // Y Combinator states
                 .when('/ycombinator/home', {
                     templateUrl: 'states/ycombinator/chat/view.yc-home.html',
                     controller: 'YCombinatorLandingCtrl',
@@ -190,6 +201,7 @@ angular
                         }
                     }
                 })
+                // The rest of the Edhub states
                 .when('/landing', {
                     templateUrl: 'states/landing/view.landing.html',
                     controller: 'LandingCtrl',
@@ -311,10 +323,25 @@ angular
                     controllerAs: 'cJulius',
                     resolve: {}
                 })
+                // Talent Acquisition states
                 .when('/talent-acquisition', {
                     templateUrl: 'states/talent-acquisition/view.talent-acquisition.html',
                     controller: 'TalentAcquisitionCtrl',
                     controllerAs: 'cTalentAcquisition'
+                })
+                // Performance Management states
+                .when('/performance-management', {
+                    templateUrl: 'states/performance-management/view.performance-management.html',
+                    controller: 'PerformanceManagementCtrl',
+                    controllerAs: 'cPM',
+                    resolve: {}
+                })
+                // Learning Management states
+                .when('/learning-management', {
+                    templateUrl: 'states/learning-management/view.learning-management.html',
+                    controller: 'LearningManagementCtrl',
+                    controllerAs: 'cLM',
+                    resolve: {}
                 })
                 // go to base url
                 .otherwise('/');

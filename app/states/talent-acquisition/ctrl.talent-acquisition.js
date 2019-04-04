@@ -7,7 +7,7 @@
 
     function TalentAcquisitionClass () {
         const vm = self;
-        vm.message = 'joined hard cable'
+        vm.message = 'joined hard cable';
         vm.hideForm = true;
     }
 

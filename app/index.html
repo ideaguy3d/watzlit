@@ -36,6 +36,7 @@
     upgrade your browser</ato improve your experience.</p>
 <![endif]-->
 
+<!-- TODO: Put this footer into an include or a directive -->
 <!-- Horizontal Navigation -->
 <md-nav-bar ng-show="coreEdhubHorizontalState" md-selected-nav-item="currentNavItem"
             nav-bar-aria-label="navigationLinks">
@@ -46,11 +47,11 @@
     </md-nav-item>
 
     <!--You can also add options for the <code>ui-sref-opts</code> attribute.-->
-    <md-nav-item md-nav-sref="post" sref-opts="{reload:true, notify:true}">
+    <md-nav-item ng-if="!ccCurrentUser" md-nav-href="#!/learning-management">
         Learning Management
     </md-nav-item>
 
-    <md-nav-item ng-if="!ccCurrentUser" md-nav-sref="signup" name="signup">
+    <md-nav-item ng-if="!ccCurrentUser" md-nav-href="#!/performance-management">
         Performance Management
     </md-nav-item>
 
@@ -124,6 +125,7 @@
 
 <br>
 
+<!-- TODO: Put this footer into an include or a directive -->
 <!-- footer -->
 <div layout="row" layout-xs="column" style="background-color: whitesmoke;">
     <!-- Left -->
@@ -217,6 +219,8 @@
 <script src="states/julius/ctrl.julius.js"></script>
 <script src="states/ycombinator/ctrl.yc-landing.js"></script>
 <script src="states/talent-acquisition/ctrl.talent-acquisition.js"></script>
+<script src="states/learning-management/ctrl.learning-management.js"></script>
+<script src="states/performance-management/ctrl.performance-management.js"></script>
 <!-- yc chat / messaging system prototype code -->
 <script src="states/ycombinator/chat/yc.chat.js"></script>
 <script src="ui-prac/ctrl.ui.prac.js"></script>

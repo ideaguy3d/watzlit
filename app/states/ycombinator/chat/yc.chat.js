@@ -110,11 +110,12 @@
 
         authCtrl.register = function () {
             console.log('__>> should invoke YC auth service');
-            ycAuthSer.auth.$createUserWithEmailAndPassword(authCtrl.user.email, authCtrl.user.password)
+            ycAuthSer.auth
+                .$createUserWithEmailAndPassword(authCtrl.user.email, authCtrl.user.password)
                 .then(function (userRes) {
                     $location.url('/');
                     console.log('__>> should sign user up with this info');
-                    console.log(authCtrl.user);
+                    console.log(userRes);
                 })
                 .catch(function (error) {
                     authCtrl.error = error;

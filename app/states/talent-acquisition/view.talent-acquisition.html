@@ -1,17 +1,17 @@
 <section id="talent-acquisition" class="edhub-view-mtop">
     <h1>Soon to be talent acquisition proto</h1>
-    <md-button class="md-primary md-float" ng-click="cTalentAcquisition.hideForm = !cTalentAcquisition.hideForm">
-       new talent opportunity
+    <h4>For organization = {{cTalentAcquisition.curOrganization}}</h4>
+    <md-button class="md-primary md-float" ng-click="cTalentAcquisition.talentSubmit()">
+       Create Talent Opportunity
     </md-button>
-    {{cTalentAcquisition.hideForm}}
+    <p>{{cTalentAcquisition.hideForm}}</p>
     <div layout="row" layout-align="center center">
         <div class="edhub-form1" flex-gt-xs="50" flex="100" ng-hide="cTalentAcquisition.hideForm">
             <label for="name">Name</label>
-            <input id="name" type="text">
+            <input id="name" type="text" ng-model="cTalentAcquisition.talentInfo.name">
             <br><br>
             <label for="email">Email</label>
-            <input id="email" type="text">
+            <input id="email" type="text" ng-model="cTalentAcquisition.talentInfo.email">
         </div>
     </div>
-
 </section>

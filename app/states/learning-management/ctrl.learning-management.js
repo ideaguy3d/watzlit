@@ -13,5 +13,5 @@
     angular.module('edhubJobsApp')
         .controller('LearningManagementCtrl', [
             LearningManagementClass
-        ])
+        ]);
 }());

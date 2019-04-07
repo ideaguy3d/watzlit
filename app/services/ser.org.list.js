@@ -16,9 +16,10 @@
         const orgApplicantsRef = firebase.database().ref('orgApplicants');
 
         function listOrg(orgInfo, orgId) {
-            return $firebaseArray(orgListingsRef.child(orgId)).$add(orgInfo).then(function (ref) {
-                return ref;
-            });
+            return $firebaseArray(orgListingsRef.child(orgId)).$add(orgInfo)
+                .then(function (ref) {
+                    return ref;
+                });
         }
 
         function postToOrgFeed(orgInfo, orgId) {

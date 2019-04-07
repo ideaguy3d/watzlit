@@ -14,14 +14,14 @@
  */
 
 angular.module('edhubJobsApp', [
-        'firebase',
-        'angular-md5',
-        'ngRoute',
-        'ngMaterial',
-        'ngMdIcons',
-        'smoothScroll',
-        'ngAnimate'
-    ])
+    'firebase',
+    'angular-md5',
+    'ngRoute',
+    'ngMaterial',
+    'ngMdIcons',
+    'smoothScroll',
+    'ngAnimate'
+])
     .config(['$routeProvider', '$locationProvider',
         function ($routeProvider) {
             $routeProvider

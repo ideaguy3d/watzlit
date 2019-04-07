@@ -5,16 +5,22 @@
 (function () {
     'use strict';
 
-    angular.module('edhubJobsApp').factory('eOrgListFact', [
-        '$rootScope', '$firebaseArray', OrgListClass
+    angular.module('edhubJobsApp').factory('OrgListSer', [
+        '$rootScope', '$firebaseArray', OrgListSerClass
     ]);
 
-    function OrgListClass($rootScope, $firebaseArray) {
+    function OrgListSerClass($rootScope, $firebaseArray) {
         const orgListingsRef = firebase.database().ref('orgListings');
         const orgFeedRef = firebase.database().ref('orgFeed');
         const ycOrgFeedRef = firebase.database().ref('ycOrgFeed');
         const orgApplicantsRef = firebase.database().ref('orgApplicants');
 
+        /**
+         *
+         * @param orgInfo
+         * @param orgId
+         * @returns {*}
+         */
         function listOrg(orgInfo, orgId) {
             return $firebaseArray(orgListingsRef.child(orgId)).$add(orgInfo)
                 .then(function (ref) {
@@ -25,9 +31,10 @@
         function postToOrgFeed(orgInfo, orgId) {
             orgInfo.timestamp = firebase.database.ServerValue.TIMESTAMP;
             orgInfo.orgId = orgId;
-            return $firebaseArray(orgFeedRef).$add(orgInfo).then(function (refNode) {
-                return refNode;
-            });
+            return $firebaseArray(orgFeedRef).$add(orgInfo)
+                .then(function (refNode) {
+                    return refNode;
+                });
         }
 
         function readFromOrgFeed(limit, orderFeedBy) {

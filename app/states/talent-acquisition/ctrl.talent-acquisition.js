@@ -5,11 +5,12 @@
 (function () {
     'use strict';
 
-    function TalentAcquisitionClass(eOrgListFact) {
+    function TalentAcquisitionClass(OrgListSer) {
         const vm = this;
         vm.message = 'Talent Acquisition';
         vm.curOrganization = 'Y Combinator';
         vm.hideForm = true;
+        vm.postedOpportunities = [];
         vm.talentInfo = {
             name: '',
             email: ''
@@ -19,16 +20,27 @@
             if(vm.hideForm === false) {
                 console.log('going to sumbit this talent info:');
                 console.log(vm.talentInfo);
-                eOrgListFact.listOrg(vm.talentInfo, vm.curOrganization).then(function (res) {
+                OrgListSer.listOrg(vm.talentInfo, vm.curOrganization).then(function (res) {
                     console.log('Response for listing organization ' + vm.curOrganization);
                     console.log(res);
                 })
             }
             vm.hideForm = !vm.hideForm;
+        };
+
+        init();
+        function init () {
+            OrgListSer.ycReadFromOrgFeed(10, 'name').$loaded()
+                .then(function(res){
+                     vm.postedOpportunities = res;
+                     console.log("The response is");
+                     console.log(res);
+                });
         }
     }
 
     angular.module('edhubJobsApp').controller('TalentAcquisitionCtrl', [
-        'eOrgListFact', TalentAcquisitionClass
+        'OrgListSer', TalentAcquisitionClass
     ]);
+
 }());

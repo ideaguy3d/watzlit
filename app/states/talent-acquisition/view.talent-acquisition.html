@@ -2,9 +2,9 @@
     <h1>Soon to be talent acquisition proto</h1>
     <h4>For organization = {{cTalentAcquisition.curOrganization}}</h4>
     <md-button class="md-primary md-float" ng-click="cTalentAcquisition.talentSubmit()">
-       Create Talent Opportunity
+        Create Talent Opportunity
     </md-button>
-    <p>{{cTalentAcquisition.hideForm}}</p>
+
     <div layout="row" layout-align="center center">
         <div class="edhub-form1" flex-gt-xs="50" flex="100" ng-hide="cTalentAcquisition.hideForm">
             <label for="name">Name</label>
@@ -14,4 +14,11 @@
             <input id="email" type="text" ng-model="cTalentAcquisition.talentInfo.email">
         </div>
     </div>
+
+    <h2>Talent Opportunities posted for your organization</h2>
+    <ul>
+        <li ng-repeat="job in cTalentAcquisition.postedOpportunities">
+            Name: {{job.name}}, {{job.orgName}}
+        </li>
+    </ul>
 </section>

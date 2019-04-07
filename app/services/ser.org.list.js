@@ -42,13 +42,25 @@
             return $firebaseArray(qOrderLimit);
         }
 
+        function getOrgApplicants(edhubUserId) {
+            return $firebaseArray(orgApplicantsRef.child(edhubUserId));
+        }
+
+        function ycCreateNewJob (jobInfo) {
+            $firebaseArray(ycOrgFeedRef).$add(jobInfo);
+        }
+
         function ycReadFromOrgFeed(limit, orderFeedBy) {
             var qOrderLimit = ycOrgFeedRef.orderByChild(orderFeedBy).limitToLast(limit);
             return $firebaseArray(qOrderLimit);
         }
 
-        function getOrgApplicants(edhubUserId) {
-            return $firebaseArray(orgApplicantsRef.child(edhubUserId));
+        function ycUpdateJobPost (jobInfo) {
+
+        }
+
+        function ycDeleteJobFromOrganization (jobInfo) {
+            $firebaseArray.$remove(jobInfo.$id);
         }
 
         return {
@@ -56,7 +68,10 @@
             postToOrgFeed: postToOrgFeed,
             readFromOrgFeed: readFromOrgFeed,
             getOrgApplicants: getOrgApplicants,
-            ycReadFromOrgFeed: ycReadFromOrgFeed
+            ycReadFromOrgFeed: ycReadFromOrgFeed,
+            ycDeleteJobFromOrganization: ycDeleteJobFromOrganization,
+            ycCreateNewJob: ycCreateNewJob,
+            ycUpdateJobPost: ycUpdateJobPost
         };
 
     }

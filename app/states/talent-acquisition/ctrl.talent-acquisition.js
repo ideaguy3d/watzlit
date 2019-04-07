@@ -20,12 +20,17 @@
             if(vm.hideForm === false) {
                 console.log('going to sumbit this talent info:');
                 console.log(vm.talentInfo);
-                OrgListSer.listOrg(vm.talentInfo, vm.curOrganization).then(function (res) {
+                vm.talentInfo.curOrganization = vm.curOrganization;
+                OrgListSer.ycCreateNewJob(vm.talentInfo).then(function (res) {
                     console.log('Response for listing organization ' + vm.curOrganization);
                     console.log(res);
                 })
             }
             vm.hideForm = !vm.hideForm;
+        };
+
+        vm.deleteJob = function(job){
+            OrgListSer.ycDeleteJobFromOrganization(job);
         };
 
         init();

@@ -48,7 +48,7 @@
 
         // C - create
         function ycCreateNewJob(jobInfo) {
-            $firebaseArray(ycOrgFeedRef).$add(jobInfo);
+            return $firebaseArray(ycOrgFeedRef).$add(jobInfo);
         }
 
         // R - read
@@ -80,7 +80,6 @@
             //delete jobInfo.$priority;
             console.log('after deleting jobInfo stuff: ', jobInfo);
             $firebaseArray(ycOrgFeedRef).$remove(jobInfo);
-
         }
 
         return {

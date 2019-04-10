@@ -20,7 +20,7 @@
     <h2>Talent Opportunities posted for your organization</h2>
     <ul>
         <li ng-repeat="job in cTalentAcquisition.postedOpportunities">
-            Name: {{job.name}}, {{job.orgName}}, &nbsp;
+            Name: {{job.curOrganization}}, {{job.orgName}}, &nbsp;
             <button ng-click="cTalentAcquisition.deleteJob(job)">Delete</button>
         </li>
     </ul>

@@ -46,21 +46,41 @@
             return $firebaseArray(orgApplicantsRef.child(edhubUserId));
         }
 
-        function ycCreateNewJob (jobInfo) {
+        // C - create
+        function ycCreateNewJob(jobInfo) {
             $firebaseArray(ycOrgFeedRef).$add(jobInfo);
         }
 
+        // R - read
         function ycReadFromOrgFeed(limit, orderFeedBy) {
             var qOrderLimit = ycOrgFeedRef.orderByChild(orderFeedBy).limitToLast(limit);
             return $firebaseArray(qOrderLimit);
         }
 
-        function ycUpdateJobPost (jobInfo) {
+        // U - update
+        function ycUpdateJobPost(jobInfo) {
 
         }
 
-        function ycDeleteJobFromOrganization (jobInfo) {
-            $firebaseArray.$remove(jobInfo.$id);
+        // D - delete
+        function ycDeleteJobFromOrganization(jobInfo) {
+            /*
+            //$id: "-Lbtf1tCijkCvklhoReS"
+            //$priority: null
+            aboutTheOrganization: "Looking for a PHP coder with strong SQL skills to feed the data presentation layer with some data"
+            //curOrganization: "Y Combinator"
+            name: ""
+            orgId: ""
+            orgName: "Full Stack Engineer"
+            timestamp: 0
+            */
+            delete jobInfo.$$hashKey;
+            //delete jobInfo.$id;
+            delete jobInfo.curOrganization;
+            //delete jobInfo.$priority;
+            console.log('after deleting jobInfo stuff: ', jobInfo);
+            $firebaseArray(ycOrgFeedRef).$remove(jobInfo);
+
         }
 
         return {

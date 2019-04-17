@@ -6,10 +6,11 @@
     'use strict';
 
     function PerformanceManagementClass() {
-
+        var vm = this;
+        vm.points = 50;
     }
 
-    angular.module('PerformanceManagementCtrl', [
+    angular.module('edhubJobsApp').controller('PerformanceManagementCtrl', [
         PerformanceManagementClass
     ]);
 }());

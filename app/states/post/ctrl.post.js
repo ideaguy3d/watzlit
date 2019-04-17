@@ -8,7 +8,7 @@
 
 
     angular.module('edhubJobsApp').controller('PostCtrl', ['$rootScope', 'edhubJobPostService',
-        '$location', 'edhubAuthService', 'eOrgListFact',
+        '$location', 'edhubAuthService', 'OrgListSer',
         PostClass
     ]);
 

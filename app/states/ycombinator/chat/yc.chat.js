@@ -39,7 +39,7 @@
                 if (connected.$value === true) {
                     online.$add(true).then(function (connectedRef) {
                         connectedRef.onDisconnect().remove();
-                    })
+                    });
                 }
             });
         }
@@ -57,14 +57,13 @@
         var ref = firebase.database().ref('/channels');
         var channels = $firebaseArray(ref);
 
-        console.log('__>> channels data set,  ', channels);
-
         return {
             channels: channels
         };
     }
 
     function SerMessagesClass($firebaseArray) {
+        //
         var channelMessagesRef = firebase.database().ref('/channelMessages');
         var userMessagesRef = firebase.database().ref('/userMessages');
 
@@ -73,8 +72,8 @@
         }
 
         function forUsers(uid1, uid2) {
-            // essentially, the user who has the lower id will "hold" the conversation w/anyone who has
-            // this is just a way to ensure users are pulling from the right path in firebase
+            // essentially, the user who has the lower id will "hold" the conversation w/anyone who
+            //has this is just a way to ensure users are pulling from the right path in firebase
             var path = uid1 < uid2 ? (uid1 + '/' + uid2) : (uid2 + '/' + uid1);
 
             return $firebaseArray(userMessagesRef.child(path));

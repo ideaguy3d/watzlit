@@ -64,7 +64,7 @@ angular.module('edhubJobsApp', [
                                     $location.url('/ycombinator/channels');
                                 })
                                 .catch(function (error) {
-                                    var errorMessage = '__>> ERROR - error while going to UI state home'
+                                    var errorMessage = '__>> ERROR - error while going to UI state home';
                                     console.log(errorMessage, error);
                                     return errorMessage;
                                 });
@@ -332,6 +332,7 @@ angular.module('edhubJobsApp', [
                 // Performance Management states
                 .when('/performance-management', {
                     templateUrl: 'states/performance-management/view.performance-management.html',
+                    //           PerformanceManagementCtrl
                     controller: 'PerformanceManagementCtrl',
                     controllerAs: 'cPM',
                     resolve: {}

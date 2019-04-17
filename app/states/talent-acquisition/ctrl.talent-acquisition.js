@@ -46,7 +46,6 @@
         };
 
         init();
-
         function init() {
             OrgListSer.ycReadFromOrgFeed(10, 'name').$loaded()
                 .then(function (res) {

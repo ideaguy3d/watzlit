@@ -7,11 +7,11 @@
     "use strict";
 
     angular.module('edhubJobsApp').controller('YCombinatorLandingCtrl', [
-        'edhubJobPostService', '$location', 'smoothScroll', 'eOrgListFact',
+        'edhubJobPostService', '$location', 'smoothScroll', 'OrgListSer',
         '$rootScope', LandingClass
     ]);
 
-    function LandingClass(edhubJobPostService, $location, smoothScroll, eOrgListFact, $rootScope) {
+    function LandingClass(edhubJobPostService, $location, smoothScroll, OrgListSer, $rootScope) {
         const vm = this;
         vm.jobPostBg = "images/chalkboard3dArt1.png";
         vm.showVid = true;
@@ -37,7 +37,7 @@
         activate();
 
         function activate() {
-            eOrgListFact.ycReadFromOrgFeed(5, 'timestamp').$loaded().then(function (data) {
+            OrgListSer.ycReadFromOrgFeed(5, 'timestamp').$loaded().then(function (data) {
                 vm.orgFeed = data;
             }).catch(function (error) {
                 console.error('edhub - Error: ', error);

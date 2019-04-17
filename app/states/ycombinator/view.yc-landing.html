@@ -9,6 +9,7 @@
     <md-grid-list md-cols-xs="1" md-cols-sm="2" md-cols-md="3" md-cols-lg="3" md-cols-xl="4"
                   md-row-height="4:5"
                   md-gutter="8px"> <!-- md-gutter-gt-sm="8px"  md-row-height-gt-sm="3:3"-->
+
         <!-- LOOP START - data card landingCtrl.jobPostings -->
         <md-grid-tile ng-repeat="post in landingCtrl.orgFeed | orderBy : 'timestamp' : true">
             <md-card class="{{'edhub-landing-job'+$index}}">
@@ -20,6 +21,7 @@
                         <span class="md-headline">{{ post.orgName }}</span>
                     </md-card-title-text>
                 </md-card-title>
+
                 <!-- action buttons -->
                 <md-card-actions layout="row" layout-align="start center">
                     <!-- apply button -->

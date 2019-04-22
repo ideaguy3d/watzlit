@@ -128,6 +128,7 @@
 <!-- TODO: Put this footer into an include or a directive -->
 <!-- footer -->
 <div layout="row" layout-xs="column" style="background-color: whitesmoke;">
+
     <!-- Left -->
     <div flex layout-margin layout-padding>
         <h1 class="text-center">
@@ -144,6 +145,7 @@
             and I'll build this project full time instead
         </p>
     </div>
+
     <!-- Middle -->
     <div flex layout-margin layout-padding>
         <h1>Edhub.co Progress</h1>
@@ -170,6 +172,7 @@
             </li>
         </ol>
     </div>
+
     <!-- Right -->
     <div flex layout-margin layout-padding>
         <h1>Julius3D.com sites</h1>
@@ -182,6 +185,7 @@
         <p><a href="http://julius3d.com" target="_blank">
             Julius3D.com</a></p>
     </div>
+
 </div>
 
 <!-- build:js(.) scripts/vendor.js -->
@@ -198,8 +202,13 @@
 <script src="bower_components/angular-material-icons/angular-material-icons.min.js"></script>
 <script src="bower_components/angular-route/angular-route.js"></script>
 <script src="bower_components/ngSmoothScroll/lib/angular-smooth-scroll.js"></script>
+<script src="bower_components/geofire/dist/geofire.min.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
+
+<!-- CDN scripts -->
+<!--<script src="https://cdn.firebase.com/libs/geofire/5.0.1/geofire.js"></script>-->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBtnicJD8LAecuChAJAzsa_ooWuD5jfuuw&callback=myMap"></script>
 
 <!-- build:js({.tmp,app}) scripts/scripts.js -->
 <script src="app.js"></script>

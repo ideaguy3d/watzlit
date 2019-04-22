@@ -162,7 +162,6 @@
 		return smoothScroll;
 	});
 
-
 	/**
 	 * Scrolls the window to this element, optionally validating an expression
 	 *

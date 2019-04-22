@@ -164,6 +164,8 @@ angular.module('edhubJobsApp', [
                                 });
                         }
                     }
+
+
                 })
                 .when('/ycombinator/rooms/:channelId/messages', {
                     templateUrl: 'states/ycombinator/chat/view.messages.html',
@@ -332,7 +334,7 @@ angular.module('edhubJobsApp', [
                 // Performance Management states
                 .when('/performance-management', {
                     templateUrl: 'states/performance-management/view.performance-management.html',
-                    //           PerformanceManagementCtrl
+                    // PerformanceManagementCtrl
                     controller: 'PerformanceManagementCtrl',
                     controllerAs: 'cPM',
                     resolve: {}

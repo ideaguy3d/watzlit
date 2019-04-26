@@ -29,10 +29,6 @@
             });
 
         }
-
-        function deleteOrg2() {
-
-        }
     }
 
 })();

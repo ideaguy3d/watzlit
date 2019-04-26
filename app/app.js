@@ -25,7 +25,7 @@ angular.module('edhubJobsApp', [
     .config(['$routeProvider', '$locationProvider',
         function ($routeProvider) {
             $routeProvider
-                .when('/', {
+                .when('/ycombinator/positions', {
                     templateUrl: 'states/ycombinator/view.yc-landing.html',
                     controller: 'YCombinatorLandingCtrl',
                     controllerAs: 'landingCtrl'
@@ -44,7 +44,7 @@ angular.module('edhubJobsApp', [
                                     $location.url('/ycombinator/channels');
                                 })
                                 .catch(function (error) {
-                                    var errorMessage = '__>> ERROR - error while going to UI state home'
+                                    var errorMessage = '__>> ERROR - error while going to UI state home';
                                     console.log(errorMessage, error);
                                     return errorMessage;
                                 });
@@ -164,8 +164,6 @@ angular.module('edhubJobsApp', [
                                 });
                         }
                     }
-
-
                 })
                 .when('/ycombinator/rooms/:channelId/messages', {
                     templateUrl: 'states/ycombinator/chat/view.messages.html',
@@ -319,7 +317,8 @@ angular.module('edhubJobsApp', [
                         }
                     }
                 })
-                .when('/julius', {
+                // Google Maps
+                .when('/', {
                     templateUrl: 'states/julius/view.julius.html',
                     controller: 'JuliusCtrl',
                     controllerAs: 'cJulius',

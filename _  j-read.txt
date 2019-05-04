@@ -1,4 +1,16 @@
 
+
+
+4-27-2019: 
+This project used to be "edhub",
+but I'm renaming it "Plagmigo" and will build 
+the plamigo app with it and make the modifications.
+
+This will be the folder that gets deployed to Firebase hosting
+at the plamigo.co domain 
+
+
+
 4-08-2018:
 This is Thee EdHub.co product.
 $grunt serve

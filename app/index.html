@@ -2,7 +2,7 @@
 <html lang="en" class="no-js" ng-app="edhubJobsApp">
 <head>
     <meta charset="utf-8">
-    <title>EdHub.co</title>
+    <title>Plagimo.co</title>
 
     <meta http-equiv="x-ua-compatible" content="IE=edge">
     <meta name="description" content="The Education Jobs site">
@@ -42,25 +42,29 @@
             nav-bar-aria-label="navigationLinks">
 
     <!-- Home Link -->
-    <md-nav-item md-nav-sref="landing" name="home">
-        <b>EdHub.co</b>
+    <md-nav-item md-nav-href="#!/">
+        <b>Plamigo.co</b>
     </md-nav-item>
 
-    <!--You can also add options for the <code>ui-sref-opts</code> attribute.-->
-    <md-nav-item ng-if="!ccCurrentUser" md-nav-href="#!/learning-management">
-        Learning Management
+    <!-- #!/learning-management
+    <md-nav-item ng-if="!ccCurrentUser" md-nav-href="">
+        Top Rated
+    </md-nav-item>
+    -->
+
+    <!-- #!/performance-management
+    <md-nav-item ng-if="!ccCurrentUser" md-nav-href="">
+        Near Me
+    </md-nav-item>
+    -->
+    <!-- #!/talent-acquisition -->
+    <md-nav-item md-nav-href="#!/find-friends">
+        Find Friends
     </md-nav-item>
 
-    <md-nav-item ng-if="!ccCurrentUser" md-nav-href="#!/performance-management">
-        Performance Management
-    </md-nav-item>
-
-    <md-nav-item md-nav-href="#!/talent-acquisition">
-        Talent Acquisition
-    </md-nav-item>
-
-    <md-nav-item md-nav-href="#!/julius">
-        Julius
+    <!-- #!/julius -->
+    <md-nav-item md-nav-href="#!/events">
+        Events
     </md-nav-item>
 
     <md-subheader ng-if="ccCurrentUser" layout="column">
@@ -71,16 +75,16 @@
 
 <!----------------------------------------->
 <!---- Initial coreSidenav Menu Button ---->
-<!----------------------------------------->
+<!-------------------
 <md-button id="edhub-core-nav-menu-btn" class="md-fab md-primary"
            aria-label="Recent Jobs" ng-click="coreEdhubToggleSideNav()">
     <ng-md-icon icon="menu"></ng-md-icon>
 </md-button>
-
+---------------------->
 
 <!---------------------------------->
 <!--------- EdHub Auth Box --------->
-<!---------------------------------->
+<!------------------
 <div id="edhub-auth-info-container" flex-xs="70" flex-sm="50" flex-gt-sm="20">
     <md-fab-speed-dial ng-hide="ccAuthBoxHidden" md-direction="down" md-open="ccAuthBoxIsOpen"
                        class="md-scale md-fab-top-right"
@@ -104,13 +108,13 @@
                         {{ item.name }}
                     </md-tooltip>
                     <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
-                    <!--<md-icon md-svg-src="{{item.icon}}" aria-label="{{item.name}}"></md-icon>-->
+                    <md-icon md-svg-src="{{item.icon}}" aria-label="{{item.name}}"></md-icon>
                 </md-button>
             </div>
         </md-fab-actions>
     </md-fab-speed-dial>
 </div>
-
+---------------->
 <div ng-cloak layout="row" class="edhub-main-app-view-container">
     <!---------------------->
     <!------ Side-nav ------>
@@ -132,30 +136,22 @@
     <!-- Left -->
     <div flex layout-margin layout-padding>
         <h1 class="text-center">
-            About EdHub.co
+            About Plamigo.co
         </h1>
-        <p>
-            Coded & Designed by <a href="https://linkedin.com/in/juliusalvarado" target="_blank">
-            Julius Hernandez Alvarado</a>,
-            <i>last update March 2019</i>
-        </p>
-        <p>I'm still developing this app so I'll be adding more features and functionality.</p>
-        <p>Or <a href="mailto:javascript.uiux@gmail.com">fund me</a>
-            <small>(javascript.uiux@gmail.com)</small>
-            and I'll build this project full time instead
-        </p>
+        <h3>For places to go, Plamigo.co</h3>
+        <p>Plamigo.co shows how many people are in a venue in realtime <button>Learn More</button> </p>
     </div>
 
     <!-- Middle -->
     <div flex layout-margin layout-padding>
-        <h1>Edhub.co Progress</h1>
+        <h1>Plamigo.co Progress</h1>
         <ol>
             <li>
-                Code initial UI and basic Authentication, week of 4/10/2019
+                Code initial UI and basic Authentication
                 <ng-md-icon icon="check"></ng-md-icon>
             </li>
             <li>
-                Implement Backend API to CRUD data, week of 4/17/2019
+                Implement Backend API to CRUD data
                 <ng-md-icon icon="error"></ng-md-icon>
             </li>
             <li>
@@ -171,19 +167,6 @@
                 <ng-md-icon icon="error"></ng-md-icon>
             </li>
         </ol>
-    </div>
-
-    <!-- Right -->
-    <div flex layout-margin layout-padding>
-        <h1>Julius3D.com sites</h1>
-        <p><a href="http://portfoliohack2016.julius3d.com/" target="_blank">
-            Front End Software Engineer</a></p>
-        <p><a href="http://portfoliohack2015.julius3d.com/" target="_blank">
-            Software Generalist</a></p>
-        <p><a href="http://material.julius3d.com" target="_blank">
-            Material Design Specialist</a></p>
-        <p><a href="http://julius3d.com" target="_blank">
-            Julius3D.com</a></p>
     </div>
 
 </div>

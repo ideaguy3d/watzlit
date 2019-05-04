@@ -350,12 +350,12 @@ angular.module('edhubJobsApp', [
 
             // Initialize Firebase
             const config = {
-                apiKey: "AIzaSyDEyWzMw0NPhKUnjWTNsYeqAWazk5cR_LI",
-                authDomain: "edhub-jobs.firebaseapp.com",
-                databaseURL: "https://edhub-jobs.firebaseio.com",
-                projectId: "edhub-jobs",
-                storageBucket: "edhub-jobs.appspot.com",
-                messagingSenderId: "743478741402"
+                apiKey: "AIzaSyCmP0EGaJXE92fU4AwLSSeP4Y8TOc2u_xU",
+                authDomain: "maps1-408.firebaseapp.com",
+                databaseURL: "https://maps1-408.firebaseio.com",
+                projectId: "maps1-408",
+                storageBucket: "maps1-408.appspot.com",
+                messagingSenderId: "1070748410942"
             };
             firebase.initializeApp(config);
         }

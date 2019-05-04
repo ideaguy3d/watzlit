@@ -96,14 +96,16 @@
             var mapProp = {
                 center: new google.maps.LatLng(latitude, longitude),
                 zoom: 15,
+                //controlSize: 0,
+                //disableDefaultUI: true
             };
 
             var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
             var marker = new google.maps.Marker({position: mapProp.center});
             marker.setMap(map);
 
-            console.log('__>> map:');
-            console.log(map);
+            console.log('__>> Plamigo map app initialized');
+            //console.log(map);
         }
     }
 

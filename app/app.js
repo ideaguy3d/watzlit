@@ -27,7 +27,7 @@ angular.module('edhubJobsApp', [
             $routeProvider
             //-- Google Maps app
                 .when('/', {
-                    templateUrl: 'states/julius/view.julius.html',
+                    templateUrl: 'states/julius/view.julius2.html',
                     controller: 'JuliusCtrl',
                     controllerAs: 'cJulius',
                     resolve: {}

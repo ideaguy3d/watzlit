@@ -25,12 +25,29 @@ angular.module('edhubJobsApp', [
     .config(['$routeProvider', '$locationProvider',
         function ($routeProvider) {
             $routeProvider
+            //-- Google Maps app
+                .when('/', {
+                    templateUrl: 'states/julius/view.julius.html',
+                    controller: 'JuliusCtrl',
+                    controllerAs: 'cJulius',
+                    resolve: {}
+                })
+                .when('/2', {
+                    templateUrl: 'states/julius/view.julius2.html',
+                    controller: 'JuliusCtrl',
+                    controllerAs: 'cJulius',
+                    resolve: {}
+                })
+
+                /*******************************************
+                 Other UI States to serve as reference code
+                 ******************************************/
+                // Y Combinator states
                 .when('/ycombinator/positions', {
                     templateUrl: 'states/ycombinator/view.yc-landing.html',
                     controller: 'YCombinatorLandingCtrl',
                     controllerAs: 'landingCtrl'
                 })
-                // Y Combinator states
                 .when('/ycombinator/home', {
                     templateUrl: 'states/ycombinator/chat/view.yc-home.html',
                     controller: 'YCombinatorLandingCtrl',
@@ -317,13 +334,7 @@ angular.module('edhubJobsApp', [
                         }
                     }
                 })
-                // Google Maps
-                .when('/', {
-                    templateUrl: 'states/julius/view.julius.html',
-                    controller: 'JuliusCtrl',
-                    controllerAs: 'cJulius',
-                    resolve: {}
-                })
+
                 // Talent Acquisition states
                 .when('/talent-acquisition', {
                     templateUrl: 'states/talent-acquisition/view.talent-acquisition.html',

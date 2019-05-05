@@ -133,26 +133,27 @@ function initMap() {
     });
 
     const apiKey = 'YOUR_API_KEY';
+
     const infoWindow = new google.maps.InfoWindow();
     infoWindow.setOptions({pixelOffset: new google.maps.Size(0, -30)});
 
     // Show the information for a store when its marker is clicked.
     map.data.addListener('click', event => {
-
         const category = event.feature.getProperty('category');
         const name = event.feature.getProperty('name');
         const description = event.feature.getProperty('description');
         const hours = event.feature.getProperty('hours');
         const phone = event.feature.getProperty('phone');
         const position = event.feature.getGeometry().get();
+
         const content = sanitizeHTML`
-      <img style="float:left; width:200px; margin-top:30px" src="img/logo_${category}.png">
-      <div style="margin-left:220px; margin-bottom:20px;">
-        <h2>${name}</h2><p>${description}</p>
-        <p><b>Open:</b> ${hours}<br/><b>Phone:</b> ${phone}</p>
-        <p><img src="https://maps.googleapis.com/maps/api/streetview?size=350x120&location=${position.lat()},${position.lng()}&key=${apiKey}"></p>
-      </div>
-    `;
+              <img style="float:left; width:200px; margin-top:30px" src="img/logo_${category}.png">
+              <div style="margin-left:220px; margin-bottom:20px;">
+                <h2>${name}</h2><p>${description}</p>
+                <p><b>Open:</b> ${hours}<br/><b>Phone:</b> ${phone}</p>
+                <p><img src="https://maps.googleapis.com/maps/api/streetview?size=350x120&location=${position.lat()},${position.lng()}&key=${apiKey}"></p>
+              </div>
+        `;
 
         infoWindow.setContent(content);
         infoWindow.setPosition(position);

@@ -33,7 +33,7 @@ angular.module('edhubJobsApp', [
                     resolve: {}
                 })
                 .when('/2', {
-                    templateUrl: 'states/julius/view.julius2.html',
+                    templateUrl: 'states/julius/view.sample.html',
                     controller: 'JuliusCtrl',
                     controllerAs: 'cJulius',
                     resolve: {}

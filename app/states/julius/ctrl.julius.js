@@ -7,9 +7,9 @@
 
     const app = angular.module('edhubJobsApp');
 
-    app.controller('JuliusCtrl', ['edhubJobPostService', JuliusCtrlClass]);
+    app.controller('JuliusCtrl', ['edhubJobPostService', '$location', JuliusCtrlClass]);
 
-    function JuliusCtrlClass(edhubJobPostService) {
+    function JuliusCtrlClass(edhubJobPostService, $location) {
         const vm = this;
         var latitude;
         var longitude;
@@ -27,7 +27,6 @@
                 console.log("organizationItem = ", organizationItem);
                 organizationsList.$remove(organizationItem);
             });
-
         }
 
         // Generate a random Firebase location
@@ -35,26 +34,143 @@
         // Create a new GeoFire instance at the random Firebase location
         var geoFire = new GeoFire(firebaseRef);
 
+        // Style credit: https://snazzymaps.com/style/1/pale-dawn
+        const mapStyle = [
+            {
+                "featureType": "administrative",
+                "elementType": "all",
+                "stylers": [
+                    {
+                        "visibility": "on"
+                    },
+                    {
+                        "lightness": 33
+                    }
+                ]
+            },
+            {
+                "featureType": "landscape",
+                "elementType": "all",
+                "stylers": [
+                    {
+                        "color": "#f2e5d4"
+                    }
+                ]
+            },
+            {
+                "featureType": "poi.park",
+                "elementType": "geometry",
+                "stylers": [
+                    {
+                        "color": "#c5dac6"
+                    }
+                ]
+            },
+            {
+                "featureType": "poi.park",
+                "elementType": "labels",
+                "stylers": [
+                    {
+                        "visibility": "on"
+                    },
+                    {
+                        "lightness": 20
+                    }
+                ]
+            },
+            {
+                "featureType": "road",
+                "elementType": "all",
+                "stylers": [
+                    {
+                        "lightness": 20
+                    }
+                ]
+            },
+            {
+                "featureType": "road.highway",
+                "elementType": "geometry",
+                "stylers": [
+                    {
+                        "color": "#c5c6c6"
+                    }
+                ]
+            },
+            {
+                "featureType": "road.arterial",
+                "elementType": "geometry",
+                "stylers": [
+                    {
+                        "color": "#e4d7c6"
+                    }
+                ]
+            },
+            {
+                "featureType": "road.local",
+                "elementType": "geometry",
+                "stylers": [
+                    {
+                        "color": "#fbfaf7"
+                    }
+                ]
+            },
+            {
+                "featureType": "water",
+                "elementType": "all",
+                "stylers": [
+                    {
+                        "visibility": "on"
+                    },
+                    {
+                        "color": "#acbcc9"
+                    }
+                ]
+            }
+        ];
+
+        // Escapes HTML characters in a template literal string, to prevent XSS.
+        // See https://www.owasp.org/index.php/XSS_%28Cross_Site_Scripting%29_Prevention_Cheat_Sheet#RULE_.231_-_HTML_Escape_Before_Inserting_Untrusted_Data_into_HTML_Element_Content
+        function sanitizeHTML(strings) {
+            const entities = {'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'};
+            let result = strings[0];
+            for (let i = 1; i < arguments.length; i++) {
+                result += String(arguments[i]).replace(/[&<>'"]/g, (char) => {
+                    return entities[char];
+                });
+                result += strings[i];
+            }
+            return result;
+        }
+
         /* Callback method from the geolocation API which receives the current user's location */
         var geolocationCallback = function (location) {
             latitude = location.coords.latitude;
             longitude = location.coords.longitude;
-            log("Retrieved user's location: [" + latitude + ", " + longitude + "]");
+            console.log("Retrieved user's location: [" + latitude + ", " + longitude + "]");
 
             var username = "Julius";
-            geoFire.set(username, [latitude, longitude]).then(function () {
-                log("Current user " + username + "'s location has been added to GeoFire");
+            geoFire.set(username, [latitude, longitude])
+                .then(function () {
+                    console.log("Current user " + username + "'s location has been added to GeoFire");
 
-                // When the user disconnects from Firebase (e.g. closes the app, exits the browser),
-                // remove their GeoFire entry
-                firebaseRef.child(username).onDisconnect().remove();
+                    // When the user disconnects from Firebase (e.g. closes the app, exits the browser),
+                    // remove their GeoFire entry
+                    firebaseRef.child(username).onDisconnect().remove();
 
-                log("Added handler to remove user " + username + " from GeoFire when you leave this page.");
+                    console.log("Added handler to remove user " + username + " from GeoFire when you leave this page.");
 
-                myMap();
-            }).catch(function (error) {
-                log("Error adding user " + username + "'s location to GeoFire");
-            });
+                    console.log("__>> $location.url() = " + $location.url());
+                    if ($location.url() === '/') {
+                        myMap();
+                    } else {
+
+                    }
+
+                })
+                .catch(function (error) {
+                    log("Error adding user " + username + "'s location to GeoFire");
+                    console.log("Error adding user " + username + "'s location to GeoFire, ERROR:", error);
+                });
         };
 
         /* Handles any errors from trying to get the user's current location */
@@ -73,10 +189,10 @@
         /* Uses the HTML5 geolocation API to get the current user's location */
         var getLocation = function () {
             if (typeof navigator !== "undefined" && typeof navigator.geolocation !== "undefined") {
-                log("Asking user to get their location");
+                console.log("Asking user to get their location");
                 navigator.geolocation.getCurrentPosition(geolocationCallback, errorHandler);
             } else {
-                log("Your browser does not support the HTML5 Geolocation API, so this demo will not work.")
+                console.log("Your browser does not support the HTML5 Geolocation API, so this demo will not work.")
             }
         };
 
@@ -89,6 +205,10 @@
             var textNode = document.createTextNode(message);
             childDiv.appendChild(textNode);
             document.getElementById("log").appendChild(childDiv);
+        }
+
+        function initMap () {
+            
         }
 
         //-- Google Maps code:

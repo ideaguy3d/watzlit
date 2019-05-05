@@ -35,7 +35,7 @@
         var geoFire = new GeoFire(firebaseRef);
 
         // Style credit: https://snazzymaps.com/style/1/pale-dawn
-        const mapStyle = [
+        const mapStyle1 = [
             {
                 "featureType": "administrative",
                 "elementType": "all",
@@ -128,6 +128,174 @@
             }
         ];
 
+        const mapStyle = [
+            {
+                "featureType": "all",
+                "elementType": "labels.text.fill",
+                "stylers": [
+                    {
+                        "saturation": 36
+                    },
+                    {
+                        "color": "#000000"
+                    },
+                    {
+                        "lightness": 40
+                    }
+                ]
+            },
+            {
+                "featureType": "all",
+                "elementType": "labels.text.stroke",
+                "stylers": [
+                    {
+                        "visibility": "on"
+                    },
+                    {
+                        "color": "#000000"
+                    },
+                    {
+                        "lightness": 16
+                    }
+                ]
+            },
+            {
+                "featureType": "all",
+                "elementType": "labels.icon",
+                "stylers": [
+                    {
+                        "visibility": "off"
+                    }
+                ]
+            },
+            {
+                "featureType": "administrative",
+                "elementType": "geometry.fill",
+                "stylers": [
+                    {
+                        "color": "#000000"
+                    },
+                    {
+                        "lightness": 20
+                    }
+                ]
+            },
+            {
+                "featureType": "administrative",
+                "elementType": "geometry.stroke",
+                "stylers": [
+                    {
+                        "color": "#000000"
+                    },
+                    {
+                        "lightness": 17
+                    },
+                    {
+                        "weight": 1.2
+                    }
+                ]
+            },
+            {
+                "featureType": "landscape",
+                "elementType": "geometry",
+                "stylers": [
+                    {
+                        "color": "#000000"
+                    },
+                    {
+                        "lightness": 20
+                    }
+                ]
+            },
+            {
+                "featureType": "poi",
+                "elementType": "geometry",
+                "stylers": [
+                    {
+                        "color": "#000000"
+                    },
+                    {
+                        "lightness": 21
+                    }
+                ]
+            },
+            {
+                "featureType": "road.highway",
+                "elementType": "geometry.fill",
+                "stylers": [
+                    {
+                        "color": "#000000"
+                    },
+                    {
+                        "lightness": 17
+                    }
+                ]
+            },
+            {
+                "featureType": "road.highway",
+                "elementType": "geometry.stroke",
+                "stylers": [
+                    {
+                        "color": "#000000"
+                    },
+                    {
+                        "lightness": 29
+                    },
+                    {
+                        "weight": 0.2
+                    }
+                ]
+            },
+            {
+                "featureType": "road.arterial",
+                "elementType": "geometry",
+                "stylers": [
+                    {
+                        "color": "#000000"
+                    },
+                    {
+                        "lightness": 18
+                    }
+                ]
+            },
+            {
+                "featureType": "road.local",
+                "elementType": "geometry",
+                "stylers": [
+                    {
+                        "color": "#000000"
+                    },
+                    {
+                        "lightness": 16
+                    }
+                ]
+            },
+            {
+                "featureType": "transit",
+                "elementType": "geometry",
+                "stylers": [
+                    {
+                        "color": "#000000"
+                    },
+                    {
+                        "lightness": 19
+                    }
+                ]
+            },
+            {
+                "featureType": "water",
+                "elementType": "geometry",
+                "stylers": [
+                    {
+                        "color": "#000000"
+                    },
+                    {
+                        "lightness": 17
+                    }
+                ]
+            }
+        ];
+
         // Escapes HTML characters in a template literal string, to prevent XSS.
         // See https://www.owasp.org/index.php/XSS_%28Cross_Site_Scripting%29_Prevention_Cheat_Sheet#RULE_.231_-_HTML_Escape_Before_Inserting_Untrusted_Data_into_HTML_Element_Content
         function sanitizeHTML(strings) {
@@ -157,13 +325,19 @@
                     // remove their GeoFire entry
                     firebaseRef.child(username).onDisconnect().remove();
 
+                    var currentUrl = $location.url();
+
                     console.log("Added handler to remove user " + username + " from GeoFire when you leave this page.");
+                    console.log("__>> $location.url() = " + currentUrl);
 
-                    console.log("__>> $location.url() = " + $location.url());
-                    if ($location.url() === '/') {
+                    if (currentUrl === '/') {
                         myMap();
-                    } else {
-
+                    } else if(currentUrl === '/2') {
+                        initMap();
+                    }
+                    else {
+                        // just go to the home view
+                        $location.url('/');
                     }
 
                 })
@@ -208,7 +382,8 @@
         }
 
         function initMap () {
-            
+            //TODO: cache the gmap object
+            const map = new google.maps.Map()
         }
 
         //-- Google Maps code:

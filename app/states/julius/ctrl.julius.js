@@ -386,51 +386,51 @@
         }
 
         function initMap() {
+            var localStoreData;
             console.log(`__>> initMap() invoked... long: ${longitude}, lat: ${latitude}`);
 
             //TODO: cache the gmap object
             const map = new google.maps.Map(document.getElementById('prac-one-gmap-container'), {
                 zoom: 7,
-                center: {lat: latitude, lng: longitude},
+                // use London coordinates
+                center: {lat: 51.507351, lng: -0.127758},
                 style: mapStyle
             });
 
-
-            var localStoreData;
             $http.get('data/stores.json').then(function(res){
                 localStoreData = res.data;
                 console.log("__>> request to data/store.json res.data = ", localStoreData);
-                storePrac.$add(localStoreData);
-                //http://localhost:4000/data/stores.json
+                //storePrac.$add(localStoreData);
+
+                // http://localhost:4000/data/stores.json
+                // JSON.stringify(localStoreData)
                 map.data.addGeoJson(localStoreData);
-            }).then(function(err){
-                console.log("__>> ERROR: ", err);
-            });
 
-            map.data.setStyle(feature => {
-                return {
-                    icon: {
-                        url: `img/icon_${feature.getProperty('category')}.png`,
-                        scaledSize: new google.maps.Size(64, 64)
+                map.data.setStyle(feature => {
+                    return {
+                        icon: {
+                            url: `img/icon_${feature.getProperty('category')}.png`,
+                            scaledSize: new google.maps.Size(64, 64)
+                        }
                     }
-                }
-            });
+                });
 
-            var infoWindow = new google.maps.InfoWindow();
-            infoWindow.setOptions({pixelOffset: new google.maps.Size(0, -30)});
+                const infoWindow = new google.maps.InfoWindow();
+                infoWindow.setOptions({pixelOffset: new google.maps.Size(0, -30)});
 
-            map.data.addListener('click', event => {
-                // properties from the geojson file
-                const category = event.feature.getProperty('category');
-                const hours = event.feature.getProperty('hours');
-                const description = event.feature.getProperty('description');
-                const name = event.feature.getProperty('name');
-                const phone = event.feature.getProperty('phone');
+                // addListener('click',
+                map.data.addListener('click', (event) => {
+                    // properties from the geojson file
+                    const category = event.feature.getProperty('category');
+                    const hours = event.feature.getProperty('hours');
+                    const description = event.feature.getProperty('description');
+                    const name = event.feature.getProperty('name');
+                    const phone = event.feature.getProperty('phone');
 
-                // gmap geometry 
-                const position = event.feature.getGeometry().get();
+                    // gmap geometry
+                    const position = event.feature.getGeometry().get();
 
-                const content = sanitizeHTML(`
+                    const content = sanitizeHTML(`
                       <img style="float:left; width:200px; margin-top:30px" src="img/logo_${category}.png">
                       <div style="margin-left:220px; margin-bottom:20px;">
                         <h2>${name}</h2><p>${description}</p>
@@ -438,11 +438,15 @@
                         <p><b>Open:</b> ${hours}<br/><b>Phone:</b> ${phone}</p>
                         <p><img src="https://maps.googleapis.com/maps/api/streetview?size=350x120&location=${position.lat()},${position.lng()}&key=${apiKey}"></p>
                       </div>
-                `);
+                      `);
 
-                infoWindow.setContent(content);
-                infoWindow.setPosition(position);
-                infoWindow.open(map);
+                    infoWindow.setContent(content);
+                    infoWindow.setPosition(position);
+                    infoWindow.open(map);
+                });
+
+            }).catch(function(err){
+                console.log("__>> ERROR: ", err);
             });
 
         } // END OF: initMap()

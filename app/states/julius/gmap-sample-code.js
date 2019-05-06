@@ -140,10 +140,11 @@ function initMap() {
     // Show the information for a store when its marker is clicked.
     map.data.addListener('click', event => {
         const category = event.feature.getProperty('category');
-        const name = event.feature.getProperty('name');
-        const description = event.feature.getProperty('description');
         const hours = event.feature.getProperty('hours');
+        const description = event.feature.getProperty('description');
+        const name = event.feature.getProperty('name');
         const phone = event.feature.getProperty('phone');
+
         const position = event.feature.getGeometry().get();
 
         const content = sanitizeHTML`

@@ -387,25 +387,22 @@
 
         function initMap() {
             var localStoreData;
-            console.log(`__>> initMap() invoked... long: ${longitude}, lat: ${latitude}`);
-
-            //TODO: cache the gmap object
-            const map = new google.maps.Map(document.getElementById('prac-one-gmap-container'), {
-                zoom: 7,
-                // use London coordinates
-                center: {lat: 51.507351, lng: -0.127758},
-                style: mapStyle
-            });
 
             $http.get('data/stores.json').then(function(res){
                 localStoreData = res.data;
-                console.log("__>> request to data/store.json res.data = ", localStoreData);
+
+                //TODO: cache the gmap object
+                const map = new google.maps.Map(document.getElementById('prac-one-gmap-container'), {
+                    zoom: 7,
+                    // use London coordinates
+                    center: {lat: 51.507351, lng: -0.127758},
+                    styles: mapStyle
+                });
+
+                //-- do not add any more data to the firebase node:
                 //storePrac.$add(localStoreData);
 
-                // http://localhost:4000/data/stores.json
-                // JSON.stringify(localStoreData)
                 map.data.addGeoJson(localStoreData);
-
                 map.data.setStyle(feature => {
                     return {
                         icon: {

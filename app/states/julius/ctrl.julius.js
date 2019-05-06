@@ -335,9 +335,11 @@
                     console.log("Added handler to remove user " + username + " from GeoFire when you leave this page.");
                     console.log("__>> $location.url() = " + currentUrl);
 
+                    // since both views are using the same controller I have to
+                    // delegate which gmap function to invoke
                     if (currentUrl === '/') {
                         myMap();
-                    } else if (currentUrl === '/2') {
+                    } else if (currentUrl === '/events') {
                         initMap();
                     } else {
                         // just go to the home view
@@ -412,11 +414,12 @@
                     }
                 });
 
+                const apiKey = 'AIzaSyC97txSDaXo4QxSphjx_KqwW748OGwJUz8';
                 const infoWindow = new google.maps.InfoWindow();
                 infoWindow.setOptions({pixelOffset: new google.maps.Size(0, -30)});
 
                 // addListener('click',
-                map.data.addListener('click', (event) => {
+                map.data.addListener('click', event => {
                     // properties from the geojson file
                     const category = event.feature.getProperty('category');
                     const hours = event.feature.getProperty('hours');
@@ -427,15 +430,14 @@
                     // gmap geometry
                     const position = event.feature.getGeometry().get();
 
-                    const content = sanitizeHTML(`
-                      <img style="float:left; width:200px; margin-top:30px" src="img/logo_${category}.png">
-                      <div style="margin-left:220px; margin-bottom:20px;">
+                    // <img style="float:left; width:70px; margin-top:30px" src="img/logo_${category}.png">
+                    const content = sanitizeHTML`
+                     <div>
                         <h2>${name}</h2><p>${description}</p>
                         <a href="http://hack2016.julius3d.com">View Club Profile</a>
                         <p><b>Open:</b> ${hours}<br/><b>Phone:</b> ${phone}</p>
-                        <p><img src="https://maps.googleapis.com/maps/api/streetview?size=350x120&location=${position.lat()},${position.lng()}&key=${apiKey}"></p>
-                      </div>
-                      `);
+                     </div>
+                     `;
 
                     infoWindow.setContent(content);
                     infoWindow.setPosition(position);

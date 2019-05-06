@@ -7,9 +7,11 @@
 
     const app = angular.module('edhubJobsApp');
 
-    app.controller('JuliusCtrl', ['edhubJobPostService', '$location', JuliusCtrlClass]);
+    app.controller('JuliusCtrl', [
+        'edhubJobPostService', '$http', '$location', '$firebaseArray', JuliusCtrlClass
+    ]);
 
-    function JuliusCtrlClass(edhubJobPostService, $location) {
+    function JuliusCtrlClass(edhubJobPostService, $http, $location, $firebaseArray) {
         const vm = this;
         var latitude;
         var longitude;
@@ -30,9 +32,12 @@
         }
 
         // Generate a random Firebase location
-        var firebaseRef = firebase.database().ref().child('mapPrac').push();
+        var geoFirePracRef = firebase.database().ref().child('mapPrac').push();
+        var storesPracRef = firebase.database().ref().child('storePrac');
+
         // Create a new GeoFire instance at the random Firebase location
-        var geoFire = new GeoFire(firebaseRef);
+        var geoFire = new GeoFire(geoFirePracRef);
+        var storePrac = new $firebaseArray(storesPracRef);
 
         // Style credit: https://snazzymaps.com/style/1/pale-dawn
         const mapStyle1 = [
@@ -323,7 +328,7 @@
 
                     // When the user disconnects from Firebase (e.g. closes the app, exits the browser),
                     // remove their GeoFire entry
-                    firebaseRef.child(username).onDisconnect().remove();
+                    geoFirePracRef.child(username).onDisconnect().remove();
 
                     var currentUrl = $location.url();
 
@@ -341,21 +346,21 @@
 
                 })
                 .catch(function (error) {
-                    log("Error adding user " + username + "'s location to GeoFire");
-                    console.log("Error adding user " + username + "'s location to GeoFire, ERROR:", error);
+                    log("__>> ERROR adding user " + username + "'s location to GeoFire");
+                    console.log("__>> ERROR adding user " + username + "'s location to GeoFire, ERROR:", error);
                 });
         };
 
         /* Handles any errors from trying to get the user's current location */
         var errorHandler = function (error) {
             if (error.code === 1) {
-                log("Error: PERMISSION_DENIED: User denied access to their location");
+                console.log("Error: PERMISSION_DENIED: User denied access to their location");
             } else if (error.code === 2) {
-                log("Error: POSITION_UNAVAILABLE: Network is down or positioning satellites cannot be reached");
+                console.log("Error: POSITION_UNAVAILABLE: Network is down or positioning satellites cannot be reached");
             } else if (error.code === 3) {
-                log("Error: TIMEOUT: Calculating the user's location too took long");
+                console.log("Error: TIMEOUT: Calculating the user's location too took long");
             } else {
-                log("Unexpected error code")
+                console.log("Unexpected error code")
             }
         };
 
@@ -381,6 +386,8 @@
         }
 
         function initMap() {
+            console.log(`__>> initMap() invoked... long: ${longitude}, lat: ${latitude}`);
+
             //TODO: cache the gmap object
             const map = new google.maps.Map(document.getElementById('prac-one-gmap-container'), {
                 zoom: 7,
@@ -388,7 +395,17 @@
                 style: mapStyle
             });
 
-            map.data.loadGeoJson('stores.json');
+
+            var localStoreData;
+            $http.get('data/stores.json').then(function(res){
+                localStoreData = res.data;
+                console.log("__>> request to data/store.json res.data = ", localStoreData);
+                storePrac.$add(localStoreData);
+                //http://localhost:4000/data/stores.json
+                map.data.addGeoJson(localStoreData);
+            }).then(function(err){
+                console.log("__>> ERROR: ", err);
+            });
 
             map.data.setStyle(feature => {
                 return {

@@ -27,13 +27,13 @@ angular.module('edhubJobsApp', [
             $routeProvider
             //-- Google Maps app
                 .when('/', {
-                    templateUrl: 'states/julius/view.julius2.html',
+                    templateUrl: 'states/julius/view.sample.html',
                     controller: 'JuliusCtrl',
                     controllerAs: 'cJulius',
                     resolve: {}
                 })
                 .when('/events', {
-                    templateUrl: 'states/julius/view.sample.html',
+                    templateUrl: 'states/julius/view.julius2.html',
                     controller: 'JuliusCtrl',
                     controllerAs: 'cJulius',
                     resolve: {}

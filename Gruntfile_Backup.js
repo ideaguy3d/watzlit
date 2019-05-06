@@ -25,19 +25,6 @@ module.exports = function (grunt) {
         // Project settings
         yeoman: appConfig,
 
-        babel: {
-            options: {
-                sourceMap: true,
-                presets: ['@babel/preset-env']
-            },
-            dist: {
-                files: {
-                    '.tmp/concat/vendor.js': '.tmp/concat/vendor.js',
-                    '.tmp/concat/scripts.js': '.tmp/concat/scripts.js'
-                }
-            }
-        },
-
         // Watches files for changes and runs tasks based on the changed files
         watch: {
             bower: {
@@ -254,6 +241,32 @@ module.exports = function (grunt) {
             }
         },
 
+        // The following *-min tasks will produce minified files in the dist folder
+        // By default, your `index.html`'s <!-- Usemin block --> will take care of
+        // minification. These next options are pre-configured if you do not wish
+        // to use the Usemin blocks.
+        // cssmin: {
+        //   dist: {
+        //     files: {
+        //       '<%= yeoman.dist %>/styles/main.css': [
+        //         '.tmp/styles/{,*/}*.css'
+        //       ]
+        //     }
+        //   }
+        // },
+        // uglify: {
+        //   dist: {
+        //     files: {
+        //       '<%= yeoman.dist %>/scripts/scripts.js': [
+        //         '<%= yeoman.dist %>/scripts/scripts.js'
+        //       ]
+        //     }
+        //   }
+        // },
+        // concat: {
+        //   dist: {}
+        // },
+
         imagemin: {
             dist: {
                 files: [{
@@ -358,8 +371,8 @@ module.exports = function (grunt) {
                 singleRun: true
             }
         }
-
     });  //-- END OF: grunt.initConfig(); LINES 25-390ish
+
 
     grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
         if (target === 'dist') {
@@ -374,6 +387,11 @@ module.exports = function (grunt) {
             'connect:livereload',
             'watch'
         ]);
+    });
+
+    grunt.registerTask('server', 'DEPRECATED TASK. Use the "serve" task instead', function (target) {
+        grunt.log.warn('The `server` task has been deprecated. Use `grunt serve` to start a server.');
+        grunt.task.run(['serve:' + target]);
     });
 
     grunt.registerTask('test', [
@@ -396,7 +414,6 @@ module.exports = function (grunt) {
         'copy:dist',
         //'cdnify',
         'cssmin',
-        'babel',
         'uglify',
         'filerev',
         'usemin',

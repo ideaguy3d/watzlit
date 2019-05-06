@@ -305,8 +305,8 @@
         // See https://www.owasp.org/index.php/XSS_%28Cross_Site_Scripting%29_Prevention_Cheat_Sheet#RULE_.231_-_HTML_Escape_Before_Inserting_Untrusted_Data_into_HTML_Element_Content
         function sanitizeHTML(strings) {
             const entities = {'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'};
-            let result = strings[0];
-            for (let i = 1; i < arguments.length; i++) {
+            var result = strings[0];
+            for (var i = 1; i < arguments.length; i++) {
                 result += String(arguments[i]).replace(/[&<>'"]/g, (char) => {
                     return entities[char];
                 });
@@ -335,12 +335,14 @@
                     console.log("Added handler to remove user " + username + " from GeoFire when you leave this page.");
                     console.log("__>> $location.url() = " + currentUrl);
 
-                    // since both views are using the same controller I have to
-                    // delegate which gmap function to invoke
+                    //TODO: refactor each view to have its' own controller rather than use this "gmap router"
+
+                    // gmap _ROUTER...
+                    // since both views are using the same controller I have to delegate which gmap function to invoke
                     if (currentUrl === '/') {
-                        myMap();
-                    } else if (currentUrl === '/events') {
                         initMap();
+                    } else if (currentUrl === '/events') {
+                        myMap();
                     } else {
                         // just go to the home view
                         $location.url('/');
@@ -390,7 +392,7 @@
         function initMap() {
             var localStoreData;
 
-            $http.get('data/stores.json').then(function(res){
+            $http.get('data/stores.json').then(function (res) {
                 localStoreData = res.data;
 
                 //TODO: cache the gmap object
@@ -432,11 +434,11 @@
 
                     // <img style="float:left; width:70px; margin-top:30px" src="img/logo_${category}.png">
                     const content = sanitizeHTML`
-                     <div>
-                        <h2>${name}</h2><p>${description}</p>
-                        <a href="http://hack2016.julius3d.com">View Club Profile</a>
-                        <p><b>Open:</b> ${hours}<br/><b>Phone:</b> ${phone}</p>
-                     </div>
+                         <div>
+                            <h2>${name}</h2><p>${description}</p>
+                            <a href="http://hack2016.julius3d.com">View Club Profile</a>
+                            <p><b>Open:</b> ${hours}<br/><b>Phone:</b> ${phone}</p>
+                         </div>
                      `;
 
                     infoWindow.setContent(content);
@@ -444,7 +446,7 @@
                     infoWindow.open(map);
                 });
 
-            }).catch(function(err){
+            }).catch(function (err) {
                 console.log("__>> ERROR: ", err);
             });
 

@@ -25,19 +25,6 @@ module.exports = function (grunt) {
         // Project settings
         yeoman: appConfig,
 
-        babel: {
-            options: {
-                sourceMap: true,
-                presets: ['@babel/preset-env']
-            },
-            dist: {
-                files: {
-                    '.tmp/concat/vendor.js': '.tmp/concat/vendor.js',
-                    '.tmp/concat/scripts.js': '.tmp/concat/scripts.js'
-                }
-            }
-        },
-
         // Watches files for changes and runs tasks based on the changed files
         watch: {
             bower: {
@@ -396,7 +383,6 @@ module.exports = function (grunt) {
         'copy:dist',
         //'cdnify',
         'cssmin',
-        'babel',
         'uglify',
         'filerev',
         'usemin',

@@ -44,6 +44,6 @@
   },
   "scripts": {
     "test": "grunt test",
-    "build": "babel src -d lib"
+    "babel": "babel app -d app"
   }
 }

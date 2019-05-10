@@ -436,7 +436,7 @@
                     const content = sanitizeHTML`
                          <div>
                             <h2>${name}</h2><p>${description}</p>
-                            <a href="http://hack2016.julius3d.com">View Club Profile</a>
+                            <a href="#!/club/test">View Club Profile</a>
                             <p><b>Open:</b> ${hours}<br/><b>Phone:</b> ${phone}</p>
                          </div>
                      `;

@@ -38,6 +38,11 @@ angular.module('edhubJobsApp', [
                     controllerAs: 'cJulius',
                     resolve: {}
                 })
+                .when('/club/:name', {
+                    templateUrl: 'states/club-profile/view.club-profile.html',
+                    controller: 'ClubProfileCtrl',
+                    controllerAs: 'cClubProfile'
+                })
 
                 /*******************************************
                  Other UI States to serve as reference code

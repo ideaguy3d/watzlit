@@ -6,8 +6,9 @@
 (function () {
   'use strict';
 
-  var yc = '/ycombinator/'; // SERVICES
+  /** SERVICES **/
 
+  // 6 lines
   function SerAuthClass($firebaseAuth) {
     var auth = $firebaseAuth();
     return {
@@ -15,6 +16,7 @@
     };
   }
 
+  // 38 lines
   function SerUsersClass($firebaseArray, $firebaseObject) {
     var usersRef = firebase.database().ref('/users');
     var connectedRef = firebase.database().ref('.info/connected');
@@ -53,6 +55,7 @@
     };
   }
 
+  // 7 lines
   function SerChannelsClass($firebaseArray) {
     var ref = firebase.database().ref('/channels');
     var channels = $firebaseArray(ref);
@@ -61,6 +64,7 @@
     };
   }
 
+  // 21 lines
   function SerMessagesClass($firebaseArray) {
     //
     var channelMessagesRef = firebase.database().ref('/channelMessages');
@@ -81,9 +85,9 @@
       forChannel: forChannel,
       forUsers: forUsers
     };
-  } // CONTROLLERS
+  }
 
-
+  /** CONTROLLERS **/
   function CtrlAuthClass(ycAuthSer, $location) {
     var authCtrl = this;
     authCtrl.error = '';

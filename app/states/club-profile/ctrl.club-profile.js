@@ -6,7 +6,9 @@
 (function () {
   'use strict';
 
-  angular.module('edhubJobsApp').controller('ClubProfileCtrl', ['$rootScope', ClubProfileCtrlClass]);
+  angular.module('edhubJobsApp').controller('ClubProfileCtrl', [
+      '$rootScope', ClubProfileCtrlClass
+  ]);
 
   function ClubProfileCtrlClass($rootScope) {
     var vm = this;

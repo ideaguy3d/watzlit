@@ -11,7 +11,9 @@
         'edhubJobPostService', '$http', '$location', 'serGmapLanding', JuliusCtrlClass
     ]);
 
-    function JuliusCtrlClass(edhubJobPostService, $http, $location, serGmapLanding) {
+    function JuliusCtrlClass(
+        edhubJobPostService, $http, $location, serGmapLanding
+    ) {
         const vm = this;
         var latitude;
         var longitude;
@@ -20,10 +22,8 @@
         // Generate a random Firebase location
         var geoFirePracRef = firebase.database().ref().child('mapPrac').push();
 
-
         // Create a new GeoFire instance at the random Firebase location
         var geoFire = new GeoFire(geoFirePracRef);
-
 
         // Get the current user's location
         getLocation();
@@ -305,7 +305,7 @@
         }
 
         /* Callback method from the geolocation API which receives the current user's location */
-        function geolocationCallback (location) {
+        function geolocationCallback(location) {
             latitude = location.coords.latitude;
             longitude = location.coords.longitude;
             console.log("Retrieved user's location: [" + latitude + ", " + longitude + "]");
@@ -342,7 +342,7 @@
                     log("__>> ERROR adding user " + username + "'s location to GeoFire");
                     console.log("__>> ERROR adding user " + username + "'s location to GeoFire, ERROR:", error);
                 });
-        };
+        }
 
         /* Handles any errors from trying to get the user's current location */
         var errorHandler = function (error) {
@@ -358,14 +358,14 @@
         };
 
         /* Uses the HTML5 geolocation API to get the current user's location */
-        function getLocation () {
+        function getLocation() {
             if (typeof navigator !== "undefined" && typeof navigator.geolocation !== "undefined") {
                 console.log("Asking user to get their location");
                 navigator.geolocation.getCurrentPosition(geolocationCallback, errorHandler);
             } else {
                 console.log("Your browser does not support the HTML5 Geolocation API, so this demo will not work.")
             }
-        };
+        }
 
         function deleteOrg() {
             // edhubJobPostService.returnAllOrganizations().$remove(1).then(function (res) {
@@ -391,72 +391,64 @@
 
         function initMap() {
             let localStoreData;
+            let arNodeClubs;
+            let arNodeOrgFeed;
             let getLocalData = false;
 
-            let aNodeClubs = serGmapLanding.getNodeClubs();
-            console.log("__>> first nodeClubs = ", aNodeClubs);
+            arNodeClubs = serGmapLanding.getNodeClubs;
+            arNodeOrgFeed = serGmapLanding.nodeOrgFeed;
 
             if (!getLocalData) {
-                serGmapLanding.getNodeClubs().then(function (res) {
-                    let aNodeClubs = res.data;
+                //TODO: cache the gmap object
+                const map = new google.maps.Map(
+                    document.getElementById('prac-one-gmap-container'),
+                    {
+                        zoom: 12,
+                        // use San Francisco coordinates, -122.413972, 37.776532
+                        center: {lat: 37.776532, lng: -122.413972},
+                        styles: mapStyle
+                    }
+                );
 
-                    console.log("__>> nodeClubs = ", aNodeClubs);
-
-                    //TODO: cache the gmap object
-                    const map = new google.maps.Map(
-                        document.getElementById('prac-one-gmap-container'),
-                        {
-                            zoom: 12,
-                            // use San Francisco coordinates, -122.413972, 37.776532
-                            center: {lat: 37.776532, lng: -122.413972},
-                            styles: mapStyle
+                map.data.addGeoJson(arNodeClubs[0]);
+                map.data.setStyle(feature => {
+                    return {
+                        icon: {
+                            url: `images/icon_${feature.getProperty('category')}.png`,
+                            scaledSize: new google.maps.Size(64, 64)
                         }
-                    );
+                    }
+                });
 
-                    map.data.addGeoJson(aNodeClubs);
-                    map.data.setStyle(feature => {
-                        return {
-                            icon: {
-                                url: `images/icon_${feature.getProperty('category')}.png`,
-                                scaledSize: new google.maps.Size(64, 64)
-                            }
-                        }
-                    });
+                //const apiKey = 'AIzaSyC97txSDaXo4QxSphjx_KqwW748OGwJUz8';
+                const infoWindow = new google.maps.InfoWindow();
+                infoWindow.setOptions({pixelOffset: new google.maps.Size(0, -30)});
 
-                    //const apiKey = 'AIzaSyC97txSDaXo4QxSphjx_KqwW748OGwJUz8';
-                    const infoWindow = new google.maps.InfoWindow();
-                    infoWindow.setOptions({pixelOffset: new google.maps.Size(0, -30)});
+                // addListener('click',
+                map.data.addListener('click', event => {
+                    // properties from the geojson file
+                    const category = event.feature.getProperty('category');
+                    const hours = event.feature.getProperty('hours');
+                    const description = event.feature.getProperty('description');
+                    const name = event.feature.getProperty('name');
+                    const phone = event.feature.getProperty('phone');
 
-                    // addListener('click',
-                    map.data.addListener('click', event => {
-                        // properties from the geojson file
-                        const category = event.feature.getProperty('category');
-                        const hours = event.feature.getProperty('hours');
-                        const description = event.feature.getProperty('description');
-                        const name = event.feature.getProperty('name');
-                        const phone = event.feature.getProperty('phone');
+                    // gmap geometry
+                    const position = event.feature.getGeometry().get();
 
-                        // gmap geometry
-                        const position = event.feature.getGeometry().get();
+                    // <img style="float:left; width:70px; margin-top:30px" src="img/logo_${category}.png">
+                    const content = sanitizeHTML`
+                                 <div>
+                                    <h2>${name}</h2><p>${description}</p>
+                                    <a href="#!/club/club-name">View Club Profile</a>
+                                    <p><b>Open:</b> ${hours}<br/><b>Phone:</b> ${phone}</p>
+                                 </div>
+                             `;
 
-                        // <img style="float:left; width:70px; margin-top:30px" src="img/logo_${category}.png">
-                        const content = sanitizeHTML`
-                         <div>
-                            <h2>${name}</h2><p>${description}</p>
-                            <a href="#!/club/club-name">View Club Profile</a>
-                            <p><b>Open:</b> ${hours}<br/><b>Phone:</b> ${phone}</p>
-                         </div>
-                     `;
-
-                        infoWindow.setContent(content);
-                        infoWindow.setPosition(position);
-                        infoWindow.open(map);
-                    });
-
-                })
-                    .catch(function (err) {
-                        console.log("__>> ERROR: ", err);
-                    });
+                    infoWindow.setContent(content);
+                    infoWindow.setPosition(position);
+                    infoWindow.open(map);
+                });
             } else {
                 $http.get('stores.json')
                     .then(function (res) {

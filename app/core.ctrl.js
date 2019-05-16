@@ -5,18 +5,22 @@
 (function () {
     "use strict";
 
-    angular.module('edhubJobsApp').controller('CoreCtrl', ['$rootScope', '$scope', '$mdSidenav',
-        '$mdDialog', '$timeout', 'edhubAuthService', '$location',
+    angular.module('edhubJobsApp').controller('CoreCtrl', [
+        '$rootScope', '$scope', '$mdSidenav', '$mdDialog', '$timeout',
+        'edhubAuthService', '$location',
         CoreClass
     ]);
 
-    function CoreClass($rootScope, $scope, $mdSidenav, $mdDialog, $timeout, edhubAuthService, $location) {
+    function CoreClass(
+        $rootScope, $scope, $mdSidenav, $mdDialog, $timeout,
+        edhubAuthService, $location
+    ) {
         $scope.ccCurrentUser = "";
         $scope.coreEdhubHorizontalState = true;
         $scope.ccAuthBoxHidden = false;
         $scope.ccAuthBoxIsOpen = false;
         $scope.ccAuthBoxHover = true;
-        $scope.coreEdhubToggleSideNav = coreEdhubToggleSideNav('core-sidenav');
+        // $scope.coreEdhubToggleSideNav = coreEdhubToggleSideNav('core-sidenav');
         const enumAuthBox = {
             loginSignup: "Login/Signup",
             logout: "Logout",
@@ -117,9 +121,7 @@
 
         function _determineAuthState() {
             var authUser = edhubAuthService.getAuthUser();
-            return authUser === ""
-                ? enumAuthBox.loginSignup
-                : enumAuthBox.logout;
+            return authUser === "" ? enumAuthBox.loginSignup : enumAuthBox.logout;
         }
 
         function _loginSignup() {

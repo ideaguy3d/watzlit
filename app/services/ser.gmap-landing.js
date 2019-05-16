@@ -10,15 +10,14 @@
     ]);
 
     function GmapLandingSer($firebaseArray) {
-        let storesPracRef = firebase.database().ref().child('storePrac');
-        var nodeClubs = $firebaseArray(storesPracRef);
-
-        function getNodeClubs() {
-            return nodeClubs;
-        }
+        let storesPracRef = firebase.database().ref('/storePrac');
+        let orgFeedRef = firebase.database().ref('/orgFeed')
+        let nodeClubs = $firebaseArray(storesPracRef);
+        let nodeOrgFeed = $firebaseArray(orgFeedRef);
 
         return {
-            getNodeClubs: getNodeClubs
+            getNodeClubs: nodeClubs,
+            nodeOrgFeed: nodeOrgFeed
         }
     }
 }());

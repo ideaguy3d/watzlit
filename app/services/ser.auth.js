@@ -5,8 +5,8 @@
 (function () {
     "use strict";
 
-    angular.module('edhubJobsApp').factory('edhubAuthService', ['$firebaseAuth', '$rootScope',
-        '$firebaseObject', '$location', '$q',
+    angular.module('edhubJobsApp').factory('edhubAuthService', [
+        '$firebaseAuth', '$rootScope', '$firebaseObject', '$location', '$q',
         EdhubAuthClass
     ]);
 
@@ -25,7 +25,8 @@
                 $rootScope.$broadcast("edhub-event-auth-user", {
                     haveAuthUser: true
                 });
-            } else {
+            }
+            else {
                 $rootScope.rootEdhubAuthUser = "";
                 $rootScope.$broadcast("edhub-event-auth-user", {
                     haveAuthUser: false
@@ -41,8 +42,8 @@
                     .then(function (authUser) {
                         // console.log("edhub - user successfully signed in");
                         // console.log(authUser);
-                        if(!!info.path) {
-                            $location.path('/'+info.path);
+                        if (!!info.path) {
+                            $location.path('/' + info.path);
                         } else {
                             $location.path('/');
                         }
@@ -73,7 +74,7 @@
                             repName: !!user.name ? user.name : 'blank'
                         });
                         $rootScope.rootMessage = "Thanks for registering " + user.name;
-                        if(info.listOrg) {
+                        if (info.listOrg) {
                             console.log("broadcasting 'edhub-list-unauth-org-signup'");
                             $rootScope.$broadcast("edhub-list-unauth-org-signup", {
                                 orgId: regUser.uid
@@ -89,14 +90,13 @@
                         return null;
                     });
             },
-            getAuthUser: getAuthUser
+            getAuthUser: function () {
+                return $rootScope.rootEdhubAuthUser;
+            }
         };
 
-        function getAuthUser() {
-            return $rootScope.rootEdhubAuthUser;
-        }
-
-        // return $firebaseAuth();
+        // return $firebaseAuth(), we are returning it in as an obj because one of the
+        // properties is doing a sort of recursive call
         return authApi;
     }
 }());

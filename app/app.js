@@ -208,6 +208,7 @@ angular.module('edhubJobsApp', [
                         }
                     }
                 })
+
                 // The rest of the Edhub states
                 .when('/landing', {
                     templateUrl: 'states/landing/view.landing.html',

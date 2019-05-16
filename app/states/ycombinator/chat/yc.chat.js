@@ -63,7 +63,7 @@
     }
 
     function SerMessagesClass($firebaseArray) {
-        //
+
         var channelMessagesRef = firebase.database().ref('/channelMessages');
         var userMessagesRef = firebase.database().ref('/userMessages');
 
@@ -142,7 +142,8 @@
     }
 
     function CtrlChannelsClass(
-        $location, ycAuthSer, ycUsersSer, profileRsv, channelsRsv, ycMessagesSer, ycChannelsSer
+        $location, ycAuthSer, ycUsersSer, profileRsv, channelsRsv, ycMessagesSer,
+        ycChannelsSer
     ) {
         const channelsCtrl = this;
         channelsCtrl.messages = null;

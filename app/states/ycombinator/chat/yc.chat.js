@@ -142,8 +142,8 @@
     }
 
     function CtrlChannelsClass(
-        $location, ycAuthSer, ycUsersSer, profileRsv, channelsRsv, ycMessagesSer,
-        ycChannelsSer
+        $location, ycAuthSer, ycUsersSer, profileRsv, channelsRsv,
+        ycMessagesSer, ycChannelsSer
     ) {
         const channelsCtrl = this;
         channelsCtrl.messages = null;

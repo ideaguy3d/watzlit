@@ -11,13 +11,16 @@
 
     function GmapLandingSer($firebaseArray) {
         let storesPracRef = firebase.database().ref('/storePrac');
-        let orgFeedRef = firebase.database().ref('/orgFeed')
+        let orgFeedRef = firebase.database().ref('/orgFeed');
+        let usersRef = firebase.database().ref('/users');
         let nodeClubs = $firebaseArray(storesPracRef);
         let nodeOrgFeed = $firebaseArray(orgFeedRef);
+        let nodeUsers = $firebaseArray(usersRef);
 
         return {
-            getNodeClubs: nodeClubs,
-            nodeOrgFeed: nodeOrgFeed
+            nodeClubs: nodeClubs,
+            nodeOrgFeed: nodeOrgFeed,
+            nodeUsers: nodeUsers
         }
     }
 }());

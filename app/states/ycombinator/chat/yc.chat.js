@@ -54,6 +54,7 @@
         };
     }
 
+    // ycChannelsSer
     function SerChannelsClass($firebaseArray) {
         var ref = firebase.database().ref('/channels');
         var channels = $firebaseArray(ref);

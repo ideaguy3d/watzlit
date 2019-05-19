@@ -20,7 +20,7 @@
         $scope.ccAuthBoxHidden = false;
         $scope.ccAuthBoxIsOpen = false;
         $scope.ccAuthBoxHover = true;
-        // $scope.coreEdhubToggleSideNav = coreEdhubToggleSideNav('core-sidenav');
+        $scope.coreEdhubToggleSideNav = coreEdhubToggleSideNav('core-sidenav');
         const enumAuthBox = {
             loginSignup: "Login/Signup",
             logout: "Logout",

@@ -5,7 +5,7 @@
     <title>WatzLit</title>
 
     <meta http-equiv="x-ua-compatible" content="IE=edge">
-    <meta name="description" content="For places to go, Plamigo.co">
+    <meta name="description" content="For places to go, WatzLit">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="author" content="github.com/ideaguy3d">
 
@@ -21,7 +21,6 @@
     <link rel="stylesheet" href="styles/chat.css">
     <link rel="stylesheet" href="styles/plamigo.css">
     <!-- endbuild -->
-
 
     <!-- CDN scripts -->
     <script src="https://cdn.firebase.com/libs/geofire/5.0.1/geofire.js"></script>
@@ -43,84 +42,25 @@
     upgrade your browser</ato improve your experience.</p>
 <![endif]-->
 
-<!-- TODO: Put this footer into an include or a directive -->
-<!-- Horizontal Navigation -->
-<md-nav-bar ng-show="coreEdhubHorizontalState" md-selected-nav-item="currentNavItem"
-            nav-bar-aria-label="navigationLinks">
+<!-------------------------------->
+<!-- main horizontal navigation -->
+<!-------------------------------->
+<div ng-include="'layout/navbar/in.main-nav.html'"></div>
 
-    <!-- Home Link -->
-    <md-nav-item md-nav-href="#!/">
-        <b>WatzLit</b>
-    </md-nav-item>
-
-    <!-- #!/learning-management
-    <md-nav-item ng-if="!ccCurrentUser" md-nav-href="">
-        Top Rated
-    </md-nav-item>
-    -->
-
-    <!-- #!/performance-management
-    <md-nav-item ng-if="!ccCurrentUser" md-nav-href="">
-        Near Me
-    </md-nav-item>
-    -->
-    <!-- #!/talent-acquisition -->
-    <md-nav-item md-nav-href="http://plamigo.me">
-        Find Friends
-    </md-nav-item>
-
-    <!-- #!/events -->
-    <md-nav-item md-nav-href="#!/signup">
-        Signup/Login
-    </md-nav-item>
-
-    <md-subheader ng-if="ccCurrentUser" layout="column">
-        <ng-md-icon icon="perm_identity"></ng-md-icon>
-        {{ " Welcome " + ccCurrentUser }}
-    </md-subheader>
-</md-nav-bar>
 
 <!----------------------------------------->
 <!---- Initial coreSidenav Menu Button ---->
-<!-------------------
+<!----------------------------------------->
 <md-button id="edhub-core-nav-menu-btn" class="md-fab md-primary"
            aria-label="Recent Jobs" ng-click="coreEdhubToggleSideNav()">
     <ng-md-icon icon="menu"></ng-md-icon>
 </md-button>
----------------------->
+
 
 <!---------------------------------->
-<!--------- EdHub Auth Box --------->
+<!------------ User Box ------------>
 <!---------------------------------->
-<div id="edhub-auth-info-container" flex-xs="70" flex-sm="50" flex-gt-sm="20">
-    <md-fab-speed-dial ng-hide="ccAuthBoxHidden" md-direction="down" md-open="ccAuthBoxIsOpen"
-                       class="md-scale md-fab-top-right"
-                       ng-class="{ 'md-hover-full': ccAuthBoxHover }"
-                       ng-mouseenter="ccAuthBoxIsOpen=true" ng-mouseleave="ccAuthBoxIsOpen=false">
-
-        <md-fab-trigger>
-            <md-button aria-label="menu" class="md-primary">
-                <ng-md-icon id="edhub-auth-box-avatar" icon="account_box" size="36"></ng-md-icon>
-                <p class="edhub-auth-box-username">
-                    {{rootEdhubAuthUser.email ? rootEdhubAuthUser.email : "This doesn't work Yet"}}
-                </p>
-            </md-button>
-        </md-fab-trigger>
-
-        <md-fab-actions>
-            <div ng-repeat="item in ccItems">
-                <md-button aria-label="{{item.name}}" class="md-fab md-raised md-mini"
-                           ng-click="ccAuthBoxAction($event, item)">
-                    <md-tooltip md-direction="{{item.direction}}" md-visible="tooltipVisible" md-autohide="false">
-                        {{ item.name }}
-                    </md-tooltip>
-                    <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
-                    <md-icon md-svg-src="{{item.icon}}" aria-label="{{item.name}}"></md-icon>
-                </md-button>
-            </div>
-        </md-fab-actions>
-    </md-fab-speed-dial>
-</div>
+<div ng-include="'layout/in.user-box.html'"></div>
 
 <div ng-cloak layout="row" class="edhub-main-app-view-container">
     <!---------------------->

@@ -415,7 +415,6 @@
             console.log(featuresArray);
 
             map.data.setStyle(feature => {
-                console.log('__>>feature in setStyle() = ', feature);
                 let icon = {
                     url: `images/icon_${feature.getProperty('category')}.png`,
                     scaledSize: new google.maps.Size(64, 64)

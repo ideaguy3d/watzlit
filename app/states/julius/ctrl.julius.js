@@ -395,25 +395,34 @@
             let featuresArray;
             let clubs = vm.nodeClubs[0];
             let users = vm.nodeUsers;
-
+            // may want to save these in future
+            delete clubs.$id;
+            delete clubs.$priority;
             //TODO: cache the gmap object
             const map = new google.maps.Map(
                 document.getElementById('prac-one-gmap-container'),
                 {
-                    zoom: 12,
+                    zoom: 7,
                     // use San Francisco coordinates, -122.413972, 37.776532
-                    center: {lat: 37.776532, lng: -122.413972},
+                    // London, 51.507351, 0.127758
+                    center: {lat: 51.507351, lng: 0.127758},
                     styles: mapStyle
                 }
             );
 
-            map.data.addGeoJson(clubs);
+            featuresArray = map.data.addGeoJson(clubs);
+            console.log('__>> the features array = ');
+            console.log(featuresArray);
+
             map.data.setStyle(feature => {
+                console.log('__>>feature in setStyle() = ', feature);
+                let icon = {
+                    url: `images/icon_${feature.getProperty('category')}.png`,
+                    scaledSize: new google.maps.Size(64, 64)
+                };
+
                 return {
-                    icon: {
-                        url: `images/icon_${feature.getProperty('category')}.png`,
-                        scaledSize: new google.maps.Size(64, 64)
-                    }
+                    icon: icon
                 }
             });
 

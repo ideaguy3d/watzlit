@@ -12,7 +12,7 @@ angular.module('edhubJobsApp', [
             $routeProvider
             //-- Google Maps app
                 .when('/', {
-                    templateUrl: 'states/julius/view.sample.html',
+                    templateUrl: 'states/julius/view.map-render.html',
                     controller: 'JuliusCtrl',
                     controllerAs: 'cJulius',
                     resolve: {}
@@ -130,12 +130,10 @@ angular.module('edhubJobsApp', [
                             });
                         },
                         profileRsv: function (ycUsersSer, ycAuthSer) {
-                            return ycAuthSer.auth.$requireSignIn().then(
-                                function (authUserObj) {
+                            return ycAuthSer.auth.$requireSignIn().then(function (authUserObj) {
                                     // CRITICAL ! CRITICAL !! CRITICAL !!! This is where to put $loaded()
                                     return ycUsersSer.getProfile(authUserObj.uid).$loaded();
-                                }
-                            );
+                            });
                         }
                     }
                 })

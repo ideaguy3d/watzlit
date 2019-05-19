@@ -14,6 +14,7 @@
         }
     }
 
+    // ycUsersSer
     function SerUsersClass($firebaseArray, $firebaseObject) {
         var usersRef = firebase.database().ref('/users');
         var connectedRef = firebase.database().ref('.info/connected');
@@ -62,6 +63,7 @@
         };
     }
 
+    // ycMessagesSer
     function SerMessagesClass($firebaseArray) {
 
         var channelMessagesRef = firebase.database().ref('/channelMessages');
@@ -92,7 +94,7 @@
         authCtrl.authInfo = 'The auth ctrl is wired up to the view';
         authCtrl.user = {
             email: 'chat@app.com',
-            password: 'jiha89'
+            password: 'abc123'
         };
 
         authCtrl.login = function () {
@@ -109,19 +111,19 @@
 
         authCtrl.register = function () {
             console.log('__>> should invoke YC auth service');
-            ycAuthSer.auth
-                .$createUserWithEmailAndPassword(authCtrl.user.email, authCtrl.user.password)
-                .then(function (userRes) {
-                    $location.url('/');
-                    console.log('__>> should sign user up with this info');
-                    console.log(userRes);
-                })
+            ycAuthSer.auth.$createUserWithEmailAndPassword(
+                authCtrl.user.email, authCtrl.user.password
+            ).then(function (userRes) {
+                $location.url('/');
+                console.log('__>> should sign user up with this info');
+                console.log(userRes);
+            })
                 .catch(function (error) {
                     authCtrl.error = error;
                     console.log('__>> ERROR: ' + error);
                 });
         }
-    }
+    } // END OF: CtrlAuthClass
 
     function CtrlProfileClass($location, md5, authRsv, profileRsv, $timeout) {
         var profileCtrl = this;
@@ -139,7 +141,8 @@
                 $location.url('/ycombinator/channels');
             }, 1000);
         };
-    }
+
+    } // END OF: CtrlProfileClass()
 
     function CtrlChannelsClass(
         $location, ycAuthSer, ycUsersSer, profileRsv, channelsRsv,
@@ -155,6 +158,7 @@
         channelsCtrl.window = '';
         channelsCtrl.users = ycUsersSer.all;
         channelsCtrl.profile = profileRsv;
+
         // add online presence
         ycUsersSer.setOnline(channelsCtrl.profile.$id);
         channelsCtrl.channels = channelsRsv;

@@ -20,6 +20,10 @@
         vm.showProgress = false;
         vm.edhubStatusMessage = unauthApplyRslv;
 
+        vm.facebookSignin = function(){
+            edhubAuthService.facebookSignin();
+        };
+
         vm.authSignup = function () {
             const orgInfo = {
                 email: vm.email,

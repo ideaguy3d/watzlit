@@ -14,7 +14,8 @@
         $rootScope.rootEdhubAuthUser = "";
         const orgRef = firebase.database().ref('organizations');
         const auth = $firebaseAuth();
-        var authApi = {};
+        let authApi = {};
+        let facebookProvider = new firebase.auth.FacebookAuthProvider();
 
         auth.$onAuthStateChanged(function (authUser) {
             if (authUser) {
@@ -25,8 +26,7 @@
                 $rootScope.$broadcast("edhub-event-auth-user", {
                     haveAuthUser: true
                 });
-            }
-            else {
+            } else {
                 $rootScope.rootEdhubAuthUser = "";
                 $rootScope.$broadcast("edhub-event-auth-user", {
                     haveAuthUser: false
@@ -92,6 +92,32 @@
             },
             getAuthUser: function () {
                 return $rootScope.rootEdhubAuthUser;
+            },
+            facebookSignin: function () {
+                firebase.auth().signInWithRedirect(facebookProvider)
+                    .then(function (res) {
+                        let token = res.credential.accessToken;
+                        let user = res.user;
+
+                        // log on success results
+                        console.log('__>> SUCCESS - Facebook login ');
+                        console.log(token);
+                        console.log(user);
+                        console.log(res);
+                    })
+                    .catch(function (error) {
+                        let errorCode = error.code;
+                        let errorMessage = error.message;
+                        let email = error.email;
+                        let credential = error.credential;
+
+                        // log error results :(
+                        console.log('__>> ERROR - There were Facebook Auth');
+                        console.log(errorCode);
+                        console.log(errorMessage);
+                        console.log(email);
+                        console.log(credential);
+                    });
             }
         };
 

@@ -140,6 +140,7 @@
 
         function _editProfile() {
             console.log("in _editProfile() ! :)");
+            $location.url('/post');
         }
 
         function _orgApplicants() {

@@ -3,12 +3,11 @@
                        class="md-scale md-fab-top-right"
                        ng-class="{ 'md-hover-full': ccAuthBoxHover }"
                        ng-mouseenter="ccAuthBoxIsOpen=true" ng-mouseleave="ccAuthBoxIsOpen=false">
-
         <md-fab-trigger>
             <md-button aria-label="menu" class="md-primary">
                 <ng-md-icon id="edhub-auth-box-avatar" icon="account_box" size="36"></ng-md-icon>
                 <p class="edhub-auth-box-username">
-                    {{rootEdhubAuthUser.email ? rootEdhubAuthUser.email : "This doesn't work Yet"}}
+                    {{rootEdhubAuthUser.email ? rootEdhubAuthUser.email : "Guest"}}
                 </p>
             </md-button>
         </md-fab-trigger>

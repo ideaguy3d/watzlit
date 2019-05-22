@@ -21,7 +21,7 @@
             if (authUser) {
                 var authUserRef = orgRef.child(authUser.uid);
                 $rootScope.rootEdhubAuthUser = $firebaseObject(authUserRef);
-                console.log("edhub - The Auth User =");
+                console.log("__>> The Auth User =");
                 console.log($rootScope.rootEdhubAuthUser);
                 $rootScope.$broadcast("edhub-event-auth-user", {
                     haveAuthUser: true
@@ -94,16 +94,20 @@
                 return $rootScope.rootEdhubAuthUser;
             },
             facebookSignin: function () {
-                firebase.auth().signInWithRedirect(facebookProvider)
+                firebase.auth().signInWithPopup(facebookProvider)
                     .then(function (res) {
                         let token = res.credential.accessToken;
                         let user = res.user;
+                        $scope.$apply(function(){
+                            $rootScope.rootEdhubAuthUser = user.email;
+                        });
+
 
                         // log on success results
                         console.log('__>> SUCCESS - Facebook login ');
-                        console.log(token);
+                        //console.log(token);
                         console.log(user);
-                        console.log(res);
+                        console.log(user.email);
                     })
                     .catch(function (error) {
                         let errorCode = error.code;

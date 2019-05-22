@@ -19,7 +19,6 @@
                             console.log("jha - auth = ");
                             console.log(auth);
                             $scope.ccSetCurrentUser(auth.email);
-                            $state.go('landing');
                         }, function(err){
                             vm.error = err.message;
                         });

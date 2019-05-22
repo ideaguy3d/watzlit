@@ -25,12 +25,11 @@
                 $location.url('/apply/' + orgInfo.orgId + '/' + orgInfo.orgName);
             } else {
                 ////-- if user is not authenticated send them to "sign up to apply" view --\\\\
-
                 //-- sta = Signup To Apply view
                 // $location.url('/signup/sta');
-
                 //-- 'apply to job' view:
                 //$location.url('/apply/' + orgInfo.orgId + '/' + orgInfo.orgName);
+
                 $location.url('/view-job/'+ orgInfo.orgId + '/' + orgInfo.orgName)
             }
         };

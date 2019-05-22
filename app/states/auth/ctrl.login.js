@@ -17,7 +17,6 @@
                 edhubAuthService.userLogin(vm.email, vm.pw)
                     .then(function (auth) {
                         $scope.ccSetCurrentUser(auth.email);
-                        $state.go("landing");
                     }, function (err) {
                         vm.error = err.message;
                     });

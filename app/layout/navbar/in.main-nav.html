@@ -8,28 +8,28 @@
     </md-nav-item>
 
     <!-- #!/learning-management
-    <md-nav-item ng-if="!ccCurrentUser" md-nav-href="">
+    <md-nav-item ng-if="!ccCurrentUser" md-nav-href="#!/top-rated">
         Top Rated
     </md-nav-item>
     -->
 
-    <!-- #!/performance-management
+    <!--
     <md-nav-item ng-if="!ccCurrentUser" md-nav-href="">
         Near Me
     </md-nav-item>
     -->
     <!-- #!/talent-acquisition -->
-    <md-nav-item md-nav-href="http://plamigo.me">
+    <md-nav-item md-nav-href="https://app.watzlit.co/find-friends">
         Find Friends
     </md-nav-item>
 
     <!-- #!/events -->
-    <md-nav-item md-nav-href="#!/signup">
+    <md-nav-item ng-if="!rootEdhubAuthUser.email" md-nav-href="#!/signup">
         Signup/Login
     </md-nav-item>
 
-    <md-subheader ng-if="ccCurrentUser" layout="column">
-        <ng-md-icon icon="perm_identity"></ng-md-icon>
-        {{ " Welcome " + ccCurrentUser }}
-    </md-subheader>
+    <md-nav-item ng-if="rootEdhubAuthUser.email" md-nav-href="#!/events">
+        <!-- <ng-md-icon icon="perm_identity"></ng-md-icon> -->
+        Events
+    </md-nav-item>
 </md-nav-bar>

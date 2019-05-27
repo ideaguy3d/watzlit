@@ -1,11 +1,13 @@
 /**
  * Created by Julius Alvarado on 3/10/2019.
  */
+
 (function () {
     'use strict';
     var yc = '/ycombinator/';
 
-    // SERVICES
+    //-- SERVICES --\\
+    // ycAuthSer
     function SerAuthClass($firebaseAuth) {
         var auth = $firebaseAuth();
 
@@ -88,7 +90,8 @@
         };
     }
 
-    // CONTROLLERS
+    //-- CONTROLLERS --\\
+    // ycAuthCtrl
     function CtrlAuthClass(ycAuthSer, $location) {
         var authCtrl = this;
         authCtrl.error = '';
@@ -126,6 +129,7 @@
         }
     } // END OF: CtrlAuthClass
 
+    // ycProfileCtrl
     function CtrlProfileClass($location, md5, authRsv, profileRsv, $timeout) {
         var profileCtrl = this;
         profileCtrl.updateProfileFeedback = '';
@@ -145,9 +149,10 @@
 
     } // END OF: CtrlProfileClass()
 
+    // ycChannelsCtrl
     function CtrlChannelsClass(
-        $location, ycAuthSer, ycUsersSer, profileRsv, channelsRsv,
-        ycMessagesSer, ycChannelsSer
+        $location, ycAuthSer, ycUsersSer, profileRsv, channelsRsv, ycMessagesSer,
+        ycChannelsSer
     ) {
         const channelsCtrl = this;
         channelsCtrl.messages = null;
@@ -238,6 +243,7 @@
         };
     }
 
+    // ycMessagesCtrl
     function CtrlMessagesClass(messagesRsv, channelNameRsv, profileRsv) {
         const messagesCtrl = this;
         const profile = profileRsv;
@@ -262,6 +268,7 @@
     }
 
     angular.module('edhubJobsApp')
+        // SERVICES
         .factory('ycAuthSer', [
             '$firebaseAuth', SerAuthClass
         ])

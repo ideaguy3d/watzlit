@@ -1,6 +1,6 @@
 <!-- ctrl=PostJobCtrl -->
 <div class="edhub-view-mtop">
-    <form name="jobPostForm" ng-submit="postJobCtrl.postJob()" ng-init="postJobCtrl.setFormScope(this)">
+    <form name="jobPostForm" ng-submit="postJobCtrl.listOrg()" ng-init="postJobCtrl.setFormScope(this)">
         <div layout="column" flex-xs="100" flex-sm="90" flex-gt-sm="70" class="edhub-margin-auto layout-padding">
             <h1>List Your Organization ^_^</h1>
             <p>So candidates can send you general resumes emphasizing their strongest skills & preferred job titles.
@@ -32,7 +32,7 @@
                     <div ng-message="required">Your email is required.</div>
                 </div>
             </md-input-container>
-            <!-- password if NOT logged in
+            <!-- password if NOT logged in -->
             <div ng-hide="postJobCtrl.edhubAuthUser">
                 <md-input-container class="md-icon-float md-block flex-gt-sm">
                     <label>Password (so you can login & see who has applied)</label>
@@ -42,7 +42,6 @@
                     </div>
                 </md-input-container>
             </div>
-            -->
             <!-- zip code -->
             <md-input-container class="md-icon-float md-block flex-gt-sm">
                 <label>Organizations' zip code</label>

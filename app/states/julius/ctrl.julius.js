@@ -313,6 +313,7 @@
             console.log("Retrieved user's location: [" + latitude + ", " + longitude + "]");
 
             var username = "Julius";
+
             geoFire.set(username, [latitude, longitude])
                 .then(function () {
                     console.log("Current user " + username + "'s location has been added to GeoFire");
@@ -396,8 +397,8 @@
             let clubs = vm.nodeClubs[0];
             let users = vm.nodeUsers;
             // may want to save these in future
-            delete clubs.$id;
-            delete clubs.$priority;
+            //delete clubs.$id;
+            //delete clubs.$priority;
             //TODO: cache the gmap object
             const map = new google.maps.Map(
                 document.getElementById('prac-one-gmap-container'),

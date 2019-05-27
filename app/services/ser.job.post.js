@@ -19,6 +19,7 @@
         function jobPostingsLimitTo(limit) {
             const qJobPostingsLimitToOrderByDate =
                 refJobPostings.orderByChild("timeStamp").limitToLast(limit);
+
             return $firebaseArray(qJobPostingsLimitToOrderByDate);
         }
 

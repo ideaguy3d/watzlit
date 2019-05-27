@@ -7,13 +7,12 @@
     "use strict";
 
 
-    angular.module('edhubJobsApp').controller('PostCtrl', ['$rootScope', 'edhubJobPostService',
-        '$location', 'edhubAuthService', 'OrgListSer',
+    angular.module('edhubJobsApp').controller('PostCtrl', [
+        '$rootScope', 'edhubJobPostService', '$location', 'edhubAuthService', 'OrgListSer',
         PostClass
     ]);
 
     function PostClass($rootScope, edhubJobPostService, $location, edhubAuthService, eOrgListFact) {
-
         const vm = this;
         vm.progressMessage = "Your Progress";
         vm.formScope = {};
@@ -22,12 +21,23 @@
 
         //-- Data Model:
         vm.organization = {
-            orgName: '',
-            zipCode: '',
-            email: '',
-            aboutTheOrganization: '',
-            name: '',
-            password: ''
+            orgName: 'WatzLit',
+            zipCode: '95820',
+            email: 'php@julius3d.com',
+            aboutTheOrganization: 'This job requires these skills:\n' +
+                '(1)  ngFire course, \n' +
+                '\t\t(2)  ng 1.5 components, \n' +
+                '\t\t(3)  jQuery getting started,  \n' +
+                '\t\t(4)  bootstrap responsive sites, \n' +
+                '\t\t(5)  css transitions, \n' +
+                '\t\t(6)  css animations,\n' +
+                '\t\t(7)  advanced lea verou course, \n' +
+                '\t\t(8)  1/2 the advanced ng spa framework.\n' +
+                '\t\t(9)  the VERY ADVANCED ng svg course, \n' +
+                '\t\t(10) 11-Transclusion ng fundamentals. \n' +
+                '\t\t(12) Angular w/PHP course',
+            name: 'Julius Alvarado',
+            password: 'abc123'
         };
 
         /* A user has either "signup/login" or logged out */
@@ -66,7 +76,8 @@
             }
         };
 
-        var postJob = function () {
+        vm.postJob = function () {
+            console.log("__>> post job should be writing to the db");
             vm.organization.timeStamp = firebase.database.ServerValue.TIMESTAMP;
             edhubJobPostService.jobPostings.$add(vm.organization).then(function (res) {
                 console.log("jha - successfully posted job to firebase ^_^/ res=");
@@ -77,7 +88,6 @@
         };
 
         function listOrgAuth() {
-
         }
 
         function listOrgUnauth() {

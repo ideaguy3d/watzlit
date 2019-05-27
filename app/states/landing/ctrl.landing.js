@@ -24,7 +24,7 @@
             if ($rootScope.rootEdhubAuthUser) {
                 $location.url('/apply/' + orgInfo.orgId + '/' + orgInfo.orgName);
             } else {
-                ////-- if user is not authenticated send them to "sign up to apply" view --\\\\
+                //-- if user is not authenticated send them to "sign up to apply" view
                 //-- sta = Signup To Apply view
                 // $location.url('/signup/sta');
                 //-- 'apply to job' view:
@@ -49,13 +49,13 @@
             });
 
             /*
-            edhubJobPostService.jobPostingsLimitTo(7).$loaded().then(function (res) {
-                vm.jobPostings = res;
-                console.log("edhub - jobPostings res =");
-                console.log(res);
-            }).catch(function (error) {
-                console.error('edhub - Error: ', error);
-            });
+                edhubJobPostService.jobPostingsLimitTo(7).$loaded().then(function (res) {
+                    vm.jobPostings = res;
+                    console.log("edhub - jobPostings res =");
+                    console.log(res);
+                }).catch(function (error) {
+                    console.error('edhub - Error: ', error);
+                });
             */
         }
     }

@@ -1,3 +1,5 @@
+The originally forked repo is [ideaguy3d/generator-angular](https://github.com/ideaguy3d/generator-angularfire)
+
 ## Build & development
 
 Run `grunt` for building and `grunt serve` for preview.
